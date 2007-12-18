@@ -9,17 +9,18 @@ entity dds_controller is
   port(
     clk0 : in std_logic;
 
-    -- address in
-
-    address_in : in std_logic_vector(3 downto 0);
+    -- address in now used for debug_out
+--    address_in : in std_logic_vector(3 downto 0);
+    -- debug out
+    debug_out : in std_logic_vector(3 downto 0);
 
     -- DDS control pins
     sdo_pin     : out std_logic_vector(1 downto 0);
---      sdi_pin   : out std_logic;
+-- sdi_pin : out std_logic;
     sclk_pin    : out std_logic;
     ioreset_pin : out std_logic;
 
---      pdclk_pin : out std_logic;
+-- pdclk_pin : out std_logic;
     ioup_pin : out std_logic;
 
     drover_pin : out std_logic;
@@ -78,7 +79,7 @@ architecture behaviour of dds_controller is
     port (
       wb_clk      : in  std_logic;
       data        : in  std_logic_vector (DATAWIDTH-1 downto 0);
---      data2   : out std_logic_vector (DATAWIDTH-1 downto 0);
+-- data2 : out std_logic_vector (DATAWIDTH-1 downto 0);
       load        : in  std_logic;
       done_out    : out std_logic;
       sclk_out    : out std_logic;
@@ -116,9 +117,10 @@ begin
 -------------------------------------------------------------------------------
 -- do some crappy debugging
 -------------------------------------------------------------------------------
-  aux_reset             <= bus_in(25);
-  cs_pin                <= aux_wr_fifo;
--
+  debug_out(0) <= sdo_pin(0);
+  debug_out(1) <= sclk_pin;
+  debug_out(2) <= '1' when decoded_dds_addr else '0';
+
 ------------------------------------------------------------------------------
 -- Asynchronious decoding
 -------------------------------------------------------------------------------
@@ -128,7 +130,7 @@ begin
   decoded_dds_profile   <= (opcode_data = dds_profile_opcode);
   decoded_dac_amplitude <= (opcode_data = dac_amplitude_opcode);
   decoded_dds_phase     <= (opcode_data = dds_phase_ctl_opcode);
-  aux_ser_enable <= '1' when decoded_dds_addr else '0';
+  aux_ser_enable        <= '1' when decoded_dds_addr else '0';
 
 -------------------------------------------------------------------------------
 -- The parallel to serial cconverter
@@ -147,15 +149,15 @@ begin
 -------------------------------------------------------------------------------
 -- The megafuntion FIFO
 -------------------------------------------------------------------------------
-  fifo_mf_inst : fifo_mf
+  fifo_mf_inst   : fifo_mf
     port map (
-      aclr  => aux_reset,
-      clock => clk0,
-      data  => bus_in(DATAWIDTH-1 downto 0),
-      rdreq => aux_rd_fifo,
-      wrreq => aux_wr_fifo,
-      empty => aux_fifo_empty,
-      q     => aux_fifo_out
+      aclr        => aux_reset,
+      clock       => clk0,
+      data        => bus_in(DATAWIDTH-1 downto 0),
+      rdreq       => aux_rd_fifo,
+      wrreq       => aux_wr_fifo,
+      empty       => aux_fifo_empty,
+      q           => aux_fifo_out
       );
 
 
@@ -171,44 +173,44 @@ begin
       if aux_ser_enable = '1' then
         case aux_ser_state is
           -- send an ioreset before ???
-          when B"000" => aux_rd_fifo <= '0';  -- Load the address byte
-                         aux_ser_act   <= '0';
-                         aux_ser_load  <= '1';
-                         aux_ser_ovr   <= BYTE_OVERRUN;
-                         aux_ser_state <= B"001";
-                         aux_ser_data  <= bus_in(DATAWIDTH -1 downto 0);
-                         ioreset_pin   <= '1';
-          when B"001" => aux_rd_fifo <= '0';  -- Wait until the address byte is sent
-                         aux_ser_act  <= '1';
-                         aux_ser_load <= '0';
-                         ioreset_pin  <= '0';
+          when B"000" => aux_rd_fifo     <= '0';  -- Load the address byte
+                         aux_ser_act     <= '0';
+                         aux_ser_load    <= '1';
+                         aux_ser_ovr     <= BYTE_OVERRUN;
+                         aux_ser_state   <= B"001";
+                         aux_ser_data    <= bus_in(DATAWIDTH -1 downto 0);
+                         ioreset_pin     <= '1';
+          when B"001" => aux_rd_fifo     <= '0';  -- Wait until the address byte is sent
+                         aux_ser_act     <= '1';
+                         aux_ser_load    <= '0';
+                         ioreset_pin     <= '0';
                          if aux_ser_done = '1' then
                            aux_ser_state <= B"010";
                          end if;
-          when B"010" => aux_rd_fifo <= '1';  -- Load the FIFO word
-                         aux_ser_act   <= '0';
-                         aux_ser_load  <= '1';
-                         aux_ser_ovr   <= FULL_OVERRUN;
-                         ioreset_pin   <= '0';
-                         aux_ser_state <= B"011";
-                         aux_ser_data  <= aux_fifo_out;
+          when B"010" => aux_rd_fifo     <= '1';  -- Load the FIFO word
+                         aux_ser_act     <= '0';
+                         aux_ser_load    <= '1';
+                         aux_ser_ovr     <= FULL_OVERRUN;
+                         ioreset_pin     <= '0';
+                         aux_ser_state   <= B"011";
+                         aux_ser_data    <= aux_fifo_out;
 
-          when B"011" => aux_ser_state <= B"100";
-                         aux_rd_fifo  <= '0';
-                         aux_ser_data <= aux_fifo_out;
-                         ioreset_pin  <= '0';
-          when B"100" => aux_ser_state <= B"101";  -- Wait until the FIFO has set the data
-                         aux_ser_data <= aux_fifo_out;
-                         ioreset_pin  <= '0';
-          when B"101" => aux_ser_state <= B"110";  -- Wait until the FIFO has set the data
-                         aux_ser_data <= aux_fifo_out;
-                         ioreset_pin  <= '0';
+          when B"011" => aux_ser_state     <= B"100";
+                         aux_rd_fifo       <= '0';
+                         aux_ser_data      <= aux_fifo_out;
+                         ioreset_pin       <= '0';
+          when B"100" => aux_ser_state     <= B"101";  -- Wait until the FIFO has set the data
+                         aux_ser_data      <= aux_fifo_out;
+                         ioreset_pin       <= '0';
+          when B"101" => aux_ser_state     <= B"110";  -- Wait until the FIFO has set the data
+                         aux_ser_data      <= aux_fifo_out;
+                         ioreset_pin       <= '0';
                          -- Wait until the FIFO word is sent / loop until FIFO is empty
-          when B"110" => aux_rd_fifo <= '0';
-                         aux_ser_act  <= '1';
-                         aux_ser_data <= aux_fifo_out;
-                         aux_ser_load <= '0';
-                         ioreset_pin  <= '0';
+          when B"110" => aux_rd_fifo       <= '0';
+                         aux_ser_act       <= '1';
+                         aux_ser_data      <= aux_fifo_out;
+                         aux_ser_load      <= '0';
+                         ioreset_pin       <= '0';
                          if aux_ser_done = '1' then
                            if aux_fifo_empty = '1' then
                              aux_ser_state <= B"000";
@@ -218,9 +220,9 @@ begin
                          end if;
 
           when others => aux_ser_state <= B"000";  -- generate initial state
-                         aux_ser_load <= '0';
-                         aux_rd_fifo  <= '0';
-                         ioreset_pin  <= '0';
+                         aux_ser_load  <= '0';
+                         aux_rd_fifo   <= '0';
+                         ioreset_pin   <= '0';
         end case;
       end if;
     end if;
@@ -236,7 +238,7 @@ begin
         dac_wr_pin    <= '1';
         parallel_data <= bus_in(DATAWIDTH-1 downto 0);
       else
-        dac_wr_pin <= '0';
+        dac_wr_pin    <= '0';
       end if;
     end if;
   end process;
@@ -265,16 +267,16 @@ begin
         profile_pin <= bus_in(2 downto 0);
         ioup_pin    <= '1';
 -- discard another beautiuful state machine due to the need for speed
---      profile_pin<=bus_in(2 downto 0);
---      case aux_profile_state is
---        when '0' =>   ioup_pin<='1';
---                aux_profile_state<='1';
---        when '1' =>   ioup_pin<='0';
---                aux_profile_state<='0';
---        when others =>  aux_profile_state<='0';
---      end case;
+-- profile_pin<=bus_in(2 downto 0);
+-- case aux_profile_state is
+-- when '0' => ioup_pin<='1';
+-- aux_profile_state<='1';
+-- when '1' => ioup_pin<='0';
+-- aux_profile_state<='0';
+-- when others => aux_profile_state<='0';
+-- end case;
       else
-        ioup_pin <= '0';
+        ioup_pin    <= '0';
       end if;
     end if;
   end process;
