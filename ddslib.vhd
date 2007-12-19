@@ -19,7 +19,8 @@ package instructions is
   constant dds_phase_ctl_opcode : OPCODE_TYPE := B"01000";
   ---- DDS phase on parallel port
   constant dds_phase_parallel   : OPCODE_TYPE := B"01001";
-
+  ---- DDS reset opcode
+  constant reset_opcode   : OPCODE_TYPE := B"11111";
 
 end package;
 

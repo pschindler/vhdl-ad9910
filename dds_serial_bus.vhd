@@ -9,8 +9,9 @@ entity dds_serial_bus is
   port (
     wb_clk      : in  std_logic;
     data        : in  std_logic_vector (DATAWIDTH-1 downto 0);
+    reset       : in std_logic;
 -- data2 : out std_logic_vector (DATAWIDTH-1 downto 0);
-    load        : in  std_logic;
+    load_reg    : in  std_logic;
     done_out    : out std_logic;
     sclk_out    : out std_logic;
     active      : in  std_logic;
@@ -24,8 +25,8 @@ architecture behaviour of dds_serial_bus is
   signal aux_reg      : std_logic_vector(DATAWIDTH-1 downto 0);
   signal aux_counter  : std_logic_vector(SER_REGWIDTH-1 downto 0);
   signal aux_finished : boolean;
-  signal load         : std_logic;
-  signal clk_counter  : std_logic(1 downto 0);
+--  signal load_reg     : std_logic;
+  signal clk_counter  : std_logic_vector(1 downto 0);
 
 -------------------------------------------------------------------------------
 -- Behaviour starts here
@@ -34,35 +35,50 @@ architecture behaviour of dds_serial_bus is
 begin
 
   aux_finished <= (aux_counter = counter_ovr);  --whats bigger equal in vhdl??
---  sclk_out     <= '0' when (aux_finished or load = '1' or active = '0') else wb_clk;
+--  sclk_out     <= '0' when (aux_finished or load_reg = '1' or active = '0') else wb_clk;
   done_out     <= '1' when aux_finished else '0';
 
 -------------------------------------------------------------------------------
 -- Serial write process now with state machine for the serial output
 -- Untested !!!
 -------------------------------------------------------------------------------
-  write_serial_process : process(wb_clk, load)
+  write_serial_process : process(wb_clk, load_reg)
   begin
 
-    if (falling_edge(wb_clk) and (load = '0')) and (not aux_finished) then
-      case clk_counter is
-        when B"00" =>
-          aux_counter <= std_logic_vector(unsigned(aux_counter) + 1);
-          aux_reg     <= aux_reg(DATAWIDTH-2 downto 0) & '0';
-          clk_counter <= B"01";
-          sdo_out     <= aux_reg(DATAWIDTH-1);
-          sclk_out    <= '0';
-        when B"01" =>
-          sclk_out    <= '1';
-        when others => null;
-      end case;
+    if falling_edge(wb_clk) then
+      if (load_reg = '0') and (not aux_finished) then
+        case clk_counter is
+          when B"00" =>
+            sdo_out     <= aux_reg(DATAWIDTH-1);
+            sclk_out    <= '0';
+            clk_counter <= B"01";
+          when B"01" =>
+            sclk_out    <= '1';
+            clk_counter <= B"00";
+            aux_counter <= std_logic_vector(unsigned(aux_counter) + 1);
+            aux_reg     <= aux_reg(DATAWIDTH-2 downto 0) & '0';
+          when others =>
+            clk_counter <= B"00";
+            sdo_out     <= '0';
+            sclk_out    <= '0';
+        end case;
+      else
+        sclk_out <= '0';
+        sdo_out  <= '0';
+        clk_counter <= B"00";
+      end if;
     end if;
-
-    if (load = '1') then
+    if (load_reg = '1') then
+      clk_counter <= B"00";
       aux_reg     <= data(DATAWIDTH-1 downto 0);
       aux_counter <= AUX_RESET;
     end if;
 
+    if reset = '1' then
+      clk_counter <= B"00";
+      aux_reg     <= X"0000";
+      aux_counter <= AUX_RESET;
+    end if;
   end process;
 
 
