@@ -1,0 +1,15 @@
+Bugs:
+
+- The profile pin seems to just resemble the 3 lowest bits of bus_in
+- The USE_ADDRESSING does not switch off the address_in pins
+- ioup_pin goes high in the simulations
+
+Features:
+
+- Assign pin numbers
+- Add phase registers
+- Add IO control for the DDS
+
+Testing:
+
+- Test serial converter and FIFO on hardware

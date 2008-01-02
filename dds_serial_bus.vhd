@@ -1,9 +1,17 @@
+-- -*- mode: Vhdl -*-
+-- Time-stamp: "2008-01-02 14:46:54 c704271"
+
+--  file       dds_serial_bus.vhd
+--  copyright  (c) Philipp Schindler 2008
+--  url        http://pulse-sequencer.sf.net
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 library ddslib;
 use ddslib.instructions.all;
 use ddslib.constants.all;
+use ddslib.config.all;
 
 entity dds_serial_bus is
   port (
@@ -46,7 +54,7 @@ begin
   begin
 
     if falling_edge(wb_clk) then
-      if (load_reg = '0') and (not aux_finished) then
+      if (load_reg = '0') and (not aux_finished) and (reset='0') and active='1'  then
         case clk_counter is
           when B"00" =>
             sdo_out     <= aux_reg(DATAWIDTH-1);

@@ -1,6 +1,15 @@
+-- -*- mode: Vhdl -*-
+-- Time-stamp: "2008-01-02 13:20:33 c704271"
+
+--  file       ddslib.vhd
+--  copyright  (c) Philipp Schindler 2008
+--  url        http://pulse-sequencer.sf.net
+
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+
 
 package instructions is
   constant OPCODE_WIDTH : positive := 5;
@@ -20,7 +29,7 @@ package instructions is
   ---- DDS phase on parallel port
   constant dds_phase_parallel   : OPCODE_TYPE := B"01001";
   ---- DDS reset opcode
-  constant reset_opcode   : OPCODE_TYPE := B"11111";
+  constant reset_opcode         : OPCODE_TYPE := B"11111";
 
 end package;
 
@@ -29,12 +38,20 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 package constants is
-  constant DATAWIDTH : positive := 16;
-  constant BUSWIDTH  : positive := 32;
+  constant DATAWIDTH   : positive := 16;
+  constant BUSWIDTH    : positive := 32;
+  constant ADDRESWIDTH : positive := 4;
 
   constant SER_REGWIDTH : positive                                  := 5;
   constant FULL_OVERRUN : std_logic_vector(SER_REGWIDTH-1 downto 0) := B"10000";
   constant BYTE_OVERRUN : std_logic_vector(SER_REGWIDTH-1 downto 0) := B"01000";
   constant AUX_RESET    : std_logic_vector(SER_REGWIDTH-1 downto 0) := B"00000";
+
+end package;
+
+
+package config is
+
+  constant USE_ADDRESSING : boolean := false;
 
 end package;
