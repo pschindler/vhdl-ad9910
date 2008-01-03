@@ -13,3 +13,4 @@ Features:
 Testing:
 
 - Test serial converter and FIFO on hardware
+- Test handshake for bus data
