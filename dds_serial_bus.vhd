@@ -1,5 +1,5 @@
 -- -*- mode: Vhdl -*-
--- Time-stamp: "2008-01-02 14:46:54 c704271"
+-- Time-stamp: "2008-01-04 17:31:14 c704271"
 
 --  file       dds_serial_bus.vhd
 --  copyright  (c) Philipp Schindler 2008
@@ -22,7 +22,7 @@ entity dds_serial_bus is
     load_reg    : in  std_logic;
     done_out    : out std_logic;
     sclk_out    : out std_logic;
-    active      : in  std_logic;
+    active_flag      : in  std_logic;
     counter_ovr : in  std_logic_vector(SER_REGWIDTH-1 downto 0);
     sdo_out     : out std_logic
     );
@@ -31,11 +31,12 @@ end dds_serial_bus;
 architecture behaviour of dds_serial_bus is
 
   signal aux_reg      : std_logic_vector(DATAWIDTH-1 downto 0);
+  signal aux_reg_cur      : std_logic_vector(DATAWIDTH-1 downto 0);
   signal aux_counter  : std_logic_vector(SER_REGWIDTH-1 downto 0);
   signal aux_finished : boolean;
 --  signal load_reg     : std_logic;
   signal clk_counter  : std_logic_vector(1 downto 0);
-
+  signal clk_counter_cur  : std_logic_vector(1 downto 0);
 -------------------------------------------------------------------------------
 -- Behaviour starts here
 -------------------------------------------------------------------------------
@@ -43,48 +44,57 @@ architecture behaviour of dds_serial_bus is
 begin
 
   aux_finished <= (aux_counter = counter_ovr);  --whats bigger equal in vhdl??
---  sclk_out     <= '0' when (aux_finished or load_reg = '1' or active = '0') else wb_clk;
+--  sclk_out     <= '0' when (aux_finished or load_reg = '1' or active_flag = '0') else wb_clk;
   done_out     <= '1' when aux_finished else '0';
-
+  sdo_out     <= aux_reg(DATAWIDTH-1) when active_flag='1' else '0';
+  sclk_out <=  '1' when wb_clk='0' and((not aux_finished) and active_flag='1') else '0';
 -------------------------------------------------------------------------------
 -- Serial write process now with state machine for the serial output
 -- Untested !!!
 -------------------------------------------------------------------------------
   write_serial_process : process(wb_clk, load_reg)
   begin
-
-    if falling_edge(wb_clk) then
-      if (load_reg = '0') and (not aux_finished) and (reset='0') and active='1'  then
-        case clk_counter is
-          when B"00" =>
-            sdo_out     <= aux_reg(DATAWIDTH-1);
-            sclk_out    <= '0';
-            clk_counter <= B"01";
-          when B"01" =>
-            sclk_out    <= '1';
-            clk_counter <= B"00";
-            aux_counter <= std_logic_vector(unsigned(aux_counter) + 1);
-            aux_reg     <= aux_reg(DATAWIDTH-2 downto 0) & '0';
-          when others =>
-            clk_counter <= B"00";
-            sdo_out     <= '0';
-            sclk_out    <= '0';
-        end case;
-      else
-        sclk_out <= '0';
-        sdo_out  <= '0';
-        clk_counter <= B"00";
+    if rising_edge(wb_clk) then
+      if reset='0' and active_flag='1' and not aux_finished then
+        aux_reg     <= aux_reg(DATAWIDTH-2 downto 0) & '0';
+        aux_counter <= std_logic_vector(unsigned(aux_counter) + 1);
       end if;
     end if;
+--    if rising_edge(wb_clk) then
+--      if (load_reg = '0') and (not aux_finished) and (reset='0') and active_flag='1'  then
+--        case clk_counter_cur is
+--          when B"00" =>
+--            sdo_out     <= aux_reg_cur(DATAWIDTH-1);
+--            sclk_out    <= '1';
+--            clk_counter <= B"01";
+--          when B"01" =>
+--            sdo_out     <= aux_reg_cur(DATAWIDTH-1);
+--            sclk_out    <= '0';
+--            clk_counter <= B"00";
+--            aux_counter <= std_logic_vector(unsigned(aux_counter) + 1);
+--            aux_reg     <= aux_reg_cur(DATAWIDTH-2 downto 0) & '0';
+--          when others =>
+--            sdo_out     <= aux_reg_cur(DATAWIDTH-1);
+--            clk_counter <= B"00";
+--            sdo_out     <= '0';
+--            sclk_out    <= '0';
+--        end case;
+--      else
+--        sclk_out <= '0';
+--        sdo_out  <= '0';
+--        clk_counter <= B"00";
+--      end if;
+
+--    end if;
     if (load_reg = '1') then
-      clk_counter <= B"00";
+      clk_counter_cur <= B"00";
       aux_reg     <= data(DATAWIDTH-1 downto 0);
       aux_counter <= AUX_RESET;
     end if;
 
     if reset = '1' then
-      clk_counter <= B"00";
-      aux_reg     <= X"0000";
+      clk_counter_cur <= B"00";
+--      aux_reg     <= X"0000";
       aux_counter <= AUX_RESET;
     end if;
   end process;

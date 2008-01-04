@@ -1,7 +1,7 @@
- -- Copyright (C) 1991-2006 Altera Corporation
+ -- Copyright (C) 1991-2007 Altera Corporation
  -- Your use of Altera Corporation's design tools, logic functions 
  -- and other software and tools, and its AMPP partner logic 
- -- functions, and any output files any of the foregoing 
+ -- functions, and any output files from any of the foregoing 
  -- (including device programming or simulation files), and any 
  -- associated documentation or information are expressly subject 
  -- to the terms and conditions of the Altera Program License 
@@ -22,6 +22,8 @@
 
  ---------------------------------------------------------------------------------
  -- NC            : No Connect. This pin has no internal connection to the device.
+ -- DNU           : Do Not Use. This pin MUST NOT be connected.
+ -- VCCPGM        : Dedicated power pin for configuration, which MUST be connected to 1.8V, 2.5V or 3.0V depending on the needs of the configuration device.
  -- VCCINT        : Dedicated power pin, which MUST be connected to VCC  (1.2V).
  -- VCCIO         : Dedicated power pin, which MUST be connected to VCC
  --                 of its bank.
@@ -43,29 +45,39 @@
  --					This pin should be connected to GND. It may also be connected  to a
  --					valid signal  on the board  (low, high, or toggling)  if that signal
  --					is required for a different revision of the design.
- -- GND*          : Unused  I/O  pin.   This pin can either be left unconnected or
- --           	    connected to GND.  Connecting this pin to GND will improve the
- --           	    device's immunity to noise.
+ -- GND*          : Unused  I/O  pin.   For transceiver I/O banks (Bank 13, 14, 15, 16 and 17),
+ --           	    connect each pin marked GND* either individually through a 10 kohm resistor
+ --           	    to GND or tie all pins together and connect through a single 10 kohm resistor
+ --           	    to GND.
+ --           	    For non-transceiver I/O banks, connect each pin marked GND* directly to GND
+ --           	    or leave it unconnected.
  -- RESERVED      : Unused I/O pin, which MUST be left unconnected.
  -- RESERVED_INPUT    : Pin is tri-stated and should be connected to the board.
  -- RESERVED_INPUT_WITH_WEAK_PULLUP    : Pin is tri-stated with internal weak pull-up resistor.
  -- RESERVED_INPUT_WITH_BUS_HOLD       : Pin is tri-stated with bus-hold circuitry.
+ -- RESERVED_OUTPUT_DRIVEN_HIGH        : Pin is output driven high.
  ---------------------------------------------------------------------------------
 
-Quartus II Version 6.0 Build 202 06/20/2006 Service Pack 1 SJ Web Edition
+
+
+ ---------------------------------------------------------------------------------
+ -- Pin directions (input, output or bidir) are based on device operating in user mode.
+ ---------------------------------------------------------------------------------
+
+Quartus II Version 7.2 Build 175 11/20/2007 Service Pack 1 SJ Web Edition
 CHIP  "dds_serial_bus"  ASSIGNED TO AN: EP2C5T144C6
 
 Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment
 -------------------------------------------------------------------------------------------------------------
-~ASDO~ / RESERVED_INPUT_WITH_WEAK_PULLUP : 1         : input  : LVTTL             :         : 1         : N              
-~nCSO~ / RESERVED_INPUT_WITH_WEAK_PULLUP : 2         : input  : LVTTL             :         : 1         : N              
+~ASDO~ / RESERVED_INPUT_WITH_WEAK_PULLUP : 1         : input  : 3.3-V LVTTL       :         : 1         : N              
+~nCSO~ / RESERVED_INPUT_WITH_WEAK_PULLUP : 2         : input  : 3.3-V LVTTL       :         : 1         : N              
 GND*                         : 3         :        :                   :         : 1         :                
-GND*                         : 4         :        :                   :         : 1         :                
+data[13]                     : 4         : input  : 3.3-V LVTTL       :         : 1         : N              
 VCCIO1                       : 5         : power  :                   : 3.3V    : 1         :                
 GND                          : 6         : gnd    :                   :         :           :                
-data[6]                      : 7         : input  : LVTTL             :         : 1         : N              
-data[4]                      : 8         : input  : LVTTL             :         : 1         : N              
-data[14]                     : 9         : input  : LVTTL             :         : 1         : N              
+load_reg                     : 7         : input  : 3.3-V LVTTL       :         : 1         : N              
+sclk_out                     : 8         : output : 3.3-V LVTTL       :         : 1         : N              
+reset                        : 9         : input  : 3.3-V LVTTL       :         : 1         : N              
 TDO                          : 10        : output :                   :         : 1         :                
 TMS                          : 11        : input  :                   :         : 1         :                
 TCK                          : 12        : input  :                   :         : 1         :                
@@ -73,18 +85,18 @@ TDI                          : 13        : input  :                   :         
 DATA0                        : 14        : input  :                   :         : 1         :                
 DCLK                         : 15        :        :                   :         : 1         :                
 nCE                          : 16        :        :                   :         : 1         :                
-wb_clk                       : 17        : input  : LVTTL             :         : 1         : N              
-load                         : 18        : input  : LVTTL             :         : 1         : N              
+wb_clk                       : 17        : input  : 3.3-V LVTTL       :         : 1         : N              
+counter_ovr[4]               : 18        : input  : 3.3-V LVTTL       :         : 1         : N              
 GND                          : 19        : gnd    :                   :         :           :                
 nCONFIG                      : 20        :        :                   :         : 1         :                
-GND+                         : 21        :        :                   :         : 1         :                
-GND+                         : 22        :        :                   :         : 1         :                
+counter_ovr[1]               : 21        : input  : 3.3-V LVTTL       :         : 1         : N              
+counter_ovr[0]               : 22        : input  : 3.3-V LVTTL       :         : 1         : N              
 VCCIO1                       : 23        : power  :                   : 3.3V    : 1         :                
-GND*                         : 24        :        :                   :         : 1         :                
-GND*                         : 25        :        :                   :         : 1         :                
-GND*                         : 26        :        :                   :         : 1         :                
-GND*                         : 27        :        :                   :         : 1         :                
-GND*                         : 28        :        :                   :         : 1         :                
+data[14]                     : 24        : input  : 3.3-V LVTTL       :         : 1         : N              
+sdo_out                      : 25        : output : 3.3-V LVTTL       :         : 1         : N              
+counter_ovr[3]               : 26        : input  : 3.3-V LVTTL       :         : 1         : N              
+data[12]                     : 27        : input  : 3.3-V LVTTL       :         : 1         : N              
+done_out                     : 28        : output : 3.3-V LVTTL       :         : 1         : N              
 VCCIO1                       : 29        : power  :                   : 3.3V    : 1         :                
 GND*                         : 30        :        :                   :         : 1         :                
 GND*                         : 31        :        :                   :         : 1         :                
@@ -107,19 +119,19 @@ GND*                         : 47        :        :                   :         
 GND*                         : 48        :        :                   :         : 4         :                
 GND                          : 49        : gnd    :                   :         :           :                
 VCCINT                       : 50        : power  :                   : 1.2V    :           :                
-GND*                         : 51        :        :                   :         : 4         :                
+data[3]                      : 51        : input  : 3.3-V LVTTL       :         : 4         : N              
 GND*                         : 52        :        :                   :         : 4         :                
 GND*                         : 53        :        :                   :         : 4         :                
 VCCIO4                       : 54        : power  :                   : 3.3V    : 4         :                
-GND*                         : 55        :        :                   :         : 4         :                
+data[6]                      : 55        : input  : 3.3-V LVTTL       :         : 4         : N              
 GND                          : 56        : gnd    :                   :         :           :                
-data2[15]                    : 57        : output : LVTTL             :         : 4         : N              
-sdo_out                      : 58        : output : LVTTL             :         : 4         : N              
-data2[12]                    : 59        : output : LVTTL             :         : 4         : N              
-sclk_out                     : 60        : output : LVTTL             :         : 4         : N              
+data[8]                      : 57        : input  : 3.3-V LVTTL       :         : 4         : N              
+GND*                         : 58        :        :                   :         : 4         :                
+GND*                         : 59        :        :                   :         : 4         :                
+GND*                         : 60        :        :                   :         : 4         :                
 GND                          : 61        : gnd    :                   :         :           :                
 VCCINT                       : 62        : power  :                   : 1.2V    :           :                
-data[15]                     : 63        : input  : LVTTL             :         : 4         : N              
+GND*                         : 63        :        :                   :         : 4         :                
 GND*                         : 64        :        :                   :         : 4         :                
 GND*                         : 65        :        :                   :         : 4         :                
 VCCIO4                       : 66        : power  :                   : 3.3V    : 4         :                
@@ -132,7 +144,7 @@ GND*                         : 72        :        :                   :         
 GND*                         : 73        :        :                   :         : 3         :                
 GND*                         : 74        :        :                   :         : 3         :                
 GND*                         : 75        :        :                   :         : 3         :                
-~LVDS41p/nCEO~ / GND*        : 76        : output : LVTTL             :         : 3         : N              
+~LVDS41p/nCEO~               : 76        : output : 3.3-V LVTTL       :         : 3         : N              
 VCCIO3                       : 77        : power  :                   : 3.3V    : 3         :                
 GND                          : 78        : gnd    :                   :         :           :                
 GND*                         : 79        :        :                   :         : 3         :                
@@ -143,24 +155,24 @@ CONF_DONE                    : 83        :        :                   :         
 MSEL1                        : 84        :        :                   :         : 3         :                
 MSEL0                        : 85        :        :                   :         : 3         :                
 GND*                         : 86        :        :                   :         : 3         :                
-GND*                         : 87        :        :                   :         : 3         :                
-data[7]                      : 88        : input  : LVTTL             :         : 3         : N              
-data[8]                      : 89        : input  : LVTTL             :         : 3         : N              
-data[9]                      : 90        : input  : LVTTL             :         : 3         : N              
-data[10]                     : 91        : input  : LVTTL             :         : 3         : N              
-data[1]                      : 92        : input  : LVTTL             :         : 3         : N              
-data2[0]                     : 93        : output : LVTTL             :         : 3         : N              
-data2[9]                     : 94        : output : LVTTL             :         : 3         : N              
+data[0]                      : 87        : input  : 3.3-V LVTTL       :         : 3         : N              
+GND+                         : 88        :        :                   :         : 3         :                
+GND+                         : 89        :        :                   :         : 3         :                
+GND+                         : 90        :        :                   :         : 3         :                
+GND+                         : 91        :        :                   :         : 3         :                
+GND*                         : 92        :        :                   :         : 3         :                
+GND*                         : 93        :        :                   :         : 3         :                
+data[9]                      : 94        : input  : 3.3-V LVTTL       :         : 3         : N              
 VCCIO3                       : 95        : power  :                   : 3.3V    : 3         :                
-data2[11]                    : 96        : output : LVTTL             :         : 3         : N              
-data2[14]                    : 97        : output : LVTTL             :         : 3         : N              
+GND*                         : 96        :        :                   :         : 3         :                
+GND*                         : 97        :        :                   :         : 3         :                
 GND                          : 98        : gnd    :                   :         :           :                
-data2[2]                     : 99        : output : LVTTL             :         : 3         : N              
-data[13]                     : 100       : input  : LVTTL             :         : 3         : N              
-done_out                     : 101       : output : LVTTL             :         : 3         : N              
+GND*                         : 99        :        :                   :         : 3         :                
+GND*                         : 100       :        :                   :         : 3         :                
+GND*                         : 101       :        :                   :         : 3         :                
 VCCIO3                       : 102       : power  :                   : 3.3V    : 3         :                
-data[2]                      : 103       : input  : LVTTL             :         : 3         : N              
-data2[8]                     : 104       : output : LVTTL             :         : 3         : N              
+GND*                         : 103       :        :                   :         : 3         :                
+GND*                         : 104       :        :                   :         : 3         :                
 GND                          : 105       : gnd    :                   :         :           :                
 GND_PLL2                     : 106       : gnd    :                   :         :           :                
 VCCD_PLL2                    : 107       : power  :                   : 1.2V    :           :                
@@ -168,36 +180,36 @@ GND_PLL2                     : 108       : gnd    :                   :         
 VCCA_PLL2                    : 109       : power  :                   : 1.2V    :           :                
 GNDA_PLL2                    : 110       : gnd    :                   :         :           :                
 GND                          : 111       : gnd    :                   :         :           :                
-data2[7]                     : 112       : output : LVTTL             :         : 2         : N              
-data[3]                      : 113       : input  : LVTTL             :         : 2         : N              
-GND*                         : 114       :        :                   :         : 2         :                
-data[12]                     : 115       : input  : LVTTL             :         : 2         : N              
+GND*                         : 112       :        :                   :         : 2         :                
+data[5]                      : 113       : input  : 3.3-V LVTTL       :         : 2         : N              
+data[4]                      : 114       : input  : 3.3-V LVTTL       :         : 2         : N              
+GND*                         : 115       :        :                   :         : 2         :                
 VCCIO2                       : 116       : power  :                   : 3.3V    : 2         :                
 GND                          : 117       : gnd    :                   :         :           :                
-data[0]                      : 118       : input  : LVTTL             :         : 2         : N              
-data2[1]                     : 119       : output : LVTTL             :         : 2         : N              
-data[11]                     : 120       : input  : LVTTL             :         : 2         : N              
-data2[3]                     : 121       : output : LVTTL             :         : 2         : N              
-GND*                         : 122       :        :                   :         : 2         :                
+GND*                         : 118       :        :                   :         : 2         :                
+GND*                         : 119       :        :                   :         : 2         :                
+GND*                         : 120       :        :                   :         : 2         :                
+GND*                         : 121       :        :                   :         : 2         :                
+data[10]                     : 122       : input  : 3.3-V LVTTL       :         : 2         : N              
 GND                          : 123       : gnd    :                   :         :           :                
 VCCINT                       : 124       : power  :                   : 1.2V    :           :                
-data2[4]                     : 125       : output : LVTTL             :         : 2         : N              
-data2[5]                     : 126       : output : LVTTL             :         : 2         : N              
+data[1]                      : 125       : input  : 3.3-V LVTTL       :         : 2         : N              
+GND*                         : 126       :        :                   :         : 2         :                
 VCCIO2                       : 127       : power  :                   : 3.3V    : 2         :                
 GND                          : 128       : gnd    :                   :         :           :                
-data2[10]                    : 129       : output : LVTTL             :         : 2         : N              
+GND*                         : 129       :        :                   :         : 2         :                
 GND                          : 130       : gnd    :                   :         :           :                
 VCCINT                       : 131       : power  :                   : 1.2V    :           :                
-GND*                         : 132       :        :                   :         : 2         :                
-data2[6]                     : 133       : output : LVTTL             :         : 2         : N              
-data2[13]                    : 134       : output : LVTTL             :         : 2         : N              
-data[5]                      : 135       : input  : LVTTL             :         : 2         : N              
-GND*                         : 136       :        :                   :         : 2         :                
+active                       : 132       : input  : 3.3-V LVTTL       :         : 2         : N              
+data[11]                     : 133       : input  : 3.3-V LVTTL       :         : 2         : N              
+GND*                         : 134       :        :                   :         : 2         :                
+GND*                         : 135       :        :                   :         : 2         :                
+data[2]                      : 136       : input  : 3.3-V LVTTL       :         : 2         : N              
 GND*                         : 137       :        :                   :         : 2         :                
 VCCIO2                       : 138       : power  :                   : 3.3V    : 2         :                
-GND*                         : 139       :        :                   :         : 2         :                
+data[15]                     : 139       : input  : 3.3-V LVTTL       :         : 2         : N              
 GND                          : 140       : gnd    :                   :         :           :                
-GND*                         : 141       :        :                   :         : 2         :                
-GND*                         : 142       :        :                   :         : 2         :                
+counter_ovr[2]               : 141       : input  : 3.3-V LVTTL       :         : 2         : N              
+data[7]                      : 142       : input  : 3.3-V LVTTL       :         : 2         : N              
 GND*                         : 143       :        :                   :         : 2         :                
 GND*                         : 144       :        :                   :         : 2         :                
