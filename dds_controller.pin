@@ -154,18 +154,18 @@ nSTATUS                      : 82        :        :                   :         
 CONF_DONE                    : 83        :        :                   :         : 3         :                
 MSEL1                        : 84        :        :                   :         : 3         :                
 MSEL0                        : 85        :        :                   :         : 3         :                
-debug_out[3]                 : 86        : output : 3.3-V LVTTL       :         : 3         : N              
-debug_out[0]                 : 87        : output : 3.3-V LVTTL       :         : 3         : N              
+debug_out[1]                 : 86        : output : 3.3-V LVTTL       :         : 3         : N              
+debug_out[3]                 : 87        : output : 3.3-V LVTTL       :         : 3         : N              
 clk0                         : 88        : input  : 3.3-V LVTTL       :         : 3         : Y              
 GND+                         : 89        :        :                   :         : 3         :                
 GND+                         : 90        :        :                   :         : 3         :                
 GND+                         : 91        :        :                   :         : 3         :                
 bus_in[30]                   : 92        : input  : 3.3-V LVTTL       :         : 3         : Y              
 bus_in[31]                   : 93        : input  : 3.3-V LVTTL       :         : 3         : Y              
-debug_out[2]                 : 94        : output : 3.3-V LVTTL       :         : 3         : N              
+debug_out[0]                 : 94        : output : 3.3-V LVTTL       :         : 3         : N              
 VCCIO3                       : 95        : power  :                   : 3.3V    : 3         :                
-debug_out[1]                 : 96        : output : 3.3-V LVTTL       :         : 3         : N              
-GND*                         : 97        :        :                   :         : 3         :                
+GND*                         : 96        :        :                   :         : 3         :                
+debug_out[2]                 : 97        : output : 3.3-V LVTTL       :         : 3         : N              
 GND                          : 98        : gnd    :                   :         :           :                
 GND*                         : 99        :        :                   :         : 3         :                
 address_in[0]                : 100       : input  : 3.3-V LVTTL       :         : 3         : Y              

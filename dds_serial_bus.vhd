@@ -1,5 +1,5 @@
 -- -*- mode: Vhdl -*-
--- Time-stamp: "04-Jan-2008 21:48:09 viellieb"
+-- Time-stamp: "2008-01-07 08:40:21 c704271"
 
 -- file dds_serial_bus.vhd
 -- copyright (c) Philipp Schindler 2008
@@ -61,13 +61,11 @@ begin
     end if;
 
     if (load_reg = '1') then
-      clk_counter_cur <= B"00";
       aux_reg         <= data(DATAWIDTH-1 downto 0);
       aux_counter     <= AUX_RESET;
     end if;
 
     if reset = '1' then
-      clk_counter_cur <= B"00";
 -- aux_reg <= X"0000";                  --don't know why this is a problem => .
       aux_counter     <= AUX_RESET;
     end if;
