@@ -1,5 +1,5 @@
 -- -*- mode: Vhdl -*-
--- Time-stamp: "2008-01-02 13:20:33 c704271"
+-- Time-stamp: "2008-02-13 15:39:15 c704271"
 
 --  file       ddslib.vhd
 --  copyright  (c) Philipp Schindler 2008
@@ -16,14 +16,14 @@ package instructions is
 
   subtype OPCODE_TYPE is std_logic_vector(OPCODE_WIDTH-1 downto 0);
 
-  constant nop_opcode           : OPCODE_TYPE := B"00000";
+  constant nop_opcode           : OPCODE_TYPE := B"00000";  -- nop 0x0
   ---- DDS serial write
-  constant dds_addr_opcode      : OPCODE_TYPE := B"00001";
-  constant fifo_wr_opcode       : OPCODE_TYPE := B"00010";
+  constant dds_addr_opcode      : OPCODE_TYPE := B"00001";  -- dds_addr 0x1
+  constant fifo_wr_opcode       : OPCODE_TYPE := B"00010";  -- fifo_wr  0x2
   ---- DDS Profile select
-  constant dds_profile_opcode   : OPCODE_TYPE := B"00011";
+  constant dds_profile_opcode   : OPCODE_TYPE := B"00011";  -- dds_prof 0x3
   ---- DAC write
-  constant dac_amplitude_opcode : OPCODE_TYPE := B"00111";
+  constant dac_amplitude_opcode : OPCODE_TYPE := B"00111";  -- dac_wr   0x7
   ---- DDS phase coherent switching
   constant dds_phase_ctl_opcode : OPCODE_TYPE := B"01000";
   ---- DDS phase on parallel port

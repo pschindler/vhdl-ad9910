@@ -64,7 +64,7 @@
  -- Pin directions (input, output or bidir) are based on device operating in user mode.
  ---------------------------------------------------------------------------------
 
-Quartus II Version 7.2 Build 175 11/20/2007 Service Pack 1 SJ Web Edition
+Quartus II Version 7.2 Build 151 09/26/2007 SJ Web Edition
 CHIP  "wrapper"  ASSIGNED TO AN: EP2C5T144C6
 
 Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment
@@ -112,8 +112,8 @@ ioup_pin                     : 40        : output : 3.3-V LVTTL       :         
 RESERVED_INPUT               : 41        :        :                   :         : 4         :                
 RESERVED_INPUT               : 42        :        :                   :         : 4         :                
 RESERVED_INPUT               : 43        :        :                   :         : 4         :                
-RESERVED_INPUT               : 44        :        :                   :         : 4         :                
-RESERVED_INPUT               : 45        :        :                   :         : 4         :                
+parallel_dest[0]             : 44        : output : 3.3-V LVTTL       :         : 4         : Y              
+parallel_dest[1]             : 45        : output : 3.3-V LVTTL       :         : 4         : Y              
 VCCIO4                       : 46        : power  :                   : 3.3V    : 4         :                
 dac_out[0]                   : 47        : output : 3.3-V LVTTL       :         : 4         : Y              
 dac_out[1]                   : 48        : output : 3.3-V LVTTL       :         : 4         : Y              
@@ -121,7 +121,7 @@ GND                          : 49        : gnd    :                   :         
 VCCINT                       : 50        : power  :                   : 1.2V    :           :                
 dac_out[2]                   : 51        : output : 3.3-V LVTTL       :         : 4         : Y              
 dac_out[3]                   : 52        : output : 3.3-V LVTTL       :         : 4         : Y              
-RESERVED_INPUT               : 53        :        :                   :         : 4         :                
+tx_en_out                    : 53        : output : 3.3-V LVTTL       :         : 4         : Y              
 VCCIO4                       : 54        : power  :                   : 3.3V    : 4         :                
 RESERVED_INPUT               : 55        :        :                   :         : 4         :                
 GND                          : 56        : gnd    :                   :         :           :                
@@ -139,8 +139,8 @@ dac_out[11]                  : 67        : output : 3.3-V LVTTL       :         
 GND                          : 68        : gnd    :                   :         :           :                
 dac_out[12]                  : 69        : output : 3.3-V LVTTL       :         : 4         : Y              
 dac_out[13]                  : 70        : output : 3.3-V LVTTL       :         : 4         : Y              
-RESERVED_INPUT               : 71        :        :                   :         : 4         :                
-RESERVED_INPUT               : 72        :        :                   :         : 4         :                
+dac_out[14]                  : 71        : output : 3.3-V LVTTL       :         : 4         : Y              
+dac_out[15]                  : 72        : output : 3.3-V LVTTL       :         : 4         : Y              
 RESERVED_INPUT               : 73        :        :                   :         : 3         :                
 RESERVED_INPUT               : 74        :        :                   :         : 3         :                
 RESERVED_INPUT               : 75        :        :                   :         : 3         :                
