@@ -1,5 +1,5 @@
 -- -*- mode: Vhdl -*-
--- Time-stamp: "2008-02-13 15:39:15 c704271"
+-- Time-stamp: "2008-02-15 10:39:18 c704271"
 
 --  file       ddslib.vhd
 --  copyright  (c) Philipp Schindler 2008
@@ -22,6 +22,8 @@ package instructions is
   constant fifo_wr_opcode       : OPCODE_TYPE := B"00010";  -- fifo_wr  0x2
   ---- DDS Profile select
   constant dds_profile_opcode   : OPCODE_TYPE := B"00011";  -- dds_prof 0x3
+  ---- DDS update
+  constant dds_update_opcode    : OPCODE_TYPE := B"00100";  -- dds_up 0x4
   ---- DAC write
   constant dac_amplitude_opcode : OPCODE_TYPE := B"00111";  -- dac_wr   0x7
   ---- DDS phase coherent switching
