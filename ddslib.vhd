@@ -1,5 +1,5 @@
 -- -*- mode: Vhdl -*-
--- Time-stamp: "2008-02-15 10:39:18 c704271"
+-- Time-stamp: "2008-02-21 16:22:06 c704271"
 
 --  file       ddslib.vhd
 --  copyright  (c) Philipp Schindler 2008
@@ -43,6 +43,11 @@ package constants is
   constant DATAWIDTH   : positive := 16;
   constant BUSWIDTH    : positive := 32;
   constant ADDRESWIDTH : positive := 4;
+
+  constant PHASE_ADDRESS_WIDTH  : positive := 4;
+  constant PHASE_DATA_WIDTH     : positive := 32;
+  constant PHASE_ADJUST_WIDTH   : positive := 16;
+  constant PHASE_REGISTER_COUNT : positive := 16;
 
   constant SER_REGWIDTH : positive                                  := 5;
   constant FULL_OVERRUN : std_logic_vector(SER_REGWIDTH-1 downto 0) := B"10000";

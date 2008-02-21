@@ -1,5 +1,5 @@
 -- -*- mode: Vhdl -*-
--- Time-stamp: "2008-02-18 12:12:35 c704271"
+-- Time-stamp: "2008-02-21 16:19:47 c704271"
 -- file dds_controller.vhd
 -- copyright (c) Philipp Schindler 2008
 -- url http://pulse-sequencer.sf.net
@@ -83,6 +83,15 @@ architecture behaviour of dds_controller is
   signal aux_fifo_empty        : std_logic;
   signal aux_fifo_out          : std_logic_vector(DATAWIDTH-1 downto 0);
   signal aux_fifo_state        : std_logic;
+  -- aux signals for the phase registers
+  signal aux_phase_address_in       : std_logic_vector(PHASE_ADDRESS_WIDTH-1 downto 0);
+  signal aux_phase_phase_in         : std_logic_vector(PHASE_DATA_WIDTH-1 downto 0);
+  signal aux_phase_addend_in        : std_logic_vector(PHASE_DATA_WIDTH-1 downto 0);
+  signal aux_phase_set_current_in   : std_logic;
+  signal aux_phase_phase_adjust_out : std_logic_vector(PHASE_ADJUST_WIDTH-1 downto 0);
+  signal aux_phase_wren_in          : std_logic;
+  signal aux_phase_unused_port      : std_logic := '0';
+
   -- aux signals for the dds ioupdate
   signal aux_profile_state     : std_logic_vector(2 downto 0);
   --- The opcode from the bus
@@ -105,6 +114,7 @@ architecture behaviour of dds_controller is
   signal aux_clk_state_cur     : unsigned(1 downto 0);
   signal aux_clk_state         : unsigned(1 downto 0);
   signal aux_clk               : std_logic;
+
 -------------------------------------------------------------------------------
 -- Serial bus controller
 -------------------------------------------------------------------------------
@@ -139,7 +149,20 @@ architecture behaviour of dds_controller is
       );
   end component;
 
-
+-------------------------------------------------------------------------------
+-- The phaser registers
+-------------------------------------------------------------------------------
+  component phase_register
+    port (
+      clk              : in  std_logic;
+      address_in       : in  std_logic_vector(PHASE_ADDRESS_WIDTH-1 downto 0);
+      phase_in         : in  std_logic_vector(PHASE_DATA_WIDTH-1 downto 0);
+      addend_in        : in  std_logic_vector(PHASE_DATA_WIDTH-1 downto 0);
+      set_current_in   : in  std_logic;
+      phase_adjust_out : out std_logic_vector(PHASE_ADJUST_WIDTH-1 downto 0);
+      wren_in          : in  std_logic;
+      unused_port      : in  std_logic := '0');
+  end component;
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 -- Behaviour begins here !!
@@ -213,6 +236,7 @@ parallel_data <= bus_in(DATAWIDTH-1 downto 0);
       counter_ovr => aux_ser_ovr,
       done_out    => aux_ser_done
       );
+
 -------------------------------------------------------------------------------
 -- The megafuntion FIFO
 -------------------------------------------------------------------------------
@@ -227,6 +251,20 @@ parallel_data <= bus_in(DATAWIDTH-1 downto 0);
       q     => aux_fifo_out
       );
 
+-------------------------------------------------------------------------------
+-- The phase registers
+-------------------------------------------------------------------------------
+  phase_register_inst :  phase_register
+
+    port map (
+      clk              => clk0,
+      address_in       => aux_phase_address_in,
+      phase_in         => aux_phase_phase_in,
+      addend_in        => aux_phase_addend_in,
+      set_current_in   => aux_phase_set_current_in,
+      phase_adjust_out => aux_phase_phase_adjust_out,
+      wren_in          => aux_phase_wren_in,
+      unused_port      => aux_phase_unused_port);
 
 -------------------------------------------------------------------------------
 -- All the control processes
