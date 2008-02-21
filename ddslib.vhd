@@ -1,9 +1,9 @@
 -- -*- mode: Vhdl -*-
--- Time-stamp: "2008-02-21 16:22:06 c704271"
+-- Time-stamp: "21-Feb-2008 22:37:23 viellieb"
 
---  file       ddslib.vhd
---  copyright  (c) Philipp Schindler 2008
---  url        http://pulse-sequencer.sf.net
+-- file ddslib.vhd
+-- copyright (c) Philipp Schindler 2008
+-- url http://pulse-sequencer.sf.net
 
 
 library ieee;
@@ -16,22 +16,24 @@ package instructions is
 
   subtype OPCODE_TYPE is std_logic_vector(OPCODE_WIDTH-1 downto 0);
 
-  constant nop_opcode           : OPCODE_TYPE := B"00000";  -- nop 0x0
+  constant nop_opcode             : OPCODE_TYPE := B"00000";  -- nop 0x0
   ---- DDS serial write
-  constant dds_addr_opcode      : OPCODE_TYPE := B"00001";  -- dds_addr 0x1
-  constant fifo_wr_opcode       : OPCODE_TYPE := B"00010";  -- fifo_wr  0x2
+  constant dds_addr_opcode        : OPCODE_TYPE := B"00001";  -- dds_addr 0x1
+  constant fifo_wr_opcode         : OPCODE_TYPE := B"00010";  -- fifo_wr  0x2
   ---- DDS Profile select
-  constant dds_profile_opcode   : OPCODE_TYPE := B"00011";  -- dds_prof 0x3
+  constant dds_profile_opcode     : OPCODE_TYPE := B"00011";  -- dds_prof 0x3
   ---- DDS update
-  constant dds_update_opcode    : OPCODE_TYPE := B"00100";  -- dds_up 0x4
+  constant dds_update_opcode      : OPCODE_TYPE := B"00100";  -- dds_up 0x4
   ---- DAC write
-  constant dac_amplitude_opcode : OPCODE_TYPE := B"00111";  -- dac_wr   0x7
+  constant dac_amplitude_opcode   : OPCODE_TYPE := B"00111";  -- dac_wr   0x7
   ---- DDS phase coherent switching
-  constant dds_phase_ctl_opcode : OPCODE_TYPE := B"01000";
+  constant dds_phase_ctl_opcode   : OPCODE_TYPE := B"01000";
   ---- DDS phase on parallel port
-  constant dds_phase_parallel   : OPCODE_TYPE := B"01001";
+  constant dds_phase_parallel     : OPCODE_TYPE := B"01001";
+  constant load_phase_reg_opcode  : OPCODE_TYPE := B"01010";
+  constant pulse_phase_reg_opcode : OPCODE_TYPE := B"01011";
   ---- DDS reset opcode
-  constant reset_opcode         : OPCODE_TYPE := B"11111";
+  constant reset_opcode           : OPCODE_TYPE := B"11111";
 
 end package;
 

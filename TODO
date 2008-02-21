@@ -1,17 +1,17 @@
-Bugs:
+* Bugs:
 
 - The dds address is the upper byte of the data
 - The profile pin seems to just resemble the 3 lowest bits of bus_in
 - The USE_ADDRESSING does not switch off the address_in pins
 - Is the clk divider for the fifo still necessary?
 
-Features:
+* Features:
 
-- Add phase registers
+- Add general clear bit for the phase registers
 - Add IO control for the DDS
 - Add controls for the DDS ramp functionality
 
-Testing:
-
+* Testing:
+- Test phase registers
 
 
