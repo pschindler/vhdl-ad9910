@@ -1,19 +1,17 @@
 Bugs:
 
 - The dds address is the upper byte of the data
-- The read and write of the FIFO need to be controlled more deterministically
 - The profile pin seems to just resemble the 3 lowest bits of bus_in
 - The USE_ADDRESSING does not switch off the address_in pins
 - Is the clk divider for the fifo still necessary?
 
 Features:
 
-- Assign pin numbers
 - Add phase registers
 - Add IO control for the DDS
 - Add controls for the DDS ramp functionality
 
 Testing:
 
-- Test serial converter and FIFO on hardware
-- Test handshake for bus data
+
+

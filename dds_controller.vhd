@@ -1,5 +1,5 @@
 -- -*- mode: Vhdl -*-
--- Time-stamp: "2008-02-18 11:47:00 c704271"
+-- Time-stamp: "2008-02-18 12:12:35 c704271"
 -- file dds_controller.vhd
 -- copyright (c) Philipp Schindler 2008
 -- url http://pulse-sequencer.sf.net
@@ -163,7 +163,7 @@ begin
 --  parallel_data(6) <= '1' when decoded_fifo_wr else '0';
 --  parallel_data(0) <= clk0;
 --  parallel_data(0) <= sclk_pin;
-  parallel_data(15 downto 3) <= aux_fifo_out(15 downto 3);
+--  parallel_data(15 downto 3) <= aux_fifo_out(15 downto 3);
 ------------------------------------------------------------------------------
 -- Asynchronious decoding
 -------------------------------------------------------------------------------
@@ -194,7 +194,7 @@ begin
 -------------------------------------------------------------------------------
 -- Asynchronious control the parallel data out
 -------------------------------------------------------------------------------
--- parallel_data <= bus_in(DATAWIDTH-1 downto 0);
+parallel_data <= bus_in(DATAWIDTH-1 downto 0);
 -- parallel_data <= phase_register_out when decoded_dds_phase else bus_in(DATAWIDTH-1 downto 0);
 
 -------------------------------------------------------------------------------
@@ -203,8 +203,8 @@ begin
   dds_serial_out : dds_serial_bus
     port map(
       reset       => aux_ser_reset,
---      wb_clk      => clk0,
-      wb_clk      => aux_clk,
+      wb_clk      => clk0,
+--      wb_clk      => aux_clk,
       data        => aux_ser_data,
       sdo_out     => sdo_pin(1),
       sclk_out    => sclk_pin,
@@ -251,11 +251,6 @@ begin
   serial_control : process(aux_ser_cur_state)
   begin
 
---    debug_out(1)  <= aux_rd_fifo;
---    debug_out(0)  <= aux_clk;
---    debug_out(3)  <= aux_fifo_empty;
---    parallel_data <= aux_fifo_out;
---    debug_out(2 downto 0) <= aux_ser_state;
     case aux_ser_cur_state is
       -- send an ioreset before ???
       when B"000" => aux_rd_fifo <= '0';  -- Load the address byte
@@ -294,25 +289,6 @@ begin
                      aux_ser_state <= B"100";
                      aux_ser_data  <= aux_fifo_out;
                      aux_ser_cs    <= '0';
---      when B"100" => aux_rd_fifo <= '1';
---                     aux_ser_state <= B"101";  -- Wait until the FIFO has sentet the data
---                     aux_ser_data  <= aux_fifo_out;
---                     aux_ser_ovr   <= FULL_OVERRUN;
---                     aux_ser_load  <= '0';
---                     ioreset_pin   <= '0';
---                     aux_ser_act   <= '0';
-
---      when B"101" => if aux_fifo_empty = '1' then
---                       aux_ser_state <= B"111";
---                     else
---                       aux_ser_state <= B"110";
---                     end if;  -- Wait until the FIFO has set the data
---                     aux_ser_data <= aux_fifo_out;
---                     aux_ser_ovr  <= FULL_OVERRUN;
---                     aux_ser_load <= '1';
---                     ioreset_pin  <= '0';
---                     aux_ser_act  <= '0';
---                     aux_rd_fifo  <= '0';
                      -- Wait until the FIFO word is sent / loop until FIFO is empty
 
       when B"100" => aux_rd_fifo <= '0';
@@ -323,11 +299,6 @@ begin
                      ioreset_pin  <= '0';
                      if aux_ser_done = '1' then
                        aux_ser_state <= B"101";
---                       if aux_fifo_empty = '1' then
---                         aux_ser_state <= B"101";
---                       else
---                         aux_ser_state <= B"011";
---                       end if;
                      else
                        aux_ser_state <= B"100";
                      end if;
@@ -388,7 +359,8 @@ begin
     if rising_edge(clk0) then
       if decoded_fifo_wr and aux_clk_state_cur = B"01" then
         aux_fifo_state <= '0';
-      else
+      end if;
+      if not decoded_fifo_wr then
         aux_fifo_state <= '1';
       end if;
     end if;

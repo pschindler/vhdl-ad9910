@@ -1,0 +1,36 @@
+This is the README file for the ad9910 dds synthesizer firmware
+
+The main instance is in the file dds_controller.vhd
+
+The VHDL files can be compiled with the free quartus II web edition which is
+available at  http://www.altera.com/
+
+To compile the firmware open the dds_controller.qpf file in quartus II and press ctrl - L
+To program the firmware on the FPGA open the Programmer in quartus II and select
+active-serial-programming. Add the file dds_controller.pof for programming and press start.
+
+
+* The control bits in the instruction word are:
+
+opcode :           (31:26)
+address:           (25:21)
+data available:    (20)
+data bus:          (15:0)
+
+The data available bit is used to ensure that all data is settled on the bus.
+The opcodes are:
+
+nop:            0x0
+dds address:    0x1
+fifo write      0x2
+dds profile     0x3
+dds update      0x4
+dds phase       0x8
+fifo reset      0x1f
+
+* Writing a register on the dds via the serial port
+
+- Split the data in 16bit words
+- Write the data subsequentially into the FIFO with the fifo write insn
+- Set the upper 8 bits of the data bus to the desired address
+- Provide the dds address Opcode and the address data until the register is set
