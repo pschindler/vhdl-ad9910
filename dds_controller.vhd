@@ -1,5 +1,5 @@
 -- -*- mode: Vhdl -*-
--- Time-stamp: "21-Feb-2008 23:03:52 viellieb"
+-- Time-stamp: "2008-02-22 11:43:10 c704271"
 -- file dds_controller.vhd
 -- copyright (c) Philipp Schindler 2008
 -- url http://pulse-sequencer.sf.net
@@ -84,13 +84,14 @@ architecture behaviour of dds_controller is
   signal aux_fifo_out               : std_logic_vector(DATAWIDTH-1 downto 0);
   signal aux_fifo_state             : std_logic;
   -- aux signals for the phase registers
-  signal aux_phase_address_in       : std_logic_vector(PHASE_ADDRESS_WIDTH-1 downto 0);
+--  signal aux_phase_address_in       : std_logic_vector(PHASE_ADDRESS_WIDTH-1 downto 0);
   signal aux_phase_phase_in         : std_logic_vector(PHASE_DATA_WIDTH-1 downto 0);
   signal aux_phase_addend_in        : std_logic_vector(PHASE_DATA_WIDTH-1 downto 0);
   signal aux_phase_set_current_in   : std_logic;
   signal aux_phase_phase_adjust_out : std_logic_vector(PHASE_ADJUST_WIDTH-1 downto 0);
   signal aux_phase_wren_in          : std_logic;
   signal aux_phase_unused_port      : std_logic := '0';
+  signal aux_phase_adjust_out :  std_logic_vector(PHASE_ADJUST_WIDTH-1 downto 0);
 
   -- aux signals for the dds ioupdate
   signal aux_profile_state : std_logic_vector(2 downto 0);
@@ -102,8 +103,8 @@ architecture behaviour of dds_controller is
 --  alias data_avail is bus_in(BUSWIDTH-OPCODE_WIDTH-ADDRESWIDTH-1);
   alias data_avail is bus_in(BUSWIDTH-OPCODE_WIDTH-1);
   -- The phase register from the bus
-  alias aux_phase_address_in is bus_in(DATAWIDTH+PHASE_ADDRESS_WIDTH downto DATAWIDTH);
-  alias aux_phase_set_current is bus_in(DATAWIDTH+PHASE_ADDRESS_WIDTH + 1);
+  alias aux_phase_address_in is bus_in(DATAWIDTH+PHASE_ADDRESS_WIDTH-1 downto DATAWIDTH);
+  alias aux_phase_set_current is bus_in(DATAWIDTH+PHASE_ADDRESS_WIDTH );
 
   --- The async decoded signals
   signal decoded_reset         : boolean;
@@ -357,6 +358,8 @@ begin
                      ioreset_pin     <= '0';
                      aux_ser_act     <= '0';
                      aux_ser_load    <= '0';
+                     aux_ser_ovr     <= FULL_OVERRUN;
+                     aux_ser_data    <= aux_fifo_out;
                      aux_ser_cs      <= '0';
       when B"110" => if aux_fifo_empty = '1' then
                        aux_ser_state <= B"111";
@@ -369,6 +372,7 @@ begin
                      ioreset_pin     <= '0';
                      aux_ser_act     <= '0';
                      aux_rd_fifo     <= '1';
+                     aux_ser_cs      <= '0';
 
       when B"111" => aux_rd_fifo   <= '0';
                      aux_ser_state <= B"111";  -- Wait until the opcode changes
@@ -376,6 +380,7 @@ begin
                      aux_ser_act   <= '0';
                      aux_ser_load  <= '0';
                      aux_ser_cs    <= '1';
+                     aux_ser_ovr     <= FULL_OVERRUN;
                      aux_ser_data  <= bus_in(DATAWIDTH -1 downto 0);
       when others => aux_ser_state <= B"000";  -- generate initial state
                      aux_ser_load  <= '0';
@@ -383,6 +388,7 @@ begin
                      ioreset_pin   <= '0';
                      aux_ser_act   <= '0';
                      aux_ser_cs    <= '1';
+                     aux_ser_ovr     <= FULL_OVERRUN;
                      aux_ser_data  <= bus_in(DATAWIDTH -1 downto 0);
     end case;
   end process;
@@ -437,10 +443,6 @@ begin
       if aux_reset = '0' then
         if decoded_dds_profile then
           aux_profile_state <= bus_in(2 downto 0);
--- ioup_pin <= '1';
-        else
--- ioup_pin <= '0';
-          aux_profile_state <= aux_profile_state;
         end if;
         profile_pin         <= B"000";  -- <= aux_profile_state
       else
@@ -478,8 +480,8 @@ begin
 -------------------------------------------------------------------------------
 -- Phase register control
 -------------------------------------------------------------------------------
-  aux_phase_addend_in(PHASE_DATA_WIDTH downto PHASE_DATA_WIDTH-DATAWIDTH) <= bus_in(DATAWIDTH -1 downto 0);
-  aux_phase addend_in(PHASE_DATA_WIDTH-DATAWIDTH-1 downto 0)              <= H"0000";
+ aux_phase_addend_in(PHASE_DATA_WIDTH-1 downto PHASE_DATA_WIDTH-DATAWIDTH) <= bus_in(DATAWIDTH -1 downto 0);
+ aux_phase_addend_in(PHASE_DATA_WIDTH-DATAWIDTH-1 downto 0)              <= X"0000";
 
   load_phase : process(clk0)
   begin

@@ -1,5 +1,5 @@
 -- -*- mode: Vhdl -*-
--- Time-stamp: "21-Feb-2008 22:37:23 viellieb"
+-- Time-stamp: "2008-02-22 11:18:26 c704271"
 
 -- file ddslib.vhd
 -- copyright (c) Philipp Schindler 2008
@@ -30,8 +30,8 @@ package instructions is
   constant dds_phase_ctl_opcode   : OPCODE_TYPE := B"01000";
   ---- DDS phase on parallel port
   constant dds_phase_parallel     : OPCODE_TYPE := B"01001";
-  constant load_phase_reg_opcode  : OPCODE_TYPE := B"01010";
-  constant pulse_phase_reg_opcode : OPCODE_TYPE := B"01011";
+  constant load_phase_opcode  : OPCODE_TYPE := B"01010";
+  constant pulse_phase_opcode : OPCODE_TYPE := B"01011";
   ---- DDS reset opcode
   constant reset_opcode           : OPCODE_TYPE := B"11111";
 

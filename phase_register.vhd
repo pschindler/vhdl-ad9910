@@ -116,7 +116,7 @@ begin
       end if;
 
       -- Update all phase accumulators
-      for i in 0 to REGISTER_COUNT-1 loop
+      for i in 0 to PHASE_REGISTER_COUNT-1 loop
         if ((wren_in = '1') and (i = address_index)) then
           phase_accumulators(i) <= unsigned(phase_in);
         else
