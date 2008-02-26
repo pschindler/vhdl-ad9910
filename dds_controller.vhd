@@ -1,5 +1,5 @@
 -- -*- mode: Vhdl -*-
--- Time-stamp: "25-Feb-2008 23:22:19 viellieb"
+-- Time-stamp: "2008-02-26 17:43:14 c704271"
 -- file dds_controller.vhd
 -- copyright (c) Philipp Schindler 2008
 -- url http://pulse-sequencer.sf.net
@@ -95,8 +95,8 @@ architecture behaviour of dds_controller is
   signal aux_phase_wren_in          : std_logic;
   signal aux_phase_unused_port      : std_logic                    := '0';
   signal aux_phase_adjust_out       : std_logic_vector(PHASE_ADJUST_WIDTH-1 downto 0);
-  signal aux_phase_phase_reg_lower  : std_logic_vector(PHASE_DATA_WIDTH-1 downto 0);
-  signal aux_phase_phase_reg_upper  : std_logic_vector(PHASE_DATA_WIDTH-1 downto 0);
+  signal aux_phase_phase_reg_lower  : std_logic_vector(DATAWIDTH-1 downto 0);
+  signal aux_phase_phase_reg_upper  : std_logic_vector(DATAWIDTH-1 downto 0);
 
   -- aux signals for the dds ioupdate
   signal aux_profile_state     : std_logic_vector(2 downto 0);
@@ -524,17 +524,18 @@ end process;
 
 load_phase : process (clk0)
 begin  -- process load_phase
-
   if rising_edge(clk0) then
     if decoded_load_phase and bus_phase_wren_in = '1' then
       aux_phase_wren_in <= '1';
     else
       aux_phase_wren_in <= '0';
     end if;
--- end if;
+ end if;
+end process load_phase;
 
--- if rising_edge(clk0) then
-
+load_phase_2 : process (clk0)
+begin
+ if rising_edge(clk0) then
     if decoded_load_phase and bus_phase_wren_in = '0' then
       if bus_phase_set_current = '1' then
         aux_phase_phase_reg_upper <= bus_in(DATAWIDTH - 1 downto 0);
@@ -543,8 +544,7 @@ begin  -- process load_phase
       end if;
     end if;
   end if;
-
-end process load_phase;
+end process load_phase_2;
 
 aux_phase_phase_in <= aux_phase_phase_reg_lower & aux_phase_phase_reg_upper;
 end behaviour;
