@@ -97,7 +97,27 @@ begin
 
   address_index <= to_integer(unsigned(address_in));
 
-  process(clk)
+  phase_process : process(clk)
+
+--    begin
+--      if rising_edge(clk) then
+--        if wren_in='1' then
+--          addend <= unsigned(addend_in);
+--        end if;
+--        current_phase <= current_phase + addend;
+--        if set_current_in ='1' then
+--          set_current_delay <= true;
+--          else
+--          set_current_delay <= false;
+--        end if;
+--        if set_current_delay then
+--          total_phase_adjust <= current_phase;
+--        end if;
+--      phase_adjust_out   <=
+--        std_logic_vector(total_phase_adjust(PHASE_DATA_WIDTH-1 downto
+--                                            PHASE_DATA_WIDTH-PHASE_ADJUST_WIDTH));
+--      end if;
+--    end process;
 
   begin
     if (rising_edge(clk)) then
@@ -118,7 +138,7 @@ begin
       -- Update all phase accumulators
       for i in 0 to PHASE_REGISTER_COUNT-1 loop
         if ((wren_in = '1') and (i = address_index)) then
-          phase_accumulators(i) <= unsigned(phase_in);
+          phase_accumulators(i) <= (others => '0') ; --unsigned(phase_in);
         else
           phase_accumulators(i) <=
             phase_accumulators(i) + addends(i);
@@ -135,7 +155,7 @@ begin
                                             PHASE_DATA_WIDTH-PHASE_ADJUST_WIDTH));
     end if;
 
-  end process;
+  end process phase_process;
 
 -------------------------------------------------------------------------------
 

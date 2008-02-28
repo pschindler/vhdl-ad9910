@@ -1,5 +1,5 @@
 -- -*- mode: Vhdl -*-
--- Time-stamp: "2008-02-26 17:43:14 c704271"
+-- Time-stamp: "2008-02-28 13:10:18 c704271"
 -- file dds_controller.vhd
 -- copyright (c) Philipp Schindler 2008
 -- url http://pulse-sequencer.sf.net
@@ -183,22 +183,6 @@ architecture behaviour of dds_controller is
 
 begin
 
--------------------------------------------------------------------------------
--- do some crappy debugging
--------------------------------------------------------------------------------
-
--- debug_out(0) <= sdo_pin(0);
--- debug_out(1) <= sclk_pin;
--- debug_out(2) <= aux_ser_reset;
--- aux_ser_reset <= '1' when decoded_dds_reset else '0';
-
--- debug_out(2 downto 0) <= aux_ser_state;
--- parallel_data(4 downto 0) <= opcode_data;
--- parallel_data(5) <= data_avail;
--- parallel_data(6) <= '1' when decoded_fifo_wr else '0';
--- parallel_data(0) <= clk0;
--- parallel_data(0) <= sclk_pin;
--- parallel_data(15 downto 3) <= aux_fifo_out(15 downto 3);
 ------------------------------------------------------------------------------
 -- Asynchronious decoding
 -------------------------------------------------------------------------------
@@ -232,10 +216,8 @@ begin
 -------------------------------------------------------------------------------
 -- Asynchronious control the parallel data out
 -------------------------------------------------------------------------------
-  parallel_data <= aux_phase_adjust_out when decoded_pulse_phase or decoded_dds_update
+parallel_data <= aux_phase_adjust_out when decoded_pulse_phase or decoded_dds_update
                    else bus_in(DATAWIDTH-1 downto 0);
--- parallel_data <= phase_register_out when decoded_dds_phase else bus_in(DATAWIDTH-1 downto 0);
-
 -------------------------------------------------------------------------------
 -- The parallel to serial cconverter
 -------------------------------------------------------------------------------
@@ -276,7 +258,7 @@ begin
       clk              => clk0,
       address_in       => bus_phase_address_in,
       phase_in         => aux_phase_phase_in,
-      addend_in        => aux_phase_addend_in,
+      addend_in => aux_phase_phase_reg_upper & aux_phase_phase_reg_lower,
       set_current_in   => aux_phase_set_current_in,
       phase_adjust_out => aux_phase_phase_adjust_out,
       wren_in          => aux_phase_wren_in,
@@ -481,16 +463,16 @@ end process;
 -------------------------------------------------------------------------------
 -- Phase register control
 -------------------------------------------------------------------------------
-aux_phase_addend_in(PHASE_DATA_WIDTH-1 downto PHASE_DATA_WIDTH-DATAWIDTH) <= bus_in(DATAWIDTH -1 downto 0);
-aux_phase_addend_in(PHASE_DATA_WIDTH-DATAWIDTH-1 downto 0)                <= X"0000";
+aux_phase_phase_in(PHASE_DATA_WIDTH-1 downto PHASE_DATA_WIDTH-DATAWIDTH) <= bus_in(DATAWIDTH -1 downto 0);
+aux_phase_phase_in(PHASE_DATA_WIDTH-DATAWIDTH-1 downto 0)                <= X"0000";
 
 state_phase : process(clk0)
 begin
   if rising_edge(clk0) then
-    if decoded_pulse_phase and aux_phase_set_current_in = '1' then
-      aux_phase_state <= aux_phase_cur_state;
+    if decoded_pulse_phase then
+      aux_phase_cur_state <= aux_phase_state;
     else
-      aux_phase_state <= B"00";
+      aux_phase_cur_state <= B"00";
     end if;
   end if;
 end process;
@@ -499,18 +481,18 @@ pulse_phase : process (clk0)
 begin
   if rising_edge(clk0) then
     -- Set the current
-    if bus_phase_set_current = '1' and decoded_pulse_phase then
+    if decoded_pulse_phase then
       case aux_phase_cur_state is
-        when B"00"  => aux_phase_cur_state      <= B"01";
+        when B"00"  => aux_phase_state      <= B"01";
                        aux_phase_set_current_in <= '1';
                        txen_pin                 <= '0';
-        when B"01"  => aux_phase_cur_state      <= B"10";
+        when B"01"  => aux_phase_state      <= B"10";
                        aux_phase_set_current_in <= '0';
                        txen_pin                 <= '1';
-        when B"10"  => aux_phase_cur_state      <= B"10";
+        when B"10"  => aux_phase_state      <= B"10";
                        aux_phase_set_current_in <= '0';
                        txen_pin                 <= '0';
-        when others => aux_phase_cur_state      <= B"00";
+        when others => aux_phase_state      <= B"00";
                        aux_phase_set_current_in <= '0';
                        txen_pin                 <= '0';
       end case;
@@ -525,7 +507,7 @@ end process;
 load_phase : process (clk0)
 begin  -- process load_phase
   if rising_edge(clk0) then
-    if decoded_load_phase and bus_phase_wren_in = '1' then
+    if decoded_load_phase and bus_in(22) = '1' then
       aux_phase_wren_in <= '1';
     else
       aux_phase_wren_in <= '0';
@@ -536,8 +518,8 @@ end process load_phase;
 load_phase_2 : process (clk0)
 begin
  if rising_edge(clk0) then
-    if decoded_load_phase and bus_phase_wren_in = '0' then
-      if bus_phase_set_current = '1' then
+    if decoded_load_phase then
+      if bus_in(21) = '0' then
         aux_phase_phase_reg_upper <= bus_in(DATAWIDTH - 1 downto 0);
       else
         aux_phase_phase_reg_lower <= bus_in(DATAWIDTH - 1 downto 0);
@@ -546,5 +528,6 @@ begin
   end if;
 end process load_phase_2;
 
-aux_phase_phase_in <= aux_phase_phase_reg_lower & aux_phase_phase_reg_upper;
+
+
 end behaviour;

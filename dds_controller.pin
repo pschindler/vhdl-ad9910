@@ -77,7 +77,7 @@ VCCIO1                       : 5         : power  :                   : 3.3V    
 GND                          : 6         : gnd    :                   :         :           :                
 bus_in[24]                   : 7         : input  : 3.3-V LVTTL       :         : 1         : Y              
 bus_in[25]                   : 8         : input  : 3.3-V LVTTL       :         : 1         : Y              
-debug_out[2]                 : 9         : output : 3.3-V LVTTL       :         : 1         : N              
+GND*                         : 9         :        :                   :         : 1         :                
 altera_reserved_tdo          : 10        : output : 3.3-V LVTTL       :         : 1         : N              
 altera_reserved_tms          : 11        : input  : 3.3-V LVTTL       :         : 1         : N              
 altera_reserved_tck          : 12        : input  : 3.3-V LVTTL       :         : 1         : N              
@@ -141,8 +141,8 @@ parallel_data[12]            : 69        : output : 3.3-V LVTTL       :         
 parallel_data[13]            : 70        : output : 3.3-V LVTTL       :         : 4         : Y              
 parallel_data[14]            : 71        : output : 3.3-V LVTTL       :         : 4         : Y              
 parallel_data[15]            : 72        : output : 3.3-V LVTTL       :         : 4         : Y              
-GND*                         : 73        :        :                   :         : 3         :                
-debug_out[1]                 : 74        : output : 3.3-V LVTTL       :         : 3         : N              
+debug_out[0]                 : 73        : output : 3.3-V LVTTL       :         : 3         : N              
+GND*                         : 74        :        :                   :         : 3         :                
 GND*                         : 75        :        :                   :         : 3         :                
 ~LVDS41p/nCEO~               : 76        : output : 3.3-V LVTTL       :         : 3         : N              
 VCCIO3                       : 77        : power  :                   : 3.3V    : 3         :                
@@ -162,9 +162,9 @@ GND+                         : 90        :        :                   :         
 GND+                         : 91        :        :                   :         : 3         :                
 bus_in[30]                   : 92        : input  : 3.3-V LVTTL       :         : 3         : Y              
 bus_in[31]                   : 93        : input  : 3.3-V LVTTL       :         : 3         : Y              
-GND*                         : 94        :        :                   :         : 3         :                
+debug_out[3]                 : 94        : output : 3.3-V LVTTL       :         : 3         : N              
 VCCIO3                       : 95        : power  :                   : 3.3V    : 3         :                
-debug_out[3]                 : 96        : output : 3.3-V LVTTL       :         : 3         : N              
+debug_out[1]                 : 96        : output : 3.3-V LVTTL       :         : 3         : N              
 GND*                         : 97        :        :                   :         : 3         :                
 GND                          : 98        : gnd    :                   :         :           :                
 GND*                         : 99        :        :                   :         : 3         :                
@@ -210,6 +210,6 @@ VCCIO2                       : 138       : power  :                   : 3.3V    
 bus_in[18]                   : 139       : input  : 3.3-V LVTTL       :         : 2         : Y              
 GND                          : 140       : gnd    :                   :         :           :                
 bus_in[19]                   : 141       : input  : 3.3-V LVTTL       :         : 2         : Y              
-debug_out[0]                 : 142       : output : 3.3-V LVTTL       :         : 2         : N              
+debug_out[2]                 : 142       : output : 3.3-V LVTTL       :         : 2         : N              
 bus_in[20]                   : 143       : input  : 3.3-V LVTTL       :         : 2         : Y              
 bus_in[21]                   : 144       : input  : 3.3-V LVTTL       :         : 2         : Y              
