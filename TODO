@@ -1,18 +1,25 @@
-* Bugs:
+TODO for AD9910 firmware
+========================
 
+Bugs:
+-----
 - The dds address is the upper byte of the data
 - The profile pin seems to just resemble the 3 lowest bits of bus_in
 - The USE_ADDRESSING does not switch off the address_in pins
 - Is the clk divider for the fifo still necessary?
 
-* Features:
-
+Features:
+---------
 - Use process for io_update bit
+- Set the pargain pins for phase coherent switching
 - Add general clear bit for the phase registers
 - Add IO control for the DDS
 - Add controls for the DDS ramp functionality
 
-* Testing:
+Testing:
+--------
 - Test phase registers
+- Test profiles
+- TEst analog circuit
 
 

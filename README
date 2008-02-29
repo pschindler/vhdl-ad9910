@@ -1,36 +1,101 @@
-This is the README file for the ad9910 dds synthesizer firmware
+ad9910 dds synthesizer firmware documentation
+=============================================
 
-The main instance is in the file dds_controller.vhd
+Overview
+--------
+
+The source code is spread over following files:
+`------------------------`---------------------------
+Filename                  Function
+-----------------------------------------------------
+dds_controller.vhd        top entity, opcode decoding
+ddslib.vhd                configuration, opcode definition
+dds_serial.vhd            parallel to serial decoding
+fifo.vhd                  FIFO megafunction intance
+phase_register.vhd        phase registers
+-----------------------------------------------------
 
 The VHDL files can be compiled with the free quartus II web edition which is
-available at  http://www.altera.com/
+available at
+link:[http://www.altera.com/]
 
+Compilation
+-----------
 To compile the firmware open the dds_controller.qpf file in quartus II and press ctrl - L
+
 To program the firmware on the FPGA open the Programmer in quartus II and select
 active-serial-programming. Add the file dds_controller.pof for programming and press start.
 
+Bus definition
+--------------
+The control bits in the instruction word are:
 
-* The control bits in the instruction word are:
+`---------------------------`--------------------------
+Function                       Bus bits used
+-------------------------------------------------------
+opcode                          (31:26)
+data available                  (25)
+address (not implemented)       (24:21)
+phase register wren             (21)
+phase register set current      (20)
+phase register address          (16:19)
+data bus                        (15:0)
+--------------------------------------------------
 
-opcode :           (31:26)
-address:           (25:21)
-data available:    (20)
-data bus:          (15:0)
-
-The data available bit is used to ensure that all data is settled on the bus.
 The opcodes are:
 
-nop:            0x0
-dds address:    0x1
-fifo write      0x2
-dds profile     0x3
-dds update      0x4
-dds phase       0x8
-fifo reset      0x1f
+`-----------------`--------------------------
+Function            Opcode
+---------------------------------------------
+nop                 0x0
+dds address         0x1
+fifo write          0x2
+dds profile         0x3
+dds update          0x4
+dac amplitude       0x7
+dds phase           0x8
+load phase          0x9
+pulse phase         0xa
+fifo reset          0x1f
+---------------------------------------------
 
-* Writing a register on the dds via the serial port
+A typical write process consists of following three pulses:
+
+- Set the data bus , bits(15:0)
+- Set opcode, dds address and other bits except data available bit(25)
+- Set data available bit(25)
+
+
+Programming guide
+-------------------
+
+Writing a register on the dds
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Split the data in 16bit words
 - Write the data subsequentially into the FIFO with the fifo write insn
 - Set the upper 8 bits of the data bus to the desired address
 - Provide the dds address Opcode and the address data until the register is set
+
+Load the phase register
+~~~~~~~~~~~~~~~~~~~~~~~
+- Split the frequency tuning word into two 16Bit words
+- Write the lower word with wren=0 and set current=0 and the load phase opcode
+- Write the upper word with wren=0 and set current=1 and the load phase opcode
+- Set the phase register address bits
+- Write the phase register with wren=1 leve set current=1 and the load phase opcode
+
+Phase coherent switching
+~~~~~~~~~~~~~~~~~~~~~~~~
+This is not properly implemented yet
+
+- Set the dds frequency either by writing the register or the profile
+- Provide the pulse phase opcode
+- Wait 4 cycles
+- Provide the dds update opcode
+
+Set the DAC
+~~~~~~~~~~~
+
+- Set the data bus bits (13:0)
+- Provide the dac amplitude opcode
