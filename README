@@ -4,6 +4,23 @@ ad9910 dds synthesizer firmware documentation
 Overview
 --------
 
+This is the documentation for the synthesizer board which is
+meant to work with programmable pulse generator as designed by
+Paul Pham
+
+link:[http://pulse-sequencer.sf.net]
+
+The features of the board are:
+
+- Onboard Cyclone II FPGA for increased flexibility
+- AD9910 DDS with 14Bit DAC and 1Gs/s clock
+- AD9744 DAC and AD8367 VGA for pulse shaping
+- 32Bit LVDS bus for high speed data transfer
+
+
+This documentation is focused on the programming of the FPGA.
+This is accomplished in the VHDL hardware description language.
+
 The source code is spread over following files:
 `------------------------`---------------------------
 Filename                  Function
@@ -20,14 +37,15 @@ available at
 link:[http://www.altera.com/]
 
 Compilation
------------
+~~~~~~~~~~~
 To compile the firmware open the dds_controller.qpf file in quartus II and press ctrl - L
 
 To program the firmware on the FPGA open the Programmer in quartus II and select
 active-serial-programming. Add the file dds_controller.pof for programming and press start.
 
+
 Bus definition
---------------
+~~~~~~~~~~~~~~
 The control bits in the instruction word are:
 
 `---------------------------`--------------------------
@@ -65,6 +83,25 @@ A typical write process consists of following three pulses:
 - Set opcode, dds address and other bits except data available bit(25)
 - Set data available bit(25)
 
+DDS interface
+~~~~~~~~~~~~~
+
+The ad9910 dds has internal registers which determine the mode of operation.
+These registers have to be programmed over a serial SPI interface.
+To speed up the data transfer from the PCP to the DDS the data is transmitted over
+the parallel board to the FPGA on the DDS board. This data is then written into the
+DDS via the serial interface.
+Each configuration register has to be programmed at once. As the registers are up to
+64Bits wide the data from the PCP is stored in a FIFO implemented the FPGA on the
+DDS board.
+
+A write cycle to  the DDS is accomplished as follows:
+
+- The data is split in 16bit words
+- This words are transmitted from the PCP to the FPGA
+- The 8 bit address word of the register is transmitted
+- The FIFO is read until it is empty
+
 
 Programming guide
 -------------------
@@ -99,3 +136,11 @@ Set the DAC
 
 - Set the data bus bits (13:0)
 - Provide the dac amplitude opcode
+
+License
+-------
+
+This work is published under the GNU Public License
+
+The file phase_regsiter.vhd is copyright by Paul Pham
+and released under the BSD License.
