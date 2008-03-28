@@ -1,5 +1,5 @@
 -- -*- mode: Vhdl -*-
--- Time-stamp: "2008-02-28 13:10:18 c704271"
+-- Time-stamp: "2008-03-28 11:51:40 c704271"
 -- file dds_controller.vhd
 -- copyright (c) Philipp Schindler 2008
 -- url http://pulse-sequencer.sf.net
@@ -73,8 +73,8 @@ architecture behaviour of dds_controller is
   signal aux_ser_cs     : std_logic;
 
   signal aux_ser_ovr                : std_logic_vector(SER_REGWIDTH-1 downto 0);
-  signal aux_ser_state              : std_logic_vector(2 downto 0);
-  signal aux_ser_cur_state          : std_logic_vector(2 downto 0);
+  signal aux_ser_state              : std_logic_vector(3 downto 0);
+  signal aux_ser_cur_state          : std_logic_vector(3 downto 0);
   signal aux_ser_fifo_active        : std_logic;
   signal aux_ser_data               : std_logic_vector(DATAWIDTH-1 downto 0);
   -- aux_signals for FIFO control
@@ -82,11 +82,12 @@ architecture behaviour of dds_controller is
   signal aux_wr_fifo                : std_logic;
   signal aux_fifo_empty             : std_logic;
   signal aux_fifo_out               : std_logic_vector(DATAWIDTH-1 downto 0);
-  signal aux_fifo_state             : std_logic;
+  signal aux_fifo_state             : std_logic_vector(3 downto 0);
+  signal aux_fifo_cur_state         : std_logic_vector(3 downto 0);
   -- aux signals for the phase registers
 --  signal aux_phase_address_in       : std_logic_vector(PHASE_ADDRESS_WIDTH-1 downto 0);
-  signal aux_phase_state            : std_logic_vector(1 downto 0) := B"00";
-  signal aux_phase_cur_state        : std_logic_vector(1 downto 0) := B"00";
+  signal aux_phase_state            : std_logic_vector(2 downto 0) := B"000";
+  signal aux_phase_cur_state        : std_logic_vector(2 downto 0) := B"000";
   signal aux_phase_phase_in         : std_logic_vector(PHASE_DATA_WIDTH-1 downto 0);
 -- signal aux_phase_phase_reg : std_logic_vector(PHASE_DATA_WIDTH-1 downto 0);
   signal aux_phase_addend_in        : std_logic_vector(PHASE_DATA_WIDTH-1 downto 0);
@@ -97,9 +98,9 @@ architecture behaviour of dds_controller is
   signal aux_phase_adjust_out       : std_logic_vector(PHASE_ADJUST_WIDTH-1 downto 0);
   signal aux_phase_phase_reg_lower  : std_logic_vector(DATAWIDTH-1 downto 0);
   signal aux_phase_phase_reg_upper  : std_logic_vector(DATAWIDTH-1 downto 0);
-
+  signal aux_phase_ioup             : std_logic;
   -- aux signals for the dds ioupdate
-  signal aux_profile_state     : std_logic_vector(2 downto 0);
+  signal aux_profile_state          : std_logic_vector(2 downto 0);
   --- The opcode from the bus
   alias opcode_data is bus_in(BUSWIDTH-1 downto BUSWIDTH-OPCODE_WIDTH);
   -- The address from the bus
@@ -112,20 +113,21 @@ architecture behaviour of dds_controller is
   alias bus_phase_set_current is bus_in(DATAWIDTH+PHASE_ADDRESS_WIDTH);
   alias bus_phase_wren_in is bus_in(DATAWIDTH+PHASE_ADDRESS_WIDTH+1);
   --- The async decoded signals
-  signal decoded_reset         : boolean;
-  signal decoded_fifo_wr       : boolean;
-  signal decoded_dds_addr      : boolean;
-  signal decoded_dds_profile   : boolean;
-  signal decoded_dac_amplitude : boolean;
-  signal decoded_dds_phase     : boolean;
-  signal decoded_dds_update    : boolean;
-  signal decoded_load_phase    : boolean;
-  signal decoded_pulse_phase   : boolean;
-  signal address_bit           : boolean;
-  signal avail_bool            : boolean;
-  signal aux_clk_state_cur     : unsigned(1 downto 0);
-  signal aux_clk_state         : unsigned(1 downto 0);
-  signal aux_clk               : std_logic;
+  signal decoded_reset              : boolean;
+  signal decoded_fifo_wr            : boolean;
+  signal decoded_dds_addr           : boolean;
+  signal decoded_dds_profile        : boolean;
+  signal decoded_dac_amplitude      : boolean;
+  signal decoded_dds_phase          : boolean;
+  signal decoded_dds_update         : boolean;
+  signal decoded_load_phase         : boolean;
+  signal decoded_pulse_phase        : boolean;
+  signal address_bit                : boolean;
+  signal avail_bool                 : boolean;
+  signal aux_clk_state_cur          : unsigned(1 downto 0);
+  signal aux_clk_state              : unsigned(1 downto 0);
+  signal aux_clk                    : std_logic;
+
 
 -------------------------------------------------------------------------------
 -- Serial bus controller
@@ -175,6 +177,7 @@ architecture behaviour of dds_controller is
       wren_in          : in  std_logic;
       unused_port      : in  std_logic := '0');
   end component;
+
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 -- Behaviour begins here !!
@@ -182,6 +185,10 @@ architecture behaviour of dds_controller is
 -----------------------------------------------------------------------------
 
 begin
+  drover_pin <= '0';
+  drctl_pin  <= '0';
+  drhold_pin <= '0';
+  osk_pin    <= '0';
 
 ------------------------------------------------------------------------------
 -- Asynchronious decoding
@@ -208,15 +215,15 @@ begin
   aux_reset     <= '1' when decoded_reset else '0';
 
 -------------------------------------------------------------------------------
--- Asynchronous dds update and cs
+-- Asynchronous dds cs and pargain pin
 -------------------------------------------------------------------------------
-  ioup_pin      <= '1'                  when decoded_dds_update                       else '0';
-  cs_pin        <= '0'                  when decoded_dds_update or (aux_ser_cs = '0') else '1';
--- aux_clk <= '1' when clk0='0' and (decoded_fifo_wr or decoded_dds_addr) else '0';
+  cs_pin      <= '0'when decoded_dds_update or (aux_ser_cs = '0') else '1';
+  pargain_pin <= B"01";                 -- Set the paralle data source to phase
+
 -------------------------------------------------------------------------------
 -- Asynchronious control the parallel data out
 -------------------------------------------------------------------------------
-parallel_data <= aux_phase_adjust_out when decoded_pulse_phase or decoded_dds_update
+  parallel_data <= aux_phase_adjust_out when decoded_pulse_phase or decoded_dds_update
                    else bus_in(DATAWIDTH-1 downto 0);
 -------------------------------------------------------------------------------
 -- The parallel to serial cconverter
@@ -258,7 +265,7 @@ parallel_data <= aux_phase_adjust_out when decoded_pulse_phase or decoded_dds_up
       clk              => clk0,
       address_in       => bus_phase_address_in,
       phase_in         => aux_phase_phase_in,
-      addend_in => aux_phase_phase_reg_upper & aux_phase_phase_reg_lower,
+      addend_in        => aux_phase_phase_reg_upper & aux_phase_phase_reg_lower,
       set_current_in   => aux_phase_set_current_in,
       phase_adjust_out => aux_phase_phase_adjust_out,
       wren_in          => aux_phase_wren_in,
@@ -266,7 +273,7 @@ parallel_data <= aux_phase_adjust_out when decoded_pulse_phase or decoded_dds_up
       );
 
 -------------------------------------------------------------------------------
--- All the control processes
+-- Serial bus control
 -------------------------------------------------------------------------------
 
 -- Generate a state machine for the serial port.
@@ -277,10 +284,10 @@ parallel_data <= aux_phase_adjust_out when decoded_pulse_phase or decoded_dds_up
       aux_ser_cur_state <= aux_ser_state;
     end if;
     if aux_ser_enable = '0' then
-      aux_ser_cur_state <= B"000";
+      aux_ser_cur_state <= B"0000";
     end if;
     if aux_reset = '1' then
-      aux_ser_cur_state <= B"000";
+      aux_ser_cur_state <= B"0000";
     end if;
   end process;
 
@@ -290,93 +297,139 @@ parallel_data <= aux_phase_adjust_out when decoded_pulse_phase or decoded_dds_up
 
     case aux_ser_cur_state is
       -- send an ioreset before ???
-      when B"000" => aux_rd_fifo     <= '0';  -- Load the address byte
-                     aux_ser_act     <= '0';
-                     aux_ser_load    <= '0';
-                     aux_ser_ovr     <= BYTE_OVERRUN;
-                     aux_ser_state   <= B"001";
-                     aux_ser_data    <= bus_in(DATAWIDTH -1 downto 0);
-                     ioreset_pin     <= '0';
-                     aux_ser_cs      <= '1';
-      when B"001" => aux_rd_fifo     <= '0';  -- Load the address byte
-                     aux_ser_act     <= '0';
-                     aux_ser_load    <= '1';
-                     aux_ser_ovr     <= BYTE_OVERRUN;
-                     aux_ser_state   <= B"010";
-                     aux_ser_data    <= bus_in(DATAWIDTH -1 downto 0);
-                     ioreset_pin     <= '0';
-                     aux_ser_cs      <= '0';
-      when B"010" => aux_rd_fifo     <= '0';  -- Wait until the address byte is sent
-                     aux_ser_act     <= '1';
-                     aux_ser_load    <= '0';
-                     ioreset_pin     <= '0';
-                     aux_ser_ovr     <= BYTE_OVERRUN;
-                     aux_ser_data    <= bus_in(DATAWIDTH -1 downto 0);
-                     if aux_ser_done = '1' then
-                       aux_ser_state <= B"011";
-                     else
-                       aux_ser_state <= B"010";
-                     end if;
-                     aux_ser_cs      <= '0';
-      when B"011" => aux_rd_fifo     <= '0';  -- Load the FIFO word
-                     aux_ser_act     <= '0';
-                     aux_ser_load    <= '1';
-                     aux_ser_ovr     <= FULL_OVERRUN;
-                     ioreset_pin     <= '0';
-                     aux_ser_state   <= B"100";
-                     aux_ser_data    <= aux_fifo_out;
-                     aux_ser_cs      <= '0';
-                     -- Wait until the FIFO word is sent / loop until FIFO is empty
+      when B"0000" => aux_rd_fifo <= '0';  -- Load the address byte
+                      aux_ser_act   <= '0';
+                      aux_ser_load  <= '0';
+                      aux_ser_ovr   <= BYTE_OVERRUN;
+                      aux_ser_state <= B"0001";
+                      aux_ser_data  <= bus_in(DATAWIDTH -1 downto 0);
+                      ioreset_pin   <= '1';
+                      aux_ser_cs    <= '1';
 
-      when B"100" => aux_rd_fifo     <= '0';
-                     aux_ser_act     <= '1';
-                     aux_ser_ovr     <= FULL_OVERRUN;
-                     aux_ser_data    <= aux_fifo_out;
-                     aux_ser_load    <= '0';
-                     ioreset_pin     <= '0';
-                     if aux_ser_done = '1' then
-                       aux_ser_state <= B"101";
-                     else
-                       aux_ser_state <= B"100";
-                     end if;
-                     aux_ser_cs      <= '0';
-      when B"101" => aux_ser_state   <= B"110";
-                     aux_rd_fifo     <= '1';
-                     ioreset_pin     <= '0';
-                     aux_ser_act     <= '0';
-                     aux_ser_load    <= '0';
-                     aux_ser_ovr     <= FULL_OVERRUN;
-                     aux_ser_data    <= aux_fifo_out;
-                     aux_ser_cs      <= '0';
-      when B"110" => if aux_fifo_empty = '1' then
-                       aux_ser_state <= B"111";
-                     else
-                       aux_ser_state <= B"011";
-                     end if;  -- Wait until the FIFO has set the data
-                     aux_ser_data    <= aux_fifo_out;
-                     aux_ser_ovr     <= FULL_OVERRUN;
-                     aux_ser_load    <= '1';
-                     ioreset_pin     <= '0';
-                     aux_ser_act     <= '0';
-                     aux_rd_fifo     <= '1';
-                     aux_ser_cs      <= '0';
+      when B"0001" => aux_rd_fifo <= '0';  -- Load the address byte
+                      aux_ser_act   <= '0';
+                      aux_ser_load  <= '1';
+                      aux_ser_ovr   <= BYTE_OVERRUN;
+                      aux_ser_state <= B"0010";
+                      aux_ser_data  <= bus_in(DATAWIDTH -1 downto 0);
+                      ioreset_pin   <= '0';
+                      aux_ser_cs    <= '0';
 
-      when B"111" => aux_rd_fifo   <= '0';
-                     aux_ser_state <= B"111";  -- Wait until the opcode changes
-                     ioreset_pin   <= '0';
-                     aux_ser_act   <= '0';
-                     aux_ser_load  <= '0';
-                     aux_ser_cs    <= '1';
-                     aux_ser_ovr   <= FULL_OVERRUN;
-                     aux_ser_data  <= bus_in(DATAWIDTH -1 downto 0);
-      when others => aux_ser_state <= B"000";  -- generate initial state
-                     aux_ser_load  <= '0';
-                     aux_rd_fifo   <= '0';
-                     ioreset_pin   <= '0';
-                     aux_ser_act   <= '0';
-                     aux_ser_cs    <= '1';
-                     aux_ser_ovr   <= FULL_OVERRUN;
-                     aux_ser_data  <= bus_in(DATAWIDTH -1 downto 0);
+      when B"0010" => aux_rd_fifo <= '0';  -- Wait until the address byte is sent
+                      aux_ser_act  <= '1';
+                      aux_ser_load <= '0';
+                      ioreset_pin  <= '0';
+                      aux_ser_ovr  <= BYTE_OVERRUN;
+                      aux_ser_data <= bus_in(DATAWIDTH -1 downto 0);
+                      if aux_ser_done = '1' then
+                        aux_ser_state <= B"0011";
+                      else
+                        aux_ser_state <= B"0010";
+                      end if;
+                      aux_ser_cs <= '0';
+
+      when B"0011" => aux_rd_fifo <= '0';  -- Load the FIFO word
+                      aux_ser_act   <= '0';
+                      aux_ser_load  <= '1';
+                      aux_ser_ovr   <= FULL_OVERRUN;
+                      ioreset_pin   <= '0';
+                      aux_ser_state <= B"0100";
+                      aux_ser_data  <= aux_fifo_out;
+                      aux_ser_cs    <= '0';
+                      -- Wait until the FIFO word is sent / loop until FIFO is empty
+
+      when B"0100" => aux_rd_fifo <= '0';
+                      aux_ser_act  <= '1';
+                      aux_ser_ovr  <= FULL_OVERRUN;
+                      aux_ser_data <= aux_fifo_out;
+                      aux_ser_load <= '0';
+                      ioreset_pin  <= '0';
+                      if aux_ser_done = '1' then
+                        aux_ser_state <= B"0101";
+                      else
+                        aux_ser_state <= B"0100";
+                      end if;
+                      aux_ser_cs <= '0';
+
+      when B"0101" => if aux_fifo_empty = '1' then
+                        aux_rd_fifo   <= '0';
+                        aux_ser_state <= B"1111";
+                      else
+                        aux_rd_fifo   <= '1';
+                        aux_ser_state <= B"0110";
+                      end if;
+                      ioreset_pin  <= '0';
+                      aux_ser_act  <= '0';
+                      aux_ser_load <= '0';
+                      aux_ser_ovr  <= FULL_OVERRUN;
+                      aux_ser_data <= aux_fifo_out;
+                      aux_ser_cs   <= '0';
+
+      when B"0110" => if aux_fifo_empty = '1' then
+                        aux_ser_state <= B"1111";
+                      else
+                        aux_ser_state <= B"0111";
+                      end if;  -- Wait until the FIFO has set the data
+                      aux_ser_data <= aux_fifo_out;
+                      aux_ser_ovr  <= FULL_OVERRUN;
+                      aux_ser_load <= '1';
+                      ioreset_pin  <= '0';
+                      aux_ser_act  <= '0';
+                      aux_rd_fifo  <= '1';
+                      aux_ser_cs   <= '0';
+      when B"0111" => if aux_fifo_empty = '1' then
+                        aux_ser_state <= B"1111";
+                      else
+                        aux_ser_state <= B"1000";
+                      end if;  -- Wait until the FIFO has set the data
+                      aux_ser_data <= aux_fifo_out;
+                      aux_ser_ovr  <= FULL_OVERRUN;
+                      aux_ser_load <= '1';
+                      ioreset_pin  <= '0';
+                      aux_ser_act  <= '0';
+                      aux_rd_fifo  <= '1';
+                      aux_ser_cs   <= '0';
+
+      when B"1000" => aux_ser_state <= B"1001";
+
+                      aux_ser_data <= aux_fifo_out;
+                      aux_ser_ovr  <= FULL_OVERRUN;
+                      aux_ser_load <= '1';
+                      ioreset_pin  <= '0';
+                      aux_ser_act  <= '0';
+                      aux_rd_fifo  <= '1';
+                      aux_ser_cs   <= '0';
+
+      when B"1001" => if aux_fifo_empty = '1' then
+                        aux_ser_state <= B"1111";
+                      else
+                        aux_ser_state <= B"0011";
+                      end if;  -- Wait until the FIFO has set the data
+                      aux_ser_data <= aux_fifo_out;
+                      aux_ser_ovr  <= FULL_OVERRUN;
+                      aux_ser_load <= '1';
+                      ioreset_pin  <= '0';
+                      aux_ser_act  <= '0';
+                      aux_rd_fifo  <= '0';
+                      aux_ser_cs   <= '0';
+
+
+      when B"1111" => aux_rd_fifo <= '0';
+                      aux_ser_state <= B"1111";  -- Wait until the opcode changes
+                      ioreset_pin   <= '0';
+                      aux_ser_act   <= '0';
+                      aux_ser_load  <= '0';
+                      aux_ser_cs    <= '1';
+                      aux_ser_ovr   <= FULL_OVERRUN;
+                      aux_ser_data  <= bus_in(DATAWIDTH -1 downto 0);
+      when others => aux_ser_state <= B"1111";   -- generate initial state
+                     aux_ser_load <= '0';
+                     aux_rd_fifo  <= '0';
+                     ioreset_pin  <= '0';
+                     aux_ser_act  <= '0';
+                     aux_ser_cs   <= '1';
+                     aux_ser_ovr  <= FULL_OVERRUN;
+                     aux_ser_data <= bus_in(DATAWIDTH -1 downto 0);
     end case;
   end process;
 
@@ -386,7 +439,7 @@ parallel_data <= aux_phase_adjust_out when decoded_pulse_phase or decoded_dds_up
   set_dac : process(clk0)
   begin
     if rising_edge(clk0) then
-      if decoded_dac_amplitude or decoded_dds_phase then
+      if decoded_dac_amplitude then
         dac_wr_pin <= '1';
       else
         dac_wr_pin <= '0';
@@ -398,27 +451,48 @@ parallel_data <= aux_phase_adjust_out when decoded_pulse_phase or decoded_dds_up
 -- Write Bus data to FIFO
 -------------------------------------------------------------------------------
   -- add a state machine to ensure the data is used only once
+  -- rewrite again - this is really crap !!!!
   state_fifo : process(clk0)
   begin
     if rising_edge(clk0) then
-      if decoded_fifo_wr and aux_clk_state_cur = B"01" then
-        aux_fifo_state <= '0';
-      end if;
-      if not decoded_fifo_wr then
-        aux_fifo_state <= '1';
+      if decoded_fifo_wr then
+        aux_fifo_cur_state <= aux_fifo_state;
+      else
+        aux_fifo_cur_state <= B"0000";
       end if;
     end if;
   end process;
 
   control_fifo : process(clk0)
   begin
-    if rising_edge(clk0) then
-      if (decoded_fifo_wr and aux_fifo_state = '1') then
-        aux_wr_fifo <= '1';
-      else
-        aux_wr_fifo <= '0';
-      end if;
-    end if;
+    case aux_fifo_cur_state is
+      when B"0000" => aux_wr_fifo <= '0';
+                      if aux_clk = '0' then
+                        aux_fifo_state <= B"0000";
+                      else
+                        aux_fifo_state <= B"0001";
+                      end if;
+
+      when B"0001" => aux_wr_fifo <= '0';
+                      if aux_clk = '0' then
+                        aux_fifo_state <= B"0010";
+                      else
+                        aux_fifo_state <= B"0001";
+                      end if;
+
+      when B"0010" => aux_wr_fifo <= '1';
+                      aux_fifo_state <= B"0011";
+
+      when B"0011" => aux_wr_fifo <= '1';
+                      aux_fifo_state <= B"0100";
+
+      when B"0100" => aux_wr_fifo <= '0';
+                      aux_fifo_state <= B"0100";
+
+      when others => aux_wr_fifo <= '0';
+                     aux_fifo_state <= B"0000";
+    end case;
+
   end process;
 
 -------------------------------------------------------------------------------
@@ -431,14 +505,28 @@ parallel_data <= aux_phase_adjust_out when decoded_pulse_phase or decoded_dds_up
         if decoded_dds_profile then
           aux_profile_state <= bus_in(2 downto 0);
         end if;
-        profile_pin         <= aux_profile_state;
+        profile_pin <= aux_profile_state;
       else
-        aux_profile_state   <= B"000";
+        aux_profile_state <= B"000";
       end if;
 
     end if;
   end process;
 
+  -- purpose: Set ioupdate sequentially for lower jitter
+  -- type   : sequential
+  -- inputs : clk0, decoded_dds_update, aux_phase_ioup
+  -- outputs: ioup_pin
+  control_ioup : process (clk0)
+  begin  -- process control_ioup
+    if rising_edge(clk0) then
+      if decoded_dds_update or aux_phase_ioup = '1' then
+        ioup_pin <= '1';
+      else
+        ioup_pin <= '0';
+      end if;
+    end if;
+  end process control_ioup;
 
 -------------------------------------------------------------------------------
 -- Clock divider for the FIFO
@@ -446,87 +534,91 @@ parallel_data <= aux_phase_adjust_out when decoded_pulse_phase or decoded_dds_up
   clk_divider : process(clk0)
   begin
     if aux_reset = '1' then
-      aux_clk_state_cur              <= B"00";
+      aux_clk_state_cur <= B"00";
     elsif rising_edge(clk0) then
-      aux_clk_state_cur              <= aux_clk_state;
+      aux_clk_state_cur <= aux_clk_state;
       case aux_clk_state_cur is
-        when B"00"  => aux_clk       <= '0';
-                       aux_clk_state <= B"01";
-        when B"01"  => aux_clk       <= '1';
-                       aux_clk_state <= B"00";
+        when B"00" => aux_clk <= '0';
+                      aux_clk_state <= B"01";
+        when B"01" => aux_clk <= '1';
+                      aux_clk_state <= B"00";
         when others => aux_clk_state <= B"00";
-                       aux_clk       <= '0';
+                       aux_clk <= '0';
       end case;
     end if;
-end process;
+  end process;
 
 -------------------------------------------------------------------------------
 -- Phase register control
 -------------------------------------------------------------------------------
-aux_phase_phase_in(PHASE_DATA_WIDTH-1 downto PHASE_DATA_WIDTH-DATAWIDTH) <= bus_in(DATAWIDTH -1 downto 0);
-aux_phase_phase_in(PHASE_DATA_WIDTH-DATAWIDTH-1 downto 0)                <= X"0000";
+  aux_phase_phase_in(PHASE_DATA_WIDTH-1 downto PHASE_DATA_WIDTH-DATAWIDTH) <= bus_in(DATAWIDTH -1 downto 0);
+  aux_phase_phase_in(PHASE_DATA_WIDTH-DATAWIDTH-1 downto 0)                <= X"0000";
 
-state_phase : process(clk0)
-begin
-  if rising_edge(clk0) then
-    if decoded_pulse_phase then
-      aux_phase_cur_state <= aux_phase_state;
-    else
-      aux_phase_cur_state <= B"00";
-    end if;
-  end if;
-end process;
-
-pulse_phase : process (clk0)
-begin
-  if rising_edge(clk0) then
-    -- Set the current
-    if decoded_pulse_phase then
-      case aux_phase_cur_state is
-        when B"00"  => aux_phase_state      <= B"01";
-                       aux_phase_set_current_in <= '1';
-                       txen_pin                 <= '0';
-        when B"01"  => aux_phase_state      <= B"10";
-                       aux_phase_set_current_in <= '0';
-                       txen_pin                 <= '1';
-        when B"10"  => aux_phase_state      <= B"10";
-                       aux_phase_set_current_in <= '0';
-                       txen_pin                 <= '0';
-        when others => aux_phase_state      <= B"00";
-                       aux_phase_set_current_in <= '0';
-                       txen_pin                 <= '0';
-      end case;
-    end if;
-
-  end if;
-end process;
-
--- BUG !!!
--- The aux_phase_reg is not set correctly !!!
-
-load_phase : process (clk0)
-begin  -- process load_phase
-  if rising_edge(clk0) then
-    if decoded_load_phase and bus_in(22) = '1' then
-      aux_phase_wren_in <= '1';
-    else
-      aux_phase_wren_in <= '0';
-    end if;
- end if;
-end process load_phase;
-
-load_phase_2 : process (clk0)
-begin
- if rising_edge(clk0) then
-    if decoded_load_phase then
-      if bus_in(21) = '0' then
-        aux_phase_phase_reg_upper <= bus_in(DATAWIDTH - 1 downto 0);
+  state_phase : process(clk0)
+  begin
+    if rising_edge(clk0) then
+      if decoded_pulse_phase then
+        aux_phase_cur_state <= aux_phase_state;
       else
-        aux_phase_phase_reg_lower <= bus_in(DATAWIDTH - 1 downto 0);
+        aux_phase_cur_state <= B"000";
       end if;
     end if;
-  end if;
-end process load_phase_2;
+  end process;
+
+  pulse_phase : process (clk0)
+  begin
+    if rising_edge(clk0) then
+      -- Set the current
+      if decoded_pulse_phase then
+        case aux_phase_cur_state is
+          when B"000" => aux_phase_state <= B"001";
+                         aux_phase_set_current_in <= '0';
+                         txen_pin                 <= '0';
+                         aux_phase_ioup           <= '0';
+          when B"001" => aux_phase_state <= B"010";
+                         aux_phase_set_current_in <= '1';
+                         txen_pin                 <= '0';
+                         aux_phase_ioup           <= '0';
+          when B"010" => aux_phase_state <= B"011";
+                         aux_phase_set_current_in <= '0';
+                         txen_pin                 <= '1';
+                         aux_phase_ioup           <= '0';
+          when B"011" => aux_phase_state <= B"111";
+                         aux_phase_set_current_in <= '0';
+                         txen_pin                 <= '0';
+                         aux_phase_ioup           <= '1';
+          when B"111" => aux_phase_state <= B"111";
+                         aux_phase_set_current_in <= '0';
+                         txen_pin                 <= '0';
+                         aux_phase_ioup           <= '0';
+          when others => aux_phase_state <= B"111";
+                         aux_phase_set_current_in <= '0';
+                         txen_pin                 <= '0';
+                         aux_phase_ioup           <= '0';
+        end case;
+      end if;
+
+    end if;
+  end process;
+
+  load_phase : process (clk0)
+  begin  -- process load_phase
+    if rising_edge(clk0) then
+      if decoded_load_phase and bus_in(22) = '1' then
+        aux_phase_wren_in <= '1';
+      else
+        aux_phase_wren_in <= '0';
+      end if;
+
+      if decoded_load_phase then
+        if bus_in(21) = '0' then
+          aux_phase_phase_reg_upper <= bus_in(DATAWIDTH - 1 downto 0);
+        else
+          aux_phase_phase_reg_lower <= bus_in(DATAWIDTH - 1 downto 0);
+        end if;
+      end if;
+    end if;
+  end process load_phase;
 
 
 

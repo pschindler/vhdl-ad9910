@@ -1,7 +1,7 @@
-# Copyright (C) 1991-2006 Altera Corporation
+# Copyright (C) 1991-2007 Altera Corporation
 # Your use of Altera Corporation's design tools, logic functions 
 # and other software and tools, and its AMPP partner logic 
-# functions, and any output files any of the foregoing 
+# functions, and any output files from any of the foregoing 
 # (including device programming or simulation files), and any 
 # associated documentation or information are expressly subject 
 # to the terms and conditions of the Altera Program License 
@@ -14,10 +14,11 @@
 
 
 
-QUARTUS_VERSION = "6.0"
-DATE = "16:00:03  July 09, 2007"
+QUARTUS_VERSION = "7.2"
+DATE = "13:14:24  February 28, 2008"
 
 
 # Revisions
 
 PROJECT_REVISION = "dds_controller"
+PROJECT_REVISION = "V0_1"
