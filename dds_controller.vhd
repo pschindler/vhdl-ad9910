@@ -1,5 +1,5 @@
 -- -*- mode: Vhdl -*-
--- Time-stamp: "2008-03-28 11:51:40 c704271"
+-- Time-stamp: "2008-04-02 16:14:47 c704271"
 -- file dds_controller.vhd
 -- copyright (c) Philipp Schindler 2008
 -- url http://pulse-sequencer.sf.net
@@ -86,8 +86,8 @@ architecture behaviour of dds_controller is
   signal aux_fifo_cur_state         : std_logic_vector(3 downto 0);
   -- aux signals for the phase registers
 --  signal aux_phase_address_in       : std_logic_vector(PHASE_ADDRESS_WIDTH-1 downto 0);
-  signal aux_phase_state            : std_logic_vector(2 downto 0) := B"000";
-  signal aux_phase_cur_state        : std_logic_vector(2 downto 0) := B"000";
+  signal aux_phase_state            : std_logic_vector(3 downto 0) := B"0000";
+  signal aux_phase_cur_state        : std_logic_vector(3 downto 0) := B"0000";
   signal aux_phase_phase_in         : std_logic_vector(PHASE_DATA_WIDTH-1 downto 0);
 -- signal aux_phase_phase_reg : std_logic_vector(PHASE_DATA_WIDTH-1 downto 0);
   signal aux_phase_addend_in        : std_logic_vector(PHASE_DATA_WIDTH-1 downto 0);
@@ -95,7 +95,7 @@ architecture behaviour of dds_controller is
   signal aux_phase_phase_adjust_out : std_logic_vector(PHASE_ADJUST_WIDTH-1 downto 0);
   signal aux_phase_wren_in          : std_logic;
   signal aux_phase_unused_port      : std_logic                    := '0';
-  signal aux_phase_adjust_out       : std_logic_vector(PHASE_ADJUST_WIDTH-1 downto 0);
+--  signal aux_phase_adjust_out       : std_logic_vector(PHASE_ADJUST_WIDTH-1 downto 0);
   signal aux_phase_phase_reg_lower  : std_logic_vector(DATAWIDTH-1 downto 0);
   signal aux_phase_phase_reg_upper  : std_logic_vector(DATAWIDTH-1 downto 0);
   signal aux_phase_ioup             : std_logic;
@@ -223,8 +223,10 @@ begin
 -------------------------------------------------------------------------------
 -- Asynchronious control the parallel data out
 -------------------------------------------------------------------------------
-  parallel_data <= aux_phase_adjust_out when decoded_pulse_phase or decoded_dds_update
+--  parallel_data <= bus_in(DATAWIDTH-1 downto 0);
+  parallel_data <= aux_phase_phase_adjust_out when decoded_pulse_phase or decoded_dds_update
                    else bus_in(DATAWIDTH-1 downto 0);
+
 -------------------------------------------------------------------------------
 -- The parallel to serial cconverter
 -------------------------------------------------------------------------------
@@ -498,21 +500,21 @@ begin
 -------------------------------------------------------------------------------
 -- Change profile pins and send ioupdate
 -------------------------------------------------------------------------------
-  control_profile : process(clk0)
-  begin
-    if rising_edge(clk0) then
-      if aux_reset = '0' then
-        if decoded_dds_profile then
-          aux_profile_state <= bus_in(2 downto 0);
-        end if;
-        profile_pin <= aux_profile_state;
-      else
-        aux_profile_state <= B"000";
-      end if;
+--  control_profile : process(clk0)
+--  begin
+--    if rising_edge(clk0) then
+--      if aux_reset = '0' then
+--        if decoded_dds_profile then
+--          aux_profile_state <= bus_in(2 downto 0);
+--        end if;
+--        profile_pin <= aux_profile_state;
+--      else
+--        aux_profile_state <= B"000";
+--      end if;
 
-    end if;
-  end process;
-
+--    end if;
+--  end process;
+  profile_pin <= B"000";
   -- purpose: Set ioupdate sequentially for lower jitter
   -- type   : sequential
   -- inputs : clk0, decoded_dds_update, aux_phase_ioup
@@ -560,45 +562,63 @@ begin
       if decoded_pulse_phase then
         aux_phase_cur_state <= aux_phase_state;
       else
-        aux_phase_cur_state <= B"000";
+        aux_phase_cur_state <= B"0000";
       end if;
     end if;
   end process;
 
+  -- The transfer to the bus_data is quite slow needs 3 clock cycles at 100MHz!
   pulse_phase : process (clk0)
   begin
-    if rising_edge(clk0) then
-      -- Set the current
-      if decoded_pulse_phase then
-        case aux_phase_cur_state is
-          when B"000" => aux_phase_state <= B"001";
-                         aux_phase_set_current_in <= '0';
-                         txen_pin                 <= '0';
-                         aux_phase_ioup           <= '0';
-          when B"001" => aux_phase_state <= B"010";
-                         aux_phase_set_current_in <= '1';
-                         txen_pin                 <= '0';
-                         aux_phase_ioup           <= '0';
-          when B"010" => aux_phase_state <= B"011";
-                         aux_phase_set_current_in <= '0';
-                         txen_pin                 <= '1';
-                         aux_phase_ioup           <= '0';
-          when B"011" => aux_phase_state <= B"111";
-                         aux_phase_set_current_in <= '0';
-                         txen_pin                 <= '0';
-                         aux_phase_ioup           <= '1';
-          when B"111" => aux_phase_state <= B"111";
-                         aux_phase_set_current_in <= '0';
-                         txen_pin                 <= '0';
-                         aux_phase_ioup           <= '0';
-          when others => aux_phase_state <= B"111";
-                         aux_phase_set_current_in <= '0';
-                         txen_pin                 <= '0';
-                         aux_phase_ioup           <= '0';
-        end case;
-      end if;
-
-    end if;
+    case aux_phase_cur_state is
+      -- Load the phase register
+      when B"0000" => aux_phase_state <= B"0001";
+                     aux_phase_set_current_in <= '0';
+                     txen_pin                 <= '0';
+                     aux_phase_ioup           <= '0';
+      when B"0001" => aux_phase_state <= B"0010";
+                     aux_phase_set_current_in <= '1';
+                     txen_pin                 <= '0';
+                     aux_phase_ioup           <= '0';
+                     -- wait for the data to be transferred to the bus
+      when B"0010" => aux_phase_state <= B"0011";
+                     aux_phase_set_current_in <= '0';
+                     txen_pin                 <= '0';
+                     aux_phase_ioup           <= '0';
+      when B"0011" => aux_phase_state <= B"0100";
+                     aux_phase_set_current_in <= '0';
+                     txen_pin                 <= '0';
+                     aux_phase_ioup           <= '0';
+      when B"0100" => aux_phase_state <= B"0101";
+                     aux_phase_set_current_in <= '0';
+                     txen_pin                 <= '0';
+                     aux_phase_ioup           <= '0';
+      when B"0101" => aux_phase_state <= B"0110";
+                     aux_phase_set_current_in <= '0';
+                     txen_pin                 <= '0';
+                     aux_phase_ioup           <= '0';
+                     -- Set the phase of the DDS
+      when B"0110" => aux_phase_state <= B"0111";
+                     aux_phase_set_current_in <= '0';
+                     txen_pin                 <= '1';
+                     aux_phase_ioup           <= '0';
+      when B"0111" => aux_phase_state <= B"1000";
+                     aux_phase_set_current_in <= '0';
+                     txen_pin                 <= '1';
+                     aux_phase_ioup           <= '0';
+      when B"1000" => aux_phase_state <= B"1111";
+                     aux_phase_set_current_in <= '0';
+                     txen_pin                 <= '0';
+                     aux_phase_ioup           <= '0';
+      when B"1111" => aux_phase_state <= B"1111";
+                     aux_phase_set_current_in <= '0';
+                     txen_pin                 <= '0';
+                     aux_phase_ioup           <= '0';
+      when others => aux_phase_state <= B"1111";
+                     aux_phase_set_current_in <= '0';
+                     txen_pin                 <= '0';
+                     aux_phase_ioup           <= '0';
+    end case;
   end process;
 
   load_phase : process (clk0)

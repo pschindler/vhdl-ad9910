@@ -129,7 +129,7 @@ begin
         current_index     <= address_index;
         -- only start the phase adjust pipeline on set current so we can access
         -- both halves of the word
-        addend            <= unsigned(addend_in);
+        addend            <= unsigned(phase_in); --addend_in);
         set_current_delay <= true;
       else
         set_current_delay <= false;
@@ -153,6 +153,8 @@ begin
       phase_adjust_out   <=
         std_logic_vector(total_phase_adjust(PHASE_DATA_WIDTH-1 downto
                                             PHASE_DATA_WIDTH-PHASE_ADJUST_WIDTH));
+--      phase_adjust_out   <=std_logic_vector(current_phase(PHASE_DATA_WIDTH-1 downto
+--                                            PHASE_DATA_WIDTH-PHASE_ADJUST_WIDTH));
     end if;
 
   end process phase_process;
