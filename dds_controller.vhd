@@ -1,5 +1,5 @@
 -- -*- mode: Vhdl -*-
--- Time-stamp: "2008-04-02 16:14:47 c704271"
+-- Time-stamp: "2008-04-03 13:23:39 c704271"
 -- file dds_controller.vhd
 -- copyright (c) Philipp Schindler 2008
 -- url http://pulse-sequencer.sf.net
@@ -609,7 +609,7 @@ begin
       when B"1000" => aux_phase_state <= B"1111";
                      aux_phase_set_current_in <= '0';
                      txen_pin                 <= '0';
-                     aux_phase_ioup           <= '0';
+                     aux_phase_ioup           <= '1';
       when B"1111" => aux_phase_state <= B"1111";
                      aux_phase_set_current_in <= '0';
                      txen_pin                 <= '0';
