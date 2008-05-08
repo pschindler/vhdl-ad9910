@@ -141,8 +141,8 @@ parallel_data[12]            : 69        : output : 3.3-V LVTTL       :         
 parallel_data[13]            : 70        : output : 3.3-V LVTTL       :         : 4         : Y              
 parallel_data[14]            : 71        : output : 3.3-V LVTTL       :         : 4         : Y              
 parallel_data[15]            : 72        : output : 3.3-V LVTTL       :         : 4         : Y              
-debug_out[1]                 : 73        : output : 3.3-V LVTTL       :         : 3         : N              
-GND*                         : 74        :        :                   :         : 3         :                
+dds_reset_pin                : 73        : output : 3.3-V LVTTL       :         : 3         : Y              
+debug_out[1]                 : 74        : output : 3.3-V LVTTL       :         : 3         : N              
 GND*                         : 75        :        :                   :         : 3         :                
 ~LVDS41p/nCEO~               : 76        : output : 3.3-V LVTTL       :         : 3         : N              
 VCCIO3                       : 77        : power  :                   : 3.3V    : 3         :                
@@ -154,8 +154,8 @@ nSTATUS                      : 82        :        :                   :         
 CONF_DONE                    : 83        :        :                   :         : 3         :                
 MSEL1                        : 84        :        :                   :         : 3         :                
 MSEL0                        : 85        :        :                   :         : 3         :                
-GND*                         : 86        :        :                   :         : 3         :                
-debug_out[0]                 : 87        : output : 3.3-V LVTTL       :         : 3         : N              
+debug_out[0]                 : 86        : output : 3.3-V LVTTL       :         : 3         : N              
+GND*                         : 87        :        :                   :         : 3         :                
 clk0                         : 88        : input  : 3.3-V LVTTL       :         : 3         : Y              
 GND+                         : 89        :        :                   :         : 3         :                
 GND+                         : 90        :        :                   :         : 3         :                

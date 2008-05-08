@@ -51,14 +51,15 @@ The control bits in the instruction word are:
 `---------------------------`--------------------------
 Function                       Bus bits used
 -------------------------------------------------------
-opcode                          (31:26)
-data available                  (25)
-address (not implemented)       (24:21)
+opcode                          (31:27)
+data available                  (26)
+address (not implemented)       (25:22)
 phase register wren             (21)
 phase register set current      (20)
 phase register address          (16:19)
 data bus                        (15:0)
 --------------------------------------------------
+
 
 The opcodes are:
 
@@ -73,7 +74,8 @@ dds update          0x4
 dac amplitude       0x7
 dds phase           0x8
 load phase          0x9
-pulse phase         0xa
+load wren           0xa
+pulse phase         0xb
 fifo reset          0x1f
 ---------------------------------------------
 
@@ -120,7 +122,7 @@ Load the phase register
 - Write the lower word with wren=0 and set current=0 and the load phase opcode
 - Write the upper word with wren=0 and set current=1 and the load phase opcode
 - Set the phase register address bits
-- Write the phase register with wren=1 leve set current=1 and the load phase opcode
+- Write load_wren_opcode and set_current=1 do not change data on pins 0:15
 
 Phase coherent switching
 ~~~~~~~~~~~~~~~~~~~~~~~~

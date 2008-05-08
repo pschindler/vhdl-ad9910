@@ -1,5 +1,5 @@
 -- -*- mode: Vhdl -*-
--- Time-stamp: "2008-02-22 14:04:00 c704271"
+-- Time-stamp: "2008-05-07 14:56:21 c704271"
 
 -- file ddslib.vhd
 -- copyright (c) Philipp Schindler 2008
@@ -27,11 +27,11 @@ package instructions is
   ---- DAC write
   constant dac_amplitude_opcode : OPCODE_TYPE := B"00111";  -- dac_wr   0x7
   ---- DDS phase coherent switching
-  constant dds_phase_ctl_opcode : OPCODE_TYPE := B"01000";
+  constant dds_phase_ctl_opcode : OPCODE_TYPE := B"01000";  -- dds phase depreciated
   ---- DDS phase on parallel port
-  constant dds_phase_parallel   : OPCODE_TYPE := B"01001";
-  constant load_phase_opcode    : OPCODE_TYPE := B"01010";
-  constant pulse_phase_opcode   : OPCODE_TYPE := B"01011";
+  constant dds_phase_parallel   : OPCODE_TYPE := B"01001";  -- dds_phase depreciated
+  constant load_phase_opcode    : OPCODE_TYPE := B"01010";  -- load_phase 0xa
+  constant pulse_phase_opcode   : OPCODE_TYPE := B"01011";  -- pulse phase 0xb
   ---- DDS reset opcode
   constant reset_opcode         : OPCODE_TYPE := B"11111";
 
