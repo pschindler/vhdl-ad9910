@@ -1,0 +1,1049 @@
+<session jtag_chain="" jtag_device="" sof_file="" top_level_entity="dds_controller">
+  <display_tree gui_logging_enabled="0">
+    <display_branch instance="auto_signaltap_0" signal_set="USE_GLOBAL_TEMP" trigger="USE_GLOBAL_TEMP"/>
+  </display_tree>
+  <instance compilation_mode="full" entity_name="sld_signaltap" is_auto_node="yes" is_expanded="true" name="auto_signaltap_0" source_file="sld_signaltap.vhd">
+    <node_ip_info instance_id="0" mfg_id="110" node_id="0" version="6"/>
+    <position_info>
+      <single attribute="active tab" value="1"/>
+      <single attribute="data horizontal scroll position" value="0"/>
+      <single attribute="data vertical scroll position" value="0"/>
+      <single attribute="setup horizontal scroll position" value="0"/>
+      <single attribute="setup vertical scroll position" value="11"/>
+      <single attribute="zoom level denominator" value="1"/>
+      <single attribute="zoom level numerator" value="2"/>
+      <single attribute="zoom offset denominator" value="1"/>
+      <single attribute="zoom offset numerator" value="65408"/>
+    </position_info>
+    <signal_set global_temp="1" name="signal_set: 2008/08/28 12:25:22  #0">
+      <clock name="clk0" polarity="posedge" tap_mode="classic"/>
+      <config ram_type="M4K" reserved_data_nodes="0" reserved_trigger_nodes="0" sample_depth="256" trigger_in_enable="yes" trigger_in_node="decoded_dds_profile" trigger_in_tap_mode="classic" trigger_out_enable="no"/>
+      <top_entity/>
+      <signal_vec>
+        <trigger_input_vec>
+          <wire name="aux_phase_cur_state[0]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_cur_state[1]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_cur_state[2]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[0]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[10]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[11]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[12]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[13]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[14]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[15]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[1]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[2]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[3]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[4]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[5]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[6]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[7]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[8]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[9]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[0]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[10]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[11]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[12]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[13]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[14]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[15]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[1]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[2]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[3]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[4]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[5]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[6]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[7]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[8]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[9]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_set_current_in" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_wren_in" tap_mode="classic" type="register"/>
+          <wire name="bus_in[0]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[10]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[11]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[12]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[13]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[14]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[15]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[16]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[17]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[18]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[19]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[1]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[20]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[21]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[22]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[23]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[24]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[25]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[26]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[27]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[28]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[29]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[2]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[30]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[31]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[3]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[4]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[5]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[6]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[7]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[8]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[9]" tap_mode="classic" type="input pin"/>
+          <wire name="dac_wr_pin" tap_mode="classic" type="output pin"/>
+          <wire name="decoded_load_phase" tap_mode="classic" type="combinatorial"/>
+          <wire name="decoded_pulse_phase" tap_mode="classic" type="combinatorial"/>
+          <wire name="ioup_pin" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[0]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[10]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[11]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[12]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[13]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[14]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[15]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[1]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[2]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[3]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[4]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[5]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[6]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[7]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[8]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[9]" tap_mode="classic" type="output pin"/>
+          <wire name="phase_register:phase_register_inst|addend[0]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[10]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[11]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[12]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[13]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[14]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[15]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[16]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[17]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[18]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[19]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[1]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[20]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[21]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[22]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[23]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[24]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[25]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[26]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[27]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[28]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[29]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[2]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[30]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[31]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[3]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[4]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[5]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[6]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[7]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[8]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[9]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend_in[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[10]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[11]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[12]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[13]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[14]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[15]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[16]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[17]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[18]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[19]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[20]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[21]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[22]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[23]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[24]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[25]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[26]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[27]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[28]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[29]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[30]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[31]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[8]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[9]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|address_in[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|address_in[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|address_in[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|address_in[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|current_phase[0]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[10]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[11]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[12]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[13]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[14]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[15]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[16]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[17]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[18]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[19]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[1]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[20]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[21]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[22]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[23]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[24]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[25]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[26]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[27]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[28]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[29]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[2]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[30]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[31]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[3]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[4]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[5]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[6]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[7]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[8]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[9]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[10]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[11]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[12]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[13]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[14]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[15]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[8]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[9]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[10]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[11]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[12]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[13]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[14]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[15]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[16]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[17]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[18]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[19]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[20]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[21]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[22]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[23]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[24]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[25]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[26]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[27]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[28]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[29]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[30]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[31]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[8]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[9]" tap_mode="classic" type="combinatorial"/>
+          <wire name="txen_pin" tap_mode="classic" type="output pin"/>
+        </trigger_input_vec>
+        <data_input_vec>
+          <wire name="aux_phase_cur_state[0]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_cur_state[1]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_cur_state[2]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[0]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[10]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[11]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[12]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[13]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[14]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[15]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[1]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[2]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[3]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[4]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[5]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[6]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[7]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[8]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_lower[9]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[0]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[10]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[11]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[12]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[13]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[14]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[15]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[1]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[2]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[3]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[4]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[5]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[6]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[7]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[8]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_phase_reg_upper[9]" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_set_current_in" tap_mode="classic" type="register"/>
+          <wire name="aux_phase_wren_in" tap_mode="classic" type="register"/>
+          <wire name="bus_in[0]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[10]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[11]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[12]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[13]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[14]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[15]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[16]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[17]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[18]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[19]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[1]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[20]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[21]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[22]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[23]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[24]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[25]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[26]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[27]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[28]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[29]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[2]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[30]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[31]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[3]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[4]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[5]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[6]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[7]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[8]" tap_mode="classic" type="input pin"/>
+          <wire name="bus_in[9]" tap_mode="classic" type="input pin"/>
+          <wire name="dac_wr_pin" tap_mode="classic" type="output pin"/>
+          <wire name="decoded_load_phase" tap_mode="classic" type="combinatorial"/>
+          <wire name="decoded_pulse_phase" tap_mode="classic" type="combinatorial"/>
+          <wire name="ioup_pin" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[0]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[10]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[11]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[12]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[13]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[14]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[15]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[1]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[2]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[3]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[4]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[5]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[6]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[7]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[8]" tap_mode="classic" type="output pin"/>
+          <wire name="parallel_data[9]" tap_mode="classic" type="output pin"/>
+          <wire name="phase_register:phase_register_inst|addend[0]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[10]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[11]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[12]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[13]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[14]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[15]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[16]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[17]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[18]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[19]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[1]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[20]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[21]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[22]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[23]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[24]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[25]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[26]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[27]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[28]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[29]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[2]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[30]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[31]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[3]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[4]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[5]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[6]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[7]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[8]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend[9]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|addend_in[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[10]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[11]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[12]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[13]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[14]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[15]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[16]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[17]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[18]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[19]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[20]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[21]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[22]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[23]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[24]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[25]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[26]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[27]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[28]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[29]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[30]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[31]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[8]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|addend_in[9]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|address_in[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|address_in[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|address_in[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|address_in[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|current_phase[0]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[10]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[11]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[12]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[13]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[14]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[15]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[16]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[17]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[18]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[19]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[1]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[20]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[21]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[22]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[23]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[24]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[25]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[26]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[27]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[28]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[29]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[2]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[30]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[31]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[3]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[4]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[5]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[6]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[7]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[8]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|current_phase[9]" tap_mode="classic" type="register"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[10]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[11]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[12]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[13]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[14]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[15]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[8]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_adjust_out[9]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[10]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[11]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[12]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[13]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[14]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[15]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[16]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[17]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[18]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[19]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[20]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[21]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[22]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[23]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[24]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[25]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[26]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[27]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[28]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[29]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[30]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[31]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[8]" tap_mode="classic" type="combinatorial"/>
+          <wire name="phase_register:phase_register_inst|phase_in[9]" tap_mode="classic" type="combinatorial"/>
+          <wire name="txen_pin" tap_mode="classic" type="output pin"/>
+        </data_input_vec>
+      </signal_vec>
+      <presentation>
+        <data_view>
+          <bus is_signal_inverted="no" link="all" name="phase_register:phase_register_inst|phase_in" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[0]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[1]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[2]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[3]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[4]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[5]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[6]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[7]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[8]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[9]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[10]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[11]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[12]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[13]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[14]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[15]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[16]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[17]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[18]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[19]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[20]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[21]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[22]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[23]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[24]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[25]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[26]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[27]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[28]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[29]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[30]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[31]"/>
+          </bus>
+          <net is_signal_inverted="no" name="decoded_load_phase"/>
+          <net is_signal_inverted="no" name="decoded_pulse_phase"/>
+          <net is_signal_inverted="no" name="aux_phase_set_current_in"/>
+          <bus is_signal_inverted="no" link="all" name="bus_in" order="lsb_to_msb" radix="hex" state="collapse" type="input pin">
+            <net is_signal_inverted="no" name="bus_in[0]"/>
+            <net is_signal_inverted="no" name="bus_in[1]"/>
+            <net is_signal_inverted="no" name="bus_in[2]"/>
+            <net is_signal_inverted="no" name="bus_in[3]"/>
+            <net is_signal_inverted="no" name="bus_in[4]"/>
+            <net is_signal_inverted="no" name="bus_in[5]"/>
+            <net is_signal_inverted="no" name="bus_in[6]"/>
+            <net is_signal_inverted="no" name="bus_in[7]"/>
+            <net is_signal_inverted="no" name="bus_in[8]"/>
+            <net is_signal_inverted="no" name="bus_in[9]"/>
+            <net is_signal_inverted="no" name="bus_in[10]"/>
+            <net is_signal_inverted="no" name="bus_in[11]"/>
+            <net is_signal_inverted="no" name="bus_in[12]"/>
+            <net is_signal_inverted="no" name="bus_in[13]"/>
+            <net is_signal_inverted="no" name="bus_in[14]"/>
+            <net is_signal_inverted="no" name="bus_in[15]"/>
+            <net is_signal_inverted="no" name="bus_in[16]"/>
+            <net is_signal_inverted="no" name="bus_in[17]"/>
+            <net is_signal_inverted="no" name="bus_in[18]"/>
+            <net is_signal_inverted="no" name="bus_in[19]"/>
+            <net is_signal_inverted="no" name="bus_in[20]"/>
+            <net is_signal_inverted="no" name="bus_in[21]"/>
+            <net is_signal_inverted="no" name="bus_in[22]"/>
+            <net is_signal_inverted="no" name="bus_in[23]"/>
+            <net is_signal_inverted="no" name="bus_in[24]"/>
+            <net is_signal_inverted="no" name="bus_in[25]"/>
+            <net is_signal_inverted="no" name="bus_in[26]"/>
+            <net is_signal_inverted="no" name="bus_in[27]"/>
+            <net is_signal_inverted="no" name="bus_in[28]"/>
+            <net is_signal_inverted="no" name="bus_in[29]"/>
+            <net is_signal_inverted="no" name="bus_in[30]"/>
+            <net is_signal_inverted="no" name="bus_in[31]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="aux_phase_phase_reg_lower" order="lsb_to_msb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[0]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[1]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[2]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[3]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[4]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[5]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[6]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[7]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[8]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[9]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[10]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[11]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[12]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[13]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[14]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[15]"/>
+          </bus>
+          <net is_signal_inverted="no" name="aux_phase_wren_in"/>
+          <bus is_signal_inverted="no" link="all" name="aux_phase_phase_reg_upper" order="lsb_to_msb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[0]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[1]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[2]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[3]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[4]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[5]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[6]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[7]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[8]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[9]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[10]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[11]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[12]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[13]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[14]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[15]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="phase_register:phase_register_inst|current_phase" order="lsb_to_msb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[0]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[1]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[2]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[3]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[4]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[5]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[6]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[7]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[8]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[9]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[10]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[11]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[12]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[13]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[14]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[15]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[16]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[17]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[18]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[19]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[20]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[21]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[22]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[23]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[24]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[25]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[26]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[27]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[28]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[29]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[30]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[31]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="phase_register:phase_register_inst|addend" order="lsb_to_msb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[0]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[1]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[2]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[3]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[4]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[5]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[6]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[7]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[8]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[9]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[10]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[11]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[12]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[13]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[14]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[15]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[16]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[17]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[18]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[19]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[20]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[21]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[22]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[23]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[24]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[25]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[26]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[27]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[28]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[29]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[30]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[31]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="phase_register:phase_register_inst|addend_in" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[0]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[1]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[2]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[3]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[4]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[5]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[6]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[7]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[8]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[9]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[10]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[11]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[12]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[13]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[14]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[15]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[16]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[17]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[18]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[19]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[20]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[21]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[22]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[23]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[24]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[25]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[26]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[27]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[28]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[29]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[30]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[31]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="phase_register:phase_register_inst|address_in" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|address_in[0]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|address_in[1]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|address_in[2]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|address_in[3]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="parallel_data" order="lsb_to_msb" radix="hex" state="collapse" type="output pin">
+            <net is_signal_inverted="no" name="parallel_data[0]"/>
+            <net is_signal_inverted="no" name="parallel_data[1]"/>
+            <net is_signal_inverted="no" name="parallel_data[2]"/>
+            <net is_signal_inverted="no" name="parallel_data[3]"/>
+            <net is_signal_inverted="no" name="parallel_data[4]"/>
+            <net is_signal_inverted="no" name="parallel_data[5]"/>
+            <net is_signal_inverted="no" name="parallel_data[6]"/>
+            <net is_signal_inverted="no" name="parallel_data[7]"/>
+            <net is_signal_inverted="no" name="parallel_data[8]"/>
+            <net is_signal_inverted="no" name="parallel_data[9]"/>
+            <net is_signal_inverted="no" name="parallel_data[10]"/>
+            <net is_signal_inverted="no" name="parallel_data[11]"/>
+            <net is_signal_inverted="no" name="parallel_data[12]"/>
+            <net is_signal_inverted="no" name="parallel_data[13]"/>
+            <net is_signal_inverted="no" name="parallel_data[14]"/>
+            <net is_signal_inverted="no" name="parallel_data[15]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="phase_register:phase_register_inst|phase_adjust_out" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[0]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[1]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[2]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[3]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[4]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[5]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[6]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[7]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[8]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[9]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[10]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[11]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[12]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[13]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[14]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[15]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="aux_phase_cur_state" order="lsb_to_msb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="aux_phase_cur_state[0]"/>
+            <net is_signal_inverted="no" name="aux_phase_cur_state[1]"/>
+            <net is_signal_inverted="no" name="aux_phase_cur_state[2]"/>
+          </bus>
+          <net is_signal_inverted="no" name="dac_wr_pin"/>
+          <net is_signal_inverted="no" name="txen_pin"/>
+          <net is_signal_inverted="no" name="ioup_pin"/>
+        </data_view>
+        <setup_view>
+          <bus is_signal_inverted="no" link="all" name="phase_register:phase_register_inst|phase_in" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[0]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[1]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[2]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[3]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[4]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[5]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[6]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[7]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[8]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[9]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[10]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[11]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[12]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[13]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[14]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[15]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[16]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[17]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[18]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[19]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[20]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[21]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[22]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[23]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[24]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[25]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[26]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[27]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[28]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[29]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[30]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_in[31]"/>
+          </bus>
+          <net is_signal_inverted="no" name="decoded_load_phase"/>
+          <net is_signal_inverted="no" name="aux_phase_set_current_in"/>
+          <net is_signal_inverted="no" name="aux_phase_wren_in"/>
+          <bus is_signal_inverted="no" link="all" name="bus_in" order="lsb_to_msb" radix="hex" state="collapse" type="input pin">
+            <net is_signal_inverted="no" name="bus_in[0]"/>
+            <net is_signal_inverted="no" name="bus_in[1]"/>
+            <net is_signal_inverted="no" name="bus_in[2]"/>
+            <net is_signal_inverted="no" name="bus_in[3]"/>
+            <net is_signal_inverted="no" name="bus_in[4]"/>
+            <net is_signal_inverted="no" name="bus_in[5]"/>
+            <net is_signal_inverted="no" name="bus_in[6]"/>
+            <net is_signal_inverted="no" name="bus_in[7]"/>
+            <net is_signal_inverted="no" name="bus_in[8]"/>
+            <net is_signal_inverted="no" name="bus_in[9]"/>
+            <net is_signal_inverted="no" name="bus_in[10]"/>
+            <net is_signal_inverted="no" name="bus_in[11]"/>
+            <net is_signal_inverted="no" name="bus_in[12]"/>
+            <net is_signal_inverted="no" name="bus_in[13]"/>
+            <net is_signal_inverted="no" name="bus_in[14]"/>
+            <net is_signal_inverted="no" name="bus_in[15]"/>
+            <net is_signal_inverted="no" name="bus_in[16]"/>
+            <net is_signal_inverted="no" name="bus_in[17]"/>
+            <net is_signal_inverted="no" name="bus_in[18]"/>
+            <net is_signal_inverted="no" name="bus_in[19]"/>
+            <net is_signal_inverted="no" name="bus_in[20]"/>
+            <net is_signal_inverted="no" name="bus_in[21]"/>
+            <net is_signal_inverted="no" name="bus_in[22]"/>
+            <net is_signal_inverted="no" name="bus_in[23]"/>
+            <net is_signal_inverted="no" name="bus_in[24]"/>
+            <net is_signal_inverted="no" name="bus_in[25]"/>
+            <net is_signal_inverted="no" name="bus_in[26]"/>
+            <net is_signal_inverted="no" name="bus_in[27]"/>
+            <net is_signal_inverted="no" name="bus_in[28]"/>
+            <net is_signal_inverted="no" name="bus_in[29]"/>
+            <net is_signal_inverted="no" name="bus_in[30]"/>
+            <net is_signal_inverted="no" name="bus_in[31]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="aux_phase_phase_reg_lower" order="lsb_to_msb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[0]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[1]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[2]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[3]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[4]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[5]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[6]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[7]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[8]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[9]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[10]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[11]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[12]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[13]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[14]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[15]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="aux_phase_phase_reg_upper" order="lsb_to_msb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[0]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[1]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[2]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[3]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[4]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[5]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[6]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[7]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[8]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[9]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[10]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[11]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[12]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[13]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[14]"/>
+            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[15]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="phase_register:phase_register_inst|current_phase" order="lsb_to_msb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[0]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[1]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[2]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[3]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[4]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[5]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[6]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[7]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[8]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[9]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[10]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[11]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[12]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[13]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[14]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[15]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[16]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[17]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[18]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[19]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[20]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[21]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[22]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[23]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[24]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[25]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[26]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[27]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[28]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[29]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[30]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|current_phase[31]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="phase_register:phase_register_inst|addend" order="lsb_to_msb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[0]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[1]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[2]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[3]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[4]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[5]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[6]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[7]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[8]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[9]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[10]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[11]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[12]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[13]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[14]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[15]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[16]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[17]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[18]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[19]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[20]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[21]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[22]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[23]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[24]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[25]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[26]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[27]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[28]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[29]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[30]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend[31]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="phase_register:phase_register_inst|addend_in" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[0]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[1]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[2]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[3]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[4]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[5]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[6]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[7]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[8]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[9]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[10]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[11]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[12]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[13]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[14]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[15]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[16]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[17]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[18]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[19]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[20]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[21]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[22]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[23]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[24]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[25]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[26]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[27]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[28]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[29]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[30]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|addend_in[31]"/>
+          </bus>
+          <net is_signal_inverted="no" name="decoded_pulse_phase"/>
+          <bus is_signal_inverted="no" link="all" name="phase_register:phase_register_inst|address_in" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|address_in[0]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|address_in[1]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|address_in[2]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|address_in[3]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="parallel_data" order="lsb_to_msb" radix="hex" state="collapse" type="output pin">
+            <net is_signal_inverted="no" name="parallel_data[0]"/>
+            <net is_signal_inverted="no" name="parallel_data[1]"/>
+            <net is_signal_inverted="no" name="parallel_data[2]"/>
+            <net is_signal_inverted="no" name="parallel_data[3]"/>
+            <net is_signal_inverted="no" name="parallel_data[4]"/>
+            <net is_signal_inverted="no" name="parallel_data[5]"/>
+            <net is_signal_inverted="no" name="parallel_data[6]"/>
+            <net is_signal_inverted="no" name="parallel_data[7]"/>
+            <net is_signal_inverted="no" name="parallel_data[8]"/>
+            <net is_signal_inverted="no" name="parallel_data[9]"/>
+            <net is_signal_inverted="no" name="parallel_data[10]"/>
+            <net is_signal_inverted="no" name="parallel_data[11]"/>
+            <net is_signal_inverted="no" name="parallel_data[12]"/>
+            <net is_signal_inverted="no" name="parallel_data[13]"/>
+            <net is_signal_inverted="no" name="parallel_data[14]"/>
+            <net is_signal_inverted="no" name="parallel_data[15]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="phase_register:phase_register_inst|phase_adjust_out" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[0]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[1]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[2]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[3]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[4]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[5]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[6]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[7]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[8]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[9]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[10]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[11]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[12]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[13]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[14]"/>
+            <net is_signal_inverted="no" name="phase_register:phase_register_inst|phase_adjust_out[15]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="aux_phase_cur_state" order="lsb_to_msb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="aux_phase_cur_state[0]"/>
+            <net is_signal_inverted="no" name="aux_phase_cur_state[1]"/>
+            <net is_signal_inverted="no" name="aux_phase_cur_state[2]"/>
+          </bus>
+          <net is_signal_inverted="no" name="dac_wr_pin"/>
+          <net is_signal_inverted="no" name="txen_pin"/>
+          <net is_signal_inverted="no" name="ioup_pin"/>
+        </setup_view>
+      </presentation>
+      <trigger global_temp="1" name="trigger: 2008/08/28 12:25:22  #1" position="pre" power_up_trigger_mode="false" segment_size="1" trigger_in="rising edge" trigger_out="active high" trigger_type="circular">
+        <power_up_trigger position="pre" trigger_in="dont_care" trigger_out="active high"/>
+        <events use_custom_flow_control="no">
+          <level enabled="yes" name="condition1" type="basic">
+            <power_up enabled="yes">
+            </power_up>
+            <op_node/>
+          </level>
+        </events>
+      </trigger>
+    </signal_set>
+  </instance>
+  <mnemonics/>
+  <static_plugin_mnemonics/>
+  <global_info>
+    <single attribute="active instance" value="0"/>
+    <single attribute="lock mode" value="36110"/>
+    <multi attribute="window position" size="9" value="1280,702,398,124,356,50,124,0,0"/>
+  </global_info>
+</session>

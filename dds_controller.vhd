@@ -1,5 +1,5 @@
 -- -*- mode: Vhdl -*-
--- Time-stamp: "2008-05-07 13:58:59 c704271"
+-- Time-stamp: "2008-07-12 16:58:55 c704271"
 -- file dds_controller.vhd
 -- copyright (c) Philipp Schindler 2008
 -- url http://pulse-sequencer.sf.net
@@ -208,7 +208,7 @@ begin
   aux_ser_enable        <= '1'  when decoded_dds_addr else '0';
   avail_bool            <= true when data_avail = '1' else false;
   address_bit           <= true;
--- address_bit <= (address_data = address_in) when USE_ADDRESSING else true;
+--  address_bit <= (address_data = address_in) when USE_ADDRESSING else true;
 
 -------------------------------------------------------------------------------
 -- Asynchronious reset
@@ -502,21 +502,18 @@ begin
 -------------------------------------------------------------------------------
 -- Change profile pins and send ioupdate
 -------------------------------------------------------------------------------
---  control_profile : process(clk0)
---  begin
---    if rising_edge(clk0) then
---      if aux_reset = '0' then
---        if decoded_dds_profile then
---          aux_profile_state <= bus_in(2 downto 0);
---        end if;
---        profile_pin <= aux_profile_state;
+  control_profile : process(clk0)
+  begin
+    if rising_edge(clk0) then
+      if decoded_dds_profile then
+        profile_pin <= bus_in(2 downto 0);
 --      else
---        aux_profile_state <= B"000";
---      end if;
+--        profile_pin <= profile_pin;
+      end if;
+    end if;
+  end process;
 
---    end if;
---  end process;
-  profile_pin <= B"000";
+--  profile_pin <= B"000";
   -- purpose: Set ioupdate sequentially for lower jitter
   -- type   : sequential
   -- inputs : clk0, decoded_dds_update, aux_phase_ioup

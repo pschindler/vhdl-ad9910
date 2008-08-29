@@ -1,0 +1,34 @@
+SYSTEM dfs
+{
+   WIZARD_SCRIPT_ARGUMENTS 
+   {
+      device_family = "CYCLONEII";
+      clock_freq = "50000000";
+      generate_hdl = "1";
+      generate_sdk = "1";
+      do_build_sim = "1";
+      hardcopy_compatible = "0";
+      board_class = "";
+      CLOCKS 
+      {
+         CLOCK clk
+         {
+            frequency = "50000000";
+            source = "External";
+            display_name = "clk";
+            Is_Clock_Source = "0";
+         }
+      }
+      hdl_language = "vhdl";
+      device_family_id = "CYCLONEII";
+      view_master_columns = "1";
+      view_master_priorities = "0";
+      name_column_width = "192";
+      desc_column_width = "192";
+      bustype_column_width = "0";
+      base_column_width = "78";
+      clock_column_width = "74";
+      end_column_width = "78";
+      view_frame_window = "128:128:1024:768";
+   }
+}

@@ -1,5 +1,6 @@
-ad9910 dds synthesizer firmware documentation
+AD9910 dds synthesizer firmware documentation
 =============================================
+
 
 Overview
 --------
@@ -20,6 +21,8 @@ The features of the board are:
 
 This documentation is focused on the programming of the FPGA.
 This is accomplished in the VHDL hardware description language.
+
+This board is only supported by the sequencer2 python compiler/server.
 
 The source code is spread over following files:
 `------------------------`---------------------------
@@ -48,42 +51,31 @@ Bus definition
 ~~~~~~~~~~~~~~
 The control bits in the instruction word are:
 
-`---------------------------`--------------------------
-Function                       Bus bits used
--------------------------------------------------------
-opcode                          (31:27)
-data available                  (26)
-address (not implemented)       (25:22)
-phase register wren             (21)
-phase register set current      (20)
-phase register address          (16:19)
-data bus                        (15:0)
---------------------------------------------------
+`---------------------------------------`--------------------------
+Function                                  Bus bits used
+-------------------------------------------------------------------
+opcode                                    (31:27)
+data available                            (26)
+address (not implemented)                 (25:22)
+phase register wren / DRCTL               (21)
+phase register set current /DHOLD         (20)
+phase register address                    (16:19)
+data bus                                  (15:0)
+--------------------------------------------------------------------
 
+Write process timing:
+~~~~~~~~~~~~~~~~~~~~~
 
-The opcodes are:
-
-`-----------------`--------------------------
-Function            Opcode
----------------------------------------------
-nop                 0x0
-dds address         0x1
-fifo write          0x2
-dds profile         0x3
-dds update          0x4
-dac amplitude       0x7
-dds phase           0x8
-load phase          0x9
-load wren           0xa
-pulse phase         0xb
-fifo reset          0x1f
----------------------------------------------
-
-A typical write process consists of following three pulses:
+A write process on the LVDS bus is specified with 3 clock cycles of the PCP-FPGA.
+The length of one cycle is 10ns.
 
 - Set the data bus , bits(15:0)
 - Set opcode, dds address and other bits except data available bit(25)
 - Set data available bit(25)
+
+The data available bit should be unset after one clock cycle.
+
+This is a conservative and hopefully save method to write data to the bus.
 
 DDS interface
 ~~~~~~~~~~~~~
@@ -103,6 +95,73 @@ A write cycle to  the DDS is accomplished as follows:
 - This words are transmitted from the PCP to the FPGA
 - The 8 bit address word of the register is transmitted
 - The FIFO is read until it is empty
+
+
+Testing the board:
+------------------
+
+Connecting the board
+~~~~~~~~~~~~~~~~~~~~
+
+- Connect 5V to the analog and digital power supply
+- Connect 10V..12V to the analog 10V suply.
+- Connect 100MHz to the T_DDS_FPGA connector
+- Connect 800MHz to the connector P1
+
+To test the functionality of the DDS board following procedure is recommended.
+
+Test the Voltage regulators
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Connect a single board to a power supply with an adjustable current limit.
+- Set the current limit to about 10mA and the Voltage to 6V
+- Turn up the curent limit. If the board draws more than 400mA there is most
+likely a short circuit on the board.
+- Check the desired output voltage with an oscilloscope/multimeter
+
+Test the LVDS Bus
+~~~~~~~~~~~~~~~~~
+
+To test the functionality of the LVDS Bus a working sequencer-rev.C board and
+a suitable breakout board is needed.
+
+Furthermore a JTAG download cable and a quartusII installation is necessary
+
+- Activate the test_lvds_bus.stp SignalTap file in quartusII
+- Compile the VHDL source with quartusII
+- Connect the JTAG cable to the JTAG board (J2)
+- Program the FPGA (with JTAG, NOT active serial programming)
+- Start ipython in the sequencer directory and execute following code:
+
+-------------------------------------
+from tests.test_hardware import *
+t1 = HardwareTests(nonet=True)
+t1.test_lvds_bus()
+-------------------------------------
+
+- Ensure that the bus values are correct
+
+Another quick (but incomplete) test of the LVDS Bus can be performed by generating
+DAC events with the sequencer and checking the output voltage of the DAC.
+
+Test the DDS
+~~~~~~~~~~~~
+- Start ipython in the sequencer directory and execute following code:
+
+-------------------------------------
+from tests.test_hardware import *
+t1 = HardwareTests(nonet=True)
+t1.test_dds_simple()
+-------------------------------------
+
+- Test the output of the DDS.
+
+Test phase coherent switching
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Use a fixed frequency source as reference
+- Switch the DDS board to the same frequency with different phases.
+- Check the pghase relation of the two signals with an RF-mixer
 
 
 Programming guide
@@ -139,10 +198,43 @@ Set the DAC
 - Set the data bus bits (13:0)
 - Provide the dac amplitude opcode
 
+
+Preliminary Opcode specification
+--------------------------------
+
+Already implemented opcodes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`--------------`---------`-----------------------------------
+Name            Opcode    Function
+-------------------------------------------------------------
+nop             0x0       Do nothing
+dds_addr        0x1       Write content of FIFO to given DDS
+fifo_wr         0x2       Write lower 16bits to FIFO
+dds_profile     0x3       Set the DDS profile bits
+dac_amplitude   0x7       Set the DAC for the VGA
+load_phase      0xa       Load the phase register
+pulse_phase     0xb       Write given phase register to DDS
+fifo_reset      0x1f      Clear the FIFO
+-------------------------------------------------------------
+
+Proposed opcodes
+~~~~~~~~~~~~~~~~
+
+`------------`-------------------------------
+Name          Function
+---------------------------------------------
+dds_sweep     Start/Stop a DDS sweep
+dds_ramp      Generate a DDS amplitude ramp
+all_reset     Reset the FIFO and the DDS
+---------------------------------------------
+
 License
 -------
 
+(c) 2008 Philipp Schindler.
+
 This work is published under the GNU Public License
 
-The file phase_regsiter.vhd is copyright by Paul Pham
+The file phase_register.vhd is copyright by Paul Pham
 and released under the BSD License.

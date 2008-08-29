@@ -22,4 +22,9 @@ Testing:
 - Test profiles
 - Test analog circuit
 
+Sweeping:
+---------
+
+- Add DRCTL and DRHOLD to the dds_profile instruction
+
 
