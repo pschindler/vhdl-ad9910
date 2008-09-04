@@ -18,7 +18,7 @@ entity dds_controller is
   port(
     clk0 : in std_logic;
 
-    -- address in now used for debug_out
+    --  in now used for debug_out
     address_in : in std_logic_vector(3 downto 0);
 
 
@@ -105,7 +105,7 @@ architecture behaviour of dds_controller is
   --- The opcode from the bus
   alias opcode_data is bus_in(BUSWIDTH-1 downto BUSWIDTH-OPCODE_WIDTH);
   -- The address from the bus
-  alias address_data is bus_in(BUSWIDTH-OPCODE_WIDTH-1 downto BUSWIDTH-OPCODE_WIDTH-ADDRESWIDTH);
+  alias address_data is bus_in(BUSWIDTH-OPCODE_WIDTH-2 downto BUSWIDTH-OPCODE_WIDTH-ADDRESWIDTH - 1);
   -- The handshake data from the bus
 --  alias data_avail is bus_in(BUSWIDTH-OPCODE_WIDTH-ADDRESWIDTH-1);
   alias data_avail is bus_in(BUSWIDTH-OPCODE_WIDTH-1);
@@ -196,6 +196,8 @@ begin
 -- Asynchronious decoding
 -------------------------------------------------------------------------------
 
+--  address_bit           <= true;
+  address_bit <= (address_data = address_in); -- when USE_ADDRESSING else true;
   decoded_fifo_wr       <= (opcode_data = fifo_wr_opcode) and address_bit and avail_bool;
   decoded_reset         <= (opcode_data = reset_opcode) and address_bit and avail_bool;
   decoded_dds_addr      <= (opcode_data = dds_addr_opcode) and address_bit and avail_bool;
@@ -207,8 +209,6 @@ begin
   decoded_pulse_phase   <= (opcode_data = pulse_phase_opcode) and address_bit and avail_bool;
   aux_ser_enable        <= '1'  when decoded_dds_addr else '0';
   avail_bool            <= true when data_avail = '1' else false;
-  address_bit           <= true;
---  address_bit <= (address_data = address_in) when USE_ADDRESSING else true;
 
 -------------------------------------------------------------------------------
 -- Asynchronious reset

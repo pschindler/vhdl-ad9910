@@ -61,6 +61,7 @@ end package;
 
 package config is
 
-  constant USE_ADDRESSING : boolean := false;
+--  constant USE_ADDRESSING : boolean := false;
+  constant USE_ADDRESSING : boolean := true;
 
 end package;

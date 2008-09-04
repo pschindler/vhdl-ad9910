@@ -5,123 +5,142 @@
       <parameters>
         <parameter name="lpm_type" type="string" value="sld_signaltap"/>
         <parameter name="sld_node_info" type="unknown" value="805334528"/>
-        <parameter name="sld_ip_version" type="dec" value="6"/>
-        <parameter name="sld_ip_minor_version" type="dec" value="0"/>
-        <parameter name="sld_common_ip_version" type="dec" value="0"/>
-        <parameter name="sld_data_bits" type="unknown" value="38"/>
-        <parameter name="sld_trigger_bits" type="unknown" value="38"/>
-        <parameter name="sld_node_crc_bits" type="dec" value="32"/>
-        <parameter name="sld_node_crc_hiword" type="unknown" value="30043"/>
-        <parameter name="sld_node_crc_loword" type="unknown" value="7465"/>
-        <parameter name="sld_incremental_routing" type="dec" value="0"/>
+        <parameter name="SLD_IP_VERSION" type="dec" value="6"/>
+        <parameter name="SLD_IP_MINOR_VERSION" type="dec" value="0"/>
+        <parameter name="SLD_COMMON_IP_VERSION" type="dec" value="0"/>
+        <parameter name="sld_data_bits" type="unknown" value="47"/>
+        <parameter name="sld_trigger_bits" type="unknown" value="47"/>
+        <parameter name="SLD_NODE_CRC_BITS" type="dec" value="32"/>
+        <parameter name="sld_node_crc_hiword" type="unknown" value="30910"/>
+        <parameter name="sld_node_crc_loword" type="unknown" value="46444"/>
+        <parameter name="SLD_INCREMENTAL_ROUTING" type="dec" value="0"/>
         <parameter name="sld_sample_depth" type="unknown" value="512"/>
         <parameter name="sld_segment_size" type="unknown" value="512"/>
-        <parameter name="sld_ram_block_type" type="string" value="AUTO"/>
+        <parameter name="SLD_RAM_BLOCK_TYPE" type="string" value="AUTO"/>
         <parameter name="sld_state_bits" type="unknown" value="11"/>
         <parameter name="sld_buffer_full_stop" type="unknown" value="1"/>
-        <parameter name="sld_mem_address_bits" type="dec" value="7"/>
-        <parameter name="sld_data_bit_cntr_bits" type="dec" value="4"/>
+        <parameter name="SLD_MEM_ADDRESS_BITS" type="dec" value="7"/>
+        <parameter name="SLD_DATA_BIT_CNTR_BITS" type="dec" value="4"/>
         <parameter name="sld_trigger_level" type="unknown" value="1"/>
         <parameter name="sld_trigger_in_enabled" type="unknown" value="1"/>
         <parameter name="sld_advanced_trigger_entity" type="unknown" value="basic,1,"/>
         <parameter name="sld_trigger_level_pipeline" type="unknown" value="1"/>
         <parameter name="sld_enable_advanced_trigger" type="unknown" value="0"/>
-        <parameter name="sld_advanced_trigger_1" type="string" value="NONE"/>
-        <parameter name="sld_advanced_trigger_2" type="string" value="NONE"/>
-        <parameter name="sld_advanced_trigger_3" type="string" value="NONE"/>
-        <parameter name="sld_advanced_trigger_4" type="string" value="NONE"/>
-        <parameter name="sld_advanced_trigger_5" type="string" value="NONE"/>
-        <parameter name="sld_advanced_trigger_6" type="string" value="NONE"/>
-        <parameter name="sld_advanced_trigger_7" type="string" value="NONE"/>
-        <parameter name="sld_advanced_trigger_8" type="string" value="NONE"/>
-        <parameter name="sld_advanced_trigger_9" type="string" value="NONE"/>
-        <parameter name="sld_advanced_trigger_10" type="string" value="NONE"/>
-        <parameter name="sld_inversion_mask_length" type="unknown" value="137"/>
-        <parameter name="sld_inversion_mask" type="unknown" value="00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_1" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_2" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_3" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_4" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_5" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_6" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_7" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_8" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_9" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_10" type="string" value="NONE"/>
+        <parameter name="sld_inversion_mask_length" type="unknown" value="164"/>
+        <parameter name="sld_inversion_mask" type="unknown" value="00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
         <parameter name="sld_power_up_trigger" type="unknown" value="0"/>
-        <parameter name="sld_state_flow_mgr_entity" type="string" value="state_flow_mgr_entity.vhd"/>
+        <parameter name="SLD_STATE_FLOW_MGR_ENTITY" type="string" value="state_flow_mgr_entity.vhd"/>
         <parameter name="sld_state_flow_use_generated" type="unknown" value="0"/>
         <parameter name="sld_current_resource_width" type="unknown" value="1"/>
+        <parameter name="sld_attribute_mem_mode" type="unknown" value="OFF"/>
       </parameters>
       <inputs>
-        <port name="acq_trigger_in[0]" source="bus_in[0]"/>
-        <port name="acq_data_in[0]" source="bus_in[0]"/>
+        <port name="acq_trigger_in[0]" source="address_in[0]"/>
+        <port name="acq_data_in[0]" source="address_in[0]"/>
+        <port name="acq_trigger_in[1]" source="address_in[1]"/>
+        <port name="acq_data_in[1]" source="address_in[1]"/>
+        <port name="acq_trigger_in[2]" source="address_in[2]"/>
+        <port name="acq_data_in[2]" source="address_in[2]"/>
+        <port name="acq_trigger_in[3]" source="address_in[3]"/>
+        <port name="acq_data_in[3]" source="address_in[3]"/>
         <port name="trigger_in" source="bus_in[0]"/>
-        <port name="acq_trigger_in[1]" source="bus_in[10]"/>
-        <port name="acq_data_in[1]" source="bus_in[10]"/>
-        <port name="acq_trigger_in[2]" source="bus_in[11]"/>
-        <port name="acq_data_in[2]" source="bus_in[11]"/>
-        <port name="acq_trigger_in[3]" source="bus_in[12]"/>
-        <port name="acq_data_in[3]" source="bus_in[12]"/>
-        <port name="acq_trigger_in[4]" source="bus_in[13]"/>
-        <port name="acq_data_in[4]" source="bus_in[13]"/>
-        <port name="acq_trigger_in[5]" source="bus_in[14]"/>
-        <port name="acq_data_in[5]" source="bus_in[14]"/>
-        <port name="acq_trigger_in[6]" source="bus_in[15]"/>
-        <port name="acq_data_in[6]" source="bus_in[15]"/>
-        <port name="acq_trigger_in[7]" source="bus_in[16]"/>
-        <port name="acq_data_in[7]" source="bus_in[16]"/>
-        <port name="acq_trigger_in[8]" source="bus_in[17]"/>
-        <port name="acq_data_in[8]" source="bus_in[17]"/>
-        <port name="acq_trigger_in[9]" source="bus_in[18]"/>
-        <port name="acq_data_in[9]" source="bus_in[18]"/>
-        <port name="acq_trigger_in[10]" source="bus_in[19]"/>
-        <port name="acq_data_in[10]" source="bus_in[19]"/>
-        <port name="acq_trigger_in[11]" source="bus_in[1]"/>
-        <port name="acq_data_in[11]" source="bus_in[1]"/>
-        <port name="acq_trigger_in[12]" source="bus_in[20]"/>
-        <port name="acq_data_in[12]" source="bus_in[20]"/>
-        <port name="acq_trigger_in[13]" source="bus_in[21]"/>
-        <port name="acq_data_in[13]" source="bus_in[21]"/>
-        <port name="acq_trigger_in[14]" source="bus_in[22]"/>
-        <port name="acq_data_in[14]" source="bus_in[22]"/>
-        <port name="acq_trigger_in[15]" source="bus_in[23]"/>
-        <port name="acq_data_in[15]" source="bus_in[23]"/>
-        <port name="acq_trigger_in[16]" source="bus_in[24]"/>
-        <port name="acq_data_in[16]" source="bus_in[24]"/>
-        <port name="acq_trigger_in[17]" source="bus_in[25]"/>
-        <port name="acq_data_in[17]" source="bus_in[25]"/>
-        <port name="acq_trigger_in[18]" source="bus_in[26]"/>
-        <port name="acq_data_in[18]" source="bus_in[26]"/>
-        <port name="acq_trigger_in[19]" source="bus_in[27]"/>
-        <port name="acq_data_in[19]" source="bus_in[27]"/>
-        <port name="acq_trigger_in[20]" source="bus_in[28]"/>
-        <port name="acq_data_in[20]" source="bus_in[28]"/>
-        <port name="acq_trigger_in[21]" source="bus_in[29]"/>
-        <port name="acq_data_in[21]" source="bus_in[29]"/>
-        <port name="acq_trigger_in[22]" source="bus_in[2]"/>
-        <port name="acq_data_in[22]" source="bus_in[2]"/>
-        <port name="acq_trigger_in[23]" source="bus_in[30]"/>
-        <port name="acq_data_in[23]" source="bus_in[30]"/>
-        <port name="acq_trigger_in[24]" source="bus_in[31]"/>
-        <port name="acq_data_in[24]" source="bus_in[31]"/>
-        <port name="acq_trigger_in[25]" source="bus_in[3]"/>
-        <port name="acq_data_in[25]" source="bus_in[3]"/>
-        <port name="acq_trigger_in[26]" source="bus_in[4]"/>
-        <port name="acq_data_in[26]" source="bus_in[4]"/>
-        <port name="acq_trigger_in[27]" source="bus_in[5]"/>
-        <port name="acq_data_in[27]" source="bus_in[5]"/>
-        <port name="acq_trigger_in[28]" source="bus_in[6]"/>
-        <port name="acq_data_in[28]" source="bus_in[6]"/>
-        <port name="acq_trigger_in[29]" source="bus_in[7]"/>
-        <port name="acq_data_in[29]" source="bus_in[7]"/>
-        <port name="acq_trigger_in[30]" source="bus_in[8]"/>
-        <port name="acq_data_in[30]" source="bus_in[8]"/>
-        <port name="acq_trigger_in[31]" source="bus_in[9]"/>
-        <port name="acq_data_in[31]" source="bus_in[9]"/>
+        <port name="acq_trigger_in[4]" source="bus_in[0]"/>
+        <port name="acq_data_in[4]" source="bus_in[0]"/>
+        <port name="acq_trigger_in[5]" source="bus_in[10]"/>
+        <port name="acq_data_in[5]" source="bus_in[10]"/>
+        <port name="acq_trigger_in[6]" source="bus_in[11]"/>
+        <port name="acq_data_in[6]" source="bus_in[11]"/>
+        <port name="acq_trigger_in[7]" source="bus_in[12]"/>
+        <port name="acq_data_in[7]" source="bus_in[12]"/>
+        <port name="acq_trigger_in[8]" source="bus_in[13]"/>
+        <port name="acq_data_in[8]" source="bus_in[13]"/>
+        <port name="acq_trigger_in[9]" source="bus_in[14]"/>
+        <port name="acq_data_in[9]" source="bus_in[14]"/>
+        <port name="acq_trigger_in[10]" source="bus_in[15]"/>
+        <port name="acq_data_in[10]" source="bus_in[15]"/>
+        <port name="acq_trigger_in[11]" source="bus_in[16]"/>
+        <port name="acq_data_in[11]" source="bus_in[16]"/>
+        <port name="acq_trigger_in[12]" source="bus_in[17]"/>
+        <port name="acq_data_in[12]" source="bus_in[17]"/>
+        <port name="acq_trigger_in[13]" source="bus_in[18]"/>
+        <port name="acq_data_in[13]" source="bus_in[18]"/>
+        <port name="acq_trigger_in[14]" source="bus_in[19]"/>
+        <port name="acq_data_in[14]" source="bus_in[19]"/>
+        <port name="acq_trigger_in[15]" source="bus_in[1]"/>
+        <port name="acq_data_in[15]" source="bus_in[1]"/>
+        <port name="acq_trigger_in[16]" source="bus_in[20]"/>
+        <port name="acq_data_in[16]" source="bus_in[20]"/>
+        <port name="acq_trigger_in[17]" source="bus_in[21]"/>
+        <port name="acq_data_in[17]" source="bus_in[21]"/>
+        <port name="acq_trigger_in[18]" source="bus_in[22]"/>
+        <port name="acq_data_in[18]" source="bus_in[22]"/>
+        <port name="acq_trigger_in[19]" source="bus_in[23]"/>
+        <port name="acq_data_in[19]" source="bus_in[23]"/>
+        <port name="acq_trigger_in[20]" source="bus_in[24]"/>
+        <port name="acq_data_in[20]" source="bus_in[24]"/>
+        <port name="acq_trigger_in[21]" source="bus_in[25]"/>
+        <port name="acq_data_in[21]" source="bus_in[25]"/>
+        <port name="acq_trigger_in[22]" source="bus_in[26]"/>
+        <port name="acq_data_in[22]" source="bus_in[26]"/>
+        <port name="acq_trigger_in[23]" source="bus_in[27]"/>
+        <port name="acq_data_in[23]" source="bus_in[27]"/>
+        <port name="acq_trigger_in[24]" source="bus_in[28]"/>
+        <port name="acq_data_in[24]" source="bus_in[28]"/>
+        <port name="acq_trigger_in[25]" source="bus_in[29]"/>
+        <port name="acq_data_in[25]" source="bus_in[29]"/>
+        <port name="acq_trigger_in[26]" source="bus_in[2]"/>
+        <port name="acq_data_in[26]" source="bus_in[2]"/>
+        <port name="acq_trigger_in[27]" source="bus_in[30]"/>
+        <port name="acq_data_in[27]" source="bus_in[30]"/>
+        <port name="acq_trigger_in[28]" source="bus_in[31]"/>
+        <port name="acq_data_in[28]" source="bus_in[31]"/>
+        <port name="acq_trigger_in[29]" source="bus_in[3]"/>
+        <port name="acq_data_in[29]" source="bus_in[3]"/>
+        <port name="acq_trigger_in[30]" source="bus_in[4]"/>
+        <port name="acq_data_in[30]" source="bus_in[4]"/>
+        <port name="acq_trigger_in[31]" source="bus_in[5]"/>
+        <port name="acq_data_in[31]" source="bus_in[5]"/>
+        <port name="acq_trigger_in[32]" source="bus_in[6]"/>
+        <port name="acq_data_in[32]" source="bus_in[6]"/>
+        <port name="acq_trigger_in[33]" source="bus_in[7]"/>
+        <port name="acq_data_in[33]" source="bus_in[7]"/>
+        <port name="acq_trigger_in[34]" source="bus_in[8]"/>
+        <port name="acq_data_in[34]" source="bus_in[8]"/>
+        <port name="acq_trigger_in[35]" source="bus_in[9]"/>
+        <port name="acq_data_in[35]" source="bus_in[9]"/>
         <port name="acq_clk" source="clk0"/>
-        <port name="acq_trigger_in[32]" source="decoded_dds_addr"/>
-        <port name="acq_data_in[32]" source="decoded_dds_addr"/>
-        <port name="acq_trigger_in[33]" source="decoded_dds_update"/>
-        <port name="acq_data_in[33]" source="decoded_dds_update"/>
-        <port name="acq_trigger_in[34]" source="decoded_fifo_wr"/>
-        <port name="acq_data_in[34]" source="decoded_fifo_wr"/>
-        <port name="acq_trigger_in[35]" source="profile_pin[0]"/>
-        <port name="acq_data_in[35]" source="profile_pin[0]"/>
-        <port name="acq_trigger_in[36]" source="profile_pin[1]"/>
-        <port name="acq_data_in[36]" source="profile_pin[1]"/>
-        <port name="acq_trigger_in[37]" source="profile_pin[2]"/>
-        <port name="acq_data_in[37]" source="profile_pin[2]"/>
+        <port name="acq_trigger_in[36]" source="dds_reset_pin"/>
+        <port name="acq_data_in[36]" source="dds_reset_pin"/>
+        <port name="acq_trigger_in[37]" source="decoded_dac_amplitude"/>
+        <port name="acq_data_in[37]" source="decoded_dac_amplitude"/>
+        <port name="acq_trigger_in[38]" source="decoded_dds_addr"/>
+        <port name="acq_data_in[38]" source="decoded_dds_addr"/>
+        <port name="acq_trigger_in[39]" source="decoded_dds_update"/>
+        <port name="acq_data_in[39]" source="decoded_dds_update"/>
+        <port name="acq_trigger_in[40]" source="decoded_fifo_wr"/>
+        <port name="acq_data_in[40]" source="decoded_fifo_wr"/>
+        <port name="acq_trigger_in[41]" source="decoded_load_phase"/>
+        <port name="acq_data_in[41]" source="decoded_load_phase"/>
+        <port name="acq_trigger_in[42]" source="decoded_pulse_phase"/>
+        <port name="acq_data_in[42]" source="decoded_pulse_phase"/>
+        <port name="acq_trigger_in[43]" source="decoded_reset~0"/>
+        <port name="acq_data_in[43]" source="decoded_reset~0"/>
+        <port name="acq_trigger_in[44]" source="profile_pin[0]"/>
+        <port name="acq_data_in[44]" source="profile_pin[0]"/>
+        <port name="acq_trigger_in[45]" source="profile_pin[1]"/>
+        <port name="acq_data_in[45]" source="profile_pin[1]"/>
+        <port name="acq_trigger_in[46]" source="profile_pin[2]"/>
+        <port name="acq_data_in[46]" source="profile_pin[2]"/>
       </inputs>
       <outputs/>
     </node>
