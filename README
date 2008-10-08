@@ -60,6 +60,9 @@ address (not implemented)                 (25:22)
 phase register wren / DRCTL               (21)
 phase register set current /DHOLD         (20)
 phase register address                    (16:19)
+dds_drctl                                 (16)
+dds_drhold                                (17)
+dds_ramp_config                           (18)
 data bus                                  (15:0)
 --------------------------------------------------------------------
 
@@ -198,6 +201,10 @@ Set the DAC
 - Set the data bus bits (13:0)
 - Provide the dac amplitude opcode
 
+Ramp Control
+~~~~~~~~~~~~
+
+Set the registers over the serial port. Control then the drhold and drhold pins of the DDS.
 
 Preliminary Opcode specification
 --------------------------------
@@ -216,6 +223,7 @@ dac_amplitude   0x7       Set the DAC for the VGA
 load_phase      0xa       Load the phase register
 pulse_phase     0xb       Write given phase register to DDS
 fifo_reset      0x1f      Clear the FIFO
+dds_update      0x4       Update the DDS or control ramp generator
 -------------------------------------------------------------
 
 Proposed opcodes

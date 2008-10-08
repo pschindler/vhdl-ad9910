@@ -113,6 +113,10 @@ architecture behaviour of dds_controller is
   alias bus_phase_address_in is bus_in(DATAWIDTH+PHASE_ADDRESS_WIDTH-1 downto DATAWIDTH);
 --  alias bus_phase_set_current is bus_in(DATAWIDTH+PHASE_ADDRESS_WIDTH);
   alias bus_phase_wren_in is bus_in(DATAWIDTH+PHASE_ADDRESS_WIDTH+1);
+  -- the ramp control pins
+  alias bus_dds_ramp_conf is bus_in(DATAWIDTH+2);
+  alias bus_dds_drctl is bus_in(DATAWIDTH);
+  alias bus_dds_drhold is bus_in(DATAWIDTH+1);
   --- The async decoded signals
   signal decoded_reset              : boolean;
   signal decoded_fifo_wr            : boolean;
@@ -186,9 +190,9 @@ architecture behaviour of dds_controller is
 -----------------------------------------------------------------------------
 
 begin
-  drover_pin    <= '0';
-  drctl_pin     <= '0';
-  drhold_pin    <= '0';
+--  drover_pin    <= '0';
+--  drctl_pin     <= '0';
+--  drhold_pin    <= '0';
   osk_pin       <= '0';
   dds_reset_pin <= '0';
 
@@ -521,11 +525,15 @@ begin
   control_ioup : process (clk0)
   begin  -- process control_ioup
     if rising_edge(clk0) then
-      if decoded_dds_update or aux_phase_ioup = '1' then
+      if (decoded_dds_update and bus_dds_ramp_conf = '0') or aux_phase_ioup = '1' then
         ioup_pin <= '1';
       else
         ioup_pin <= '0';
       end if;
+		if decoded_dds_update and bus_dds_ramp_conf = '1' then
+			drctl_pin <= bus_dds_drctl;
+			drhold_pin <= bus_dds_drhold;
+		end if;
     end if;
   end process control_ioup;
 
