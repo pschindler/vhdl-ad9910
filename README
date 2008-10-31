@@ -110,6 +110,9 @@ Connecting the board
 - Connect 10V..12V to the analog 10V suply.
 - Connect 100MHz to the T_DDS_FPGA connector
 - Connect 800MHz to the connector P1
+- Set the jumpers as shown in the image
+
+INSERT IMAGE OF BOARD HERE
 
 To test the functionality of the DDS board following procedure is recommended.
 
@@ -121,6 +124,8 @@ Test the Voltage regulators
 - Turn up the curent limit. If the board draws more than 400mA there is most
 likely a short circuit on the board.
 - Check the desired output voltage with an oscilloscope/multimeter
+
+ INSERT VOLTAGES AND IC NUMBERS HERE
 
 Test the LVDS Bus
 ~~~~~~~~~~~~~~~~~
@@ -142,7 +147,9 @@ t1 = HardwareTests(nonet=True)
 t1.test_lvds_bus()
 -------------------------------------
 
-- Ensure that the bus values are correct
+- Ensure that the bus values are correct.
+
+INSERT SCREENSHOT
 
 Another quick (but incomplete) test of the LVDS Bus can be performed by generating
 DAC events with the sequencer and checking the output voltage of the DAC.
@@ -158,6 +165,11 @@ t1.test_dds_simple()
 -------------------------------------
 
 - Test the output of the DDS.
+
+INSERT DATA HERE
+
+If these tests were succesfully you most probably have a working system.
+
 
 Test phase coherent switching
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
