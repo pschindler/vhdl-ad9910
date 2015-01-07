@@ -26,7 +26,7 @@ entity dds_controller is
 -- This section is for debugging purpose only
 -------------------------------------------------------------------------------
 -- debug out
-    debug_out : out std_logic_vector(3 downto 0);
+    --debug_out : out std_logic_vector(3 downto 0);
 -- reset_in : in std_logic;
 -------------------------------------------------------------------------------
 -- end of debugging section
@@ -202,7 +202,7 @@ begin
 
 --  address_bit           <= true;
   address_bit <= (address_data = address_in); -- when USE_ADDRESSING else true;
-  decoded_fifo_wr       <= (opcode_data = fifo_wr_opcode) and address_bit and avail_bool;
+  decoded_fifo_wr       <= (opcode_data = fifo_wr_opcode); -- and address_bit and avail_bool;
   decoded_reset         <= (opcode_data = reset_opcode) and address_bit and avail_bool;
   decoded_dds_addr      <= (opcode_data = dds_addr_opcode) and address_bit and avail_bool;
   decoded_dds_profile   <= (opcode_data = dds_profile_opcode) and address_bit and avail_bool;
@@ -212,7 +212,7 @@ begin
   decoded_load_phase    <= (opcode_data = load_phase_opcode) and address_bit and avail_bool;
   decoded_pulse_phase   <= (opcode_data = pulse_phase_opcode) and address_bit and avail_bool;
   aux_ser_enable        <= '1'  when decoded_dds_addr else '0';
-  avail_bool            <= true when data_avail = '1' else false;
+  avail_bool            <= (data_avail = '1');
 
 -------------------------------------------------------------------------------
 -- Asynchronious reset
@@ -299,7 +299,7 @@ begin
     end if;
   end process;
 
-  debug_out(2) <= '1' when decoded_fifo_wr else '0';
+  --debug_out(2) <= '1' when decoded_fifo_wr else '0';
   serial_control : process(aux_ser_cur_state)
   begin
 
@@ -463,7 +463,7 @@ begin
   state_fifo : process(clk0)
   begin
     if rising_edge(clk0) then
-      if decoded_fifo_wr then
+      if (opcode_data = fifo_wr_opcode and address_bit and avail_bool) then --decoded_fifo_wr then
         aux_fifo_cur_state <= aux_fifo_state;
       else
         aux_fifo_cur_state <= B"0000";
