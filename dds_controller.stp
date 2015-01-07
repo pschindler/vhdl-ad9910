@@ -1,6 +1,6 @@
-<session jtag_chain="USB-Blaster [USB-0]" jtag_device="@1: EP2C5 (0x020B10DD)" sof_file="" top_level_entity="dds_controller">
+<session jtag_chain="USB-Blaster [USB-0]" jtag_device="@1: EP2C5 (0x020B10DD)" sof_file="dds_controller.sof" top_level_entity="dds_controller">
   <display_tree gui_logging_enabled="0">
-    <display_branch instance="auto_signaltap_0" signal_set="USE_GLOBAL_TEMP" trigger="USE_GLOBAL_TEMP"/>
+    <display_branch instance="auto_signaltap_0" log="USE_GLOBAL_TEMP" signal_set="USE_GLOBAL_TEMP" trigger="USE_GLOBAL_TEMP"/>
   </display_tree>
   <instance compilation_mode="full" entity_name="sld_signaltap" is_auto_node="yes" is_expanded="true" name="auto_signaltap_0" source_file="sld_signaltap.vhd">
     <node_ip_info instance_id="0" mfg_id="110" node_id="0" version="6"/>
@@ -9,16 +9,16 @@
       <single attribute="data horizontal scroll position" value="0"/>
       <single attribute="data vertical scroll position" value="0"/>
       <single attribute="setup horizontal scroll position" value="0"/>
-      <single attribute="setup vertical scroll position" value="0"/>
+      <single attribute="setup vertical scroll position" value="2"/>
       <single attribute="zoom level denominator" value="1"/>
       <single attribute="zoom level numerator" value="1"/>
       <single attribute="zoom offset denominator" value="1"/>
       <single attribute="zoom offset numerator" value="130560"/>
-      <multi attribute="timebars" size="2" value="80,33"/>
+      <multi attribute="timebars" size="6" value="80,33,101,191,178,117"/>
     </position_info>
-    <signal_set global_temp="1" name="signal_set: 2008/10/08 17:48:36  #0">
+    <signal_set global_temp="1" name="signal_set: 2015/01/07 15:19:23  #0">
       <clock name="clk0" polarity="posedge" tap_mode="classic"/>
-      <config ram_type="M4K" reserved_data_nodes="0" reserved_trigger_nodes="0" sample_depth="512" trigger_in_enable="yes" trigger_in_node="bus_in[0]" trigger_in_tap_mode="classic" trigger_out_enable="no"/>
+      <config ram_type="M4K" reserved_data_nodes="0" reserved_storage_qualifier_nodes="0" reserved_trigger_nodes="0" sample_depth="512" trigger_in_enable="yes" trigger_in_node="bus_in[0]" trigger_in_tap_mode="classic" trigger_out_enable="no"/>
       <top_entity/>
       <signal_vec>
         <trigger_input_vec>
@@ -26,43 +26,14 @@
           <wire name="address_in[1]" tap_mode="classic" type="input pin"/>
           <wire name="address_in[2]" tap_mode="classic" type="input pin"/>
           <wire name="address_in[3]" tap_mode="classic" type="input pin"/>
+          <wire name="aux_fifo_cur_state[0]" tap_mode="classic" type="register"/>
+          <wire name="aux_fifo_cur_state[1]" tap_mode="classic" type="register"/>
+          <wire name="aux_fifo_cur_state[2]" tap_mode="classic" type="register"/>
+          <wire name="aux_fifo_cur_state[3]" tap_mode="classic" type="register"/>
           <wire name="aux_phase_cur_state[0]" tap_mode="classic" type="register"/>
           <wire name="aux_phase_cur_state[1]" tap_mode="classic" type="register"/>
           <wire name="aux_phase_cur_state[2]" tap_mode="classic" type="register"/>
           <wire name="aux_phase_cur_state[3]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[0]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[10]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[11]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[12]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[13]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[14]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[15]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[1]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[2]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[3]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[4]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[5]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[6]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[7]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[8]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[9]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[0]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[10]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[11]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[12]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[13]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[14]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[15]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[1]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[2]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[3]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[4]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[5]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[6]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[7]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[8]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[9]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_wren_in" tap_mode="classic" type="register"/>
           <wire name="aux_reset" tap_mode="classic" type="combinatorial"/>
           <wire name="aux_ser_cur_state[0]" tap_mode="classic" type="register"/>
           <wire name="aux_ser_cur_state[1]" tap_mode="classic" type="register"/>
@@ -104,77 +75,30 @@
           <wire name="decoded_dac_amplitude" tap_mode="classic" type="combinatorial"/>
           <wire name="decoded_dds_addr" tap_mode="classic" type="combinatorial"/>
           <wire name="decoded_dds_update" tap_mode="classic" type="combinatorial"/>
-          <wire name="decoded_fifo_wr" tap_mode="classic" type="combinatorial"/>
           <wire name="decoded_load_phase" tap_mode="classic" type="combinatorial"/>
           <wire name="decoded_pulse_phase" tap_mode="classic" type="combinatorial"/>
           <wire name="decoded_reset~0" tap_mode="classic" type="combinatorial"/>
-          <wire name="drctl_pin" tap_mode="classic" type="output pin"/>
-          <wire name="drhold_pin" tap_mode="classic" type="output pin"/>
-          <wire name="drover_pin" tap_mode="classic" type="output pin"/>
           <wire name="ioreset_pin" tap_mode="classic" type="output pin"/>
           <wire name="ioup_pin" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[0]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[10]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[11]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[12]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[13]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[14]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[15]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[1]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[2]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[3]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[4]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[5]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[6]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[7]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[8]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[9]" tap_mode="classic" type="output pin"/>
           <wire name="profile_pin[0]" tap_mode="classic" type="output pin"/>
           <wire name="profile_pin[1]" tap_mode="classic" type="output pin"/>
           <wire name="profile_pin[2]" tap_mode="classic" type="output pin"/>
+          <wire name="sdo_pin[0]" tap_mode="classic" type="output pin"/>
+          <wire name="sdo_pin[1]" tap_mode="classic" type="output pin"/>
         </trigger_input_vec>
         <data_input_vec>
           <wire name="address_in[0]" tap_mode="classic" type="input pin"/>
           <wire name="address_in[1]" tap_mode="classic" type="input pin"/>
           <wire name="address_in[2]" tap_mode="classic" type="input pin"/>
           <wire name="address_in[3]" tap_mode="classic" type="input pin"/>
+          <wire name="aux_fifo_cur_state[0]" tap_mode="classic" type="register"/>
+          <wire name="aux_fifo_cur_state[1]" tap_mode="classic" type="register"/>
+          <wire name="aux_fifo_cur_state[2]" tap_mode="classic" type="register"/>
+          <wire name="aux_fifo_cur_state[3]" tap_mode="classic" type="register"/>
           <wire name="aux_phase_cur_state[0]" tap_mode="classic" type="register"/>
           <wire name="aux_phase_cur_state[1]" tap_mode="classic" type="register"/>
           <wire name="aux_phase_cur_state[2]" tap_mode="classic" type="register"/>
           <wire name="aux_phase_cur_state[3]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[0]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[10]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[11]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[12]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[13]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[14]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[15]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[1]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[2]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[3]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[4]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[5]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[6]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[7]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[8]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_lower[9]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[0]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[10]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[11]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[12]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[13]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[14]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[15]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[1]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[2]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[3]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[4]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[5]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[6]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[7]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[8]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_phase_reg_upper[9]" tap_mode="classic" type="register"/>
-          <wire name="aux_phase_wren_in" tap_mode="classic" type="register"/>
           <wire name="aux_reset" tap_mode="classic" type="combinatorial"/>
           <wire name="aux_ser_cur_state[0]" tap_mode="classic" type="register"/>
           <wire name="aux_ser_cur_state[1]" tap_mode="classic" type="register"/>
@@ -216,35 +140,25 @@
           <wire name="decoded_dac_amplitude" tap_mode="classic" type="combinatorial"/>
           <wire name="decoded_dds_addr" tap_mode="classic" type="combinatorial"/>
           <wire name="decoded_dds_update" tap_mode="classic" type="combinatorial"/>
-          <wire name="decoded_fifo_wr" tap_mode="classic" type="combinatorial"/>
           <wire name="decoded_load_phase" tap_mode="classic" type="combinatorial"/>
           <wire name="decoded_pulse_phase" tap_mode="classic" type="combinatorial"/>
           <wire name="decoded_reset~0" tap_mode="classic" type="combinatorial"/>
-          <wire name="drctl_pin" tap_mode="classic" type="output pin"/>
-          <wire name="drhold_pin" tap_mode="classic" type="output pin"/>
-          <wire name="drover_pin" tap_mode="classic" type="output pin"/>
           <wire name="ioreset_pin" tap_mode="classic" type="output pin"/>
           <wire name="ioup_pin" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[0]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[10]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[11]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[12]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[13]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[14]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[15]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[1]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[2]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[3]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[4]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[5]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[6]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[7]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[8]" tap_mode="classic" type="output pin"/>
-          <wire name="parallel_data[9]" tap_mode="classic" type="output pin"/>
           <wire name="profile_pin[0]" tap_mode="classic" type="output pin"/>
           <wire name="profile_pin[1]" tap_mode="classic" type="output pin"/>
           <wire name="profile_pin[2]" tap_mode="classic" type="output pin"/>
+          <wire name="sdo_pin[0]" tap_mode="classic" type="output pin"/>
+          <wire name="sdo_pin[1]" tap_mode="classic" type="output pin"/>
         </data_input_vec>
+        <storage_qualifier_input_vec>
+          <wire name="aux_fifo_cur_state[0]" tap_mode="classic" type="register"/>
+          <wire name="aux_fifo_cur_state[1]" tap_mode="classic" type="register"/>
+          <wire name="aux_fifo_cur_state[2]" tap_mode="classic" type="register"/>
+          <wire name="aux_fifo_cur_state[3]" tap_mode="classic" type="register"/>
+          <wire name="sdo_pin[0]" tap_mode="classic" type="output pin"/>
+          <wire name="sdo_pin[1]" tap_mode="classic" type="output pin"/>
+        </storage_qualifier_input_vec>
       </signal_vec>
       <presentation>
         <data_view>
@@ -283,9 +197,8 @@
             <net is_signal_inverted="no" name="bus_in[31]"/>
           </bus>
           <net is_signal_inverted="no" name="decoded_dds_addr"/>
-          <net is_signal_inverted="no" name="decoded_fifo_wr"/>
           <net is_signal_inverted="no" name="decoded_dds_update"/>
-          <bus is_signal_inverted="no" link="all" name="profile_pin" order="lsb_to_msb" radix="hex" state="collapse" type="output pin">
+          <bus is_signal_inverted="no" link="all" name="profile_pin" order="lsb_to_msb" radix="hex" state="expand" type="output pin">
             <net is_signal_inverted="no" name="profile_pin[0]"/>
             <net is_signal_inverted="no" name="profile_pin[1]"/>
             <net is_signal_inverted="no" name="profile_pin[2]"/>
@@ -307,73 +220,25 @@
             <net is_signal_inverted="no" name="aux_phase_cur_state[2]"/>
             <net is_signal_inverted="no" name="aux_phase_cur_state[3]"/>
           </bus>
-          <net is_signal_inverted="no" name="aux_phase_wren_in"/>
           <net is_signal_inverted="no" name="aux_reset"/>
           <net is_signal_inverted="no" name="ioreset_pin"/>
           <net is_signal_inverted="no" name="ioup_pin"/>
-          <bus is_signal_inverted="no" link="all" name="parallel_data" order="lsb_to_msb" radix="hex" state="collapse" type="output pin">
-            <net is_signal_inverted="no" name="parallel_data[0]"/>
-            <net is_signal_inverted="no" name="parallel_data[1]"/>
-            <net is_signal_inverted="no" name="parallel_data[2]"/>
-            <net is_signal_inverted="no" name="parallel_data[3]"/>
-            <net is_signal_inverted="no" name="parallel_data[4]"/>
-            <net is_signal_inverted="no" name="parallel_data[5]"/>
-            <net is_signal_inverted="no" name="parallel_data[6]"/>
-            <net is_signal_inverted="no" name="parallel_data[7]"/>
-            <net is_signal_inverted="no" name="parallel_data[8]"/>
-            <net is_signal_inverted="no" name="parallel_data[9]"/>
-            <net is_signal_inverted="no" name="parallel_data[10]"/>
-            <net is_signal_inverted="no" name="parallel_data[11]"/>
-            <net is_signal_inverted="no" name="parallel_data[12]"/>
-            <net is_signal_inverted="no" name="parallel_data[13]"/>
-            <net is_signal_inverted="no" name="parallel_data[14]"/>
-            <net is_signal_inverted="no" name="parallel_data[15]"/>
-          </bus>
-          <bus is_signal_inverted="no" link="all" name="aux_phase_phase_reg_lower" order="lsb_to_msb" radix="hex" state="collapse" type="register">
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[0]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[1]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[2]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[3]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[4]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[5]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[6]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[7]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[8]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[9]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[10]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[11]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[12]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[13]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[14]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[15]"/>
-          </bus>
-          <bus is_signal_inverted="no" link="all" name="aux_phase_phase_reg_upper" order="lsb_to_msb" radix="hex" state="collapse" type="register">
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[0]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[1]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[2]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[3]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[4]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[5]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[6]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[7]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[8]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[9]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[10]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[11]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[12]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[13]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[14]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[15]"/>
-          </bus>
           <bus is_signal_inverted="no" link="all" name="aux_ser_cur_state" order="lsb_to_msb" radix="hex" state="collapse" type="register">
             <net is_signal_inverted="no" name="aux_ser_cur_state[0]"/>
             <net is_signal_inverted="no" name="aux_ser_cur_state[1]"/>
             <net is_signal_inverted="no" name="aux_ser_cur_state[2]"/>
             <net is_signal_inverted="no" name="aux_ser_cur_state[3]"/>
           </bus>
-          <net is_signal_inverted="no" name="drctl_pin"/>
-          <net is_signal_inverted="no" name="drhold_pin"/>
-          <net is_signal_inverted="no" name="drover_pin"/>
+          <bus is_signal_inverted="no" link="all" name="sdo_pin" order="msb_to_lsb" radix="hex" state="collapse" type="output pin">
+            <net is_signal_inverted="no" name="sdo_pin[0]"/>
+            <net is_signal_inverted="no" name="sdo_pin[1]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="aux_fifo_cur_state" order="lsb_to_msb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="aux_fifo_cur_state[0]"/>
+            <net is_signal_inverted="no" name="aux_fifo_cur_state[1]"/>
+            <net is_signal_inverted="no" name="aux_fifo_cur_state[2]"/>
+            <net is_signal_inverted="no" name="aux_fifo_cur_state[3]"/>
+          </bus>
         </data_view>
         <setup_view>
           <bus is_signal_inverted="no" link="all" name="bus_in" order="lsb_to_msb" radix="hex" state="collapse" type="input pin">
@@ -423,7 +288,6 @@
           </bus>
           <net is_signal_inverted="no" name="decoded_dds_update"/>
           <net is_signal_inverted="no" name="decoded_dds_addr"/>
-          <net is_signal_inverted="no" name="decoded_fifo_wr"/>
           <net is_signal_inverted="no" name="decoded_dac_amplitude"/>
           <net is_signal_inverted="no" name="decoded_load_phase"/>
           <net is_signal_inverted="no" name="decoded_pulse_phase"/>
@@ -435,77 +299,29 @@
             <net is_signal_inverted="no" name="aux_phase_cur_state[2]"/>
             <net is_signal_inverted="no" name="aux_phase_cur_state[3]"/>
           </bus>
-          <net is_signal_inverted="no" name="aux_phase_wren_in"/>
           <net is_signal_inverted="no" name="aux_reset"/>
           <net is_signal_inverted="no" name="ioreset_pin"/>
           <net is_signal_inverted="no" name="ioup_pin"/>
-          <bus is_signal_inverted="no" link="all" name="parallel_data" order="lsb_to_msb" radix="hex" state="collapse" type="output pin">
-            <net is_signal_inverted="no" name="parallel_data[0]"/>
-            <net is_signal_inverted="no" name="parallel_data[1]"/>
-            <net is_signal_inverted="no" name="parallel_data[2]"/>
-            <net is_signal_inverted="no" name="parallel_data[3]"/>
-            <net is_signal_inverted="no" name="parallel_data[4]"/>
-            <net is_signal_inverted="no" name="parallel_data[5]"/>
-            <net is_signal_inverted="no" name="parallel_data[6]"/>
-            <net is_signal_inverted="no" name="parallel_data[7]"/>
-            <net is_signal_inverted="no" name="parallel_data[8]"/>
-            <net is_signal_inverted="no" name="parallel_data[9]"/>
-            <net is_signal_inverted="no" name="parallel_data[10]"/>
-            <net is_signal_inverted="no" name="parallel_data[11]"/>
-            <net is_signal_inverted="no" name="parallel_data[12]"/>
-            <net is_signal_inverted="no" name="parallel_data[13]"/>
-            <net is_signal_inverted="no" name="parallel_data[14]"/>
-            <net is_signal_inverted="no" name="parallel_data[15]"/>
-          </bus>
-          <bus is_signal_inverted="no" link="all" name="aux_phase_phase_reg_lower" order="lsb_to_msb" radix="hex" state="collapse" type="register">
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[0]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[1]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[2]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[3]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[4]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[5]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[6]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[7]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[8]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[9]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[10]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[11]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[12]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[13]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[14]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_lower[15]"/>
-          </bus>
-          <bus is_signal_inverted="no" link="all" name="aux_phase_phase_reg_upper" order="lsb_to_msb" radix="hex" state="collapse" type="register">
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[0]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[1]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[2]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[3]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[4]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[5]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[6]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[7]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[8]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[9]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[10]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[11]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[12]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[13]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[14]"/>
-            <net is_signal_inverted="no" name="aux_phase_phase_reg_upper[15]"/>
-          </bus>
           <bus is_signal_inverted="no" link="all" name="aux_ser_cur_state" order="lsb_to_msb" radix="hex" state="collapse" type="register">
             <net is_signal_inverted="no" name="aux_ser_cur_state[0]"/>
             <net is_signal_inverted="no" name="aux_ser_cur_state[1]"/>
             <net is_signal_inverted="no" name="aux_ser_cur_state[2]"/>
             <net is_signal_inverted="no" name="aux_ser_cur_state[3]"/>
           </bus>
-          <net is_signal_inverted="no" name="drctl_pin"/>
-          <net is_signal_inverted="no" name="drhold_pin"/>
-          <net is_signal_inverted="no" name="drover_pin"/>
+          <bus is_signal_inverted="no" link="all" name="sdo_pin" order="msb_to_lsb" radix="hex" state="collapse" type="output pin">
+            <net is_signal_inverted="no" name="sdo_pin[0]"/>
+            <net is_signal_inverted="no" name="sdo_pin[1]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="aux_fifo_cur_state" order="lsb_to_msb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="aux_fifo_cur_state[0]"/>
+            <net is_signal_inverted="no" name="aux_fifo_cur_state[1]"/>
+            <net is_signal_inverted="no" name="aux_fifo_cur_state[2]"/>
+            <net is_signal_inverted="no" name="aux_fifo_cur_state[3]"/>
+          </bus>
         </setup_view>
       </presentation>
-      <trigger attribute_mem_mode="false" global_temp="1" name="trigger: 2008/10/08 17:48:36  #1" position="pre" power_up_trigger_mode="false" segment_size="1" trigger_in="rising edge" trigger_out="active high" trigger_type="circular">
-        <power_up_trigger position="pre" trigger_in="dont_care" trigger_out="active high"/>
+      <trigger attribute_mem_mode="false" gap_record="true" global_temp="1" name="trigger: 2015/01/07 15:19:23  #1" position="post" power_up_trigger_mode="false" record_data_gap="true" segment_size="1" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="false" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_in="rising edge" trigger_out="active high" trigger_type="circular">
+        <power_up_trigger position="pre" storage_qualifier_disabled="no" trigger_in="dont_care" trigger_out="active high"/>
         <events use_custom_flow_control="no">
           <level enabled="yes" name="condition1" type="basic">
             <power_up enabled="yes">
@@ -515,6 +331,31 @@
             </op_node>
           </level>
         </events>
+        <storage_qualifier_events>
+          <transitional>000000
+            <pwr_up_transitional>000000
+            </pwr_up_transitional>
+          </transitional>
+          <storage_qualifier_level type="basic">
+            <power_up>
+            </power_up>
+            <op_node/>
+          </storage_qualifier_level>
+          <storage_qualifier_level type="basic">
+            <power_up>
+            </power_up>
+            <op_node/>
+          </storage_qualifier_level>
+          <storage_qualifier_level type="basic">
+            <power_up>
+            </power_up>
+            <op_node/>
+          </storage_qualifier_level>
+        </storage_qualifier_events>
+        <log>
+          <data global_temp="1" name="log: 2015/01/07 15:19:23  #2"/>
+          <extradata/>
+        </log>
       </trigger>
     </signal_set>
   </instance>
@@ -523,6 +364,6 @@
   <global_info>
     <single attribute="active instance" value="0"/>
     <single attribute="lock mode" value="36110"/>
-    <multi attribute="window position" size="9" value="1600,1114,398,124,356,50,124,0,0"/>
+    <multi attribute="window position" size="9" value="1432,798,398,124,356,0,0,0,0"/>
   </global_info>
 </session>
